@@ -26,7 +26,6 @@ function createSupabaseFetch(supabaseKey: string): typeof fetch {
   };
 }
 
-
 function createSupabaseClient() {
   // Use import.meta.env for client-side (Vite build-time replacement)
   // Fall back to process.env for SSR (server-side rendering)
@@ -38,9 +37,10 @@ function createSupabaseClient() {
       ...(!SUPABASE_URL ? ['SUPABASE_URL'] : []),
       ...(!SUPABASE_PUBLISHABLE_KEY ? ['SUPABASE_PUBLISHABLE_KEY'] : []),
     ];
-    const message = `Missing Supabase environment variable(s): ${missing.join(', ')}. Connect Supabase in Lovable Cloud.`;
-    console.error(`[Supabase] ${message}`);
-    throw new Error(message);
+    const message = `Missing Supabase environment variable(s): ${missing.join(', ')}. Connect Supabase in Lovable Cloud or add them to your Vercel project settings.`;
+    console.warn(`[Supabase] ${message}`);
+    // Return a mock client that logs warnings instead of crashing the app
+    return createMockClient(message);
   }
 
   return createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
@@ -55,6 +55,106 @@ function createSupabaseClient() {
   });
 }
 
+function createMockClient(missingMessage: string) {
+  const warn = () => console.warn(`[Supabase] ${missingMessage}`);
+  return new Proxy({} as ReturnType<typeof createClient<Database>>, {
+    get(_, prop) {
+      warn();
+      // Return a mock object that also warns on any method call
+      if (prop === 'auth') {
+        return {
+          getSession: async () => ({ data: { session: null }, error: null }),
+          getUser: async () => ({ data: { user: null }, error: new Error(missingMessage) }),
+          signInWithPassword: async () => ({ data: null, error: new Error(missingMessage) }),
+          signUp: async () => ({ data: null, error: new Error(missingMessage) }),
+          signOut: async () => {},
+          onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
+        };
+      }
+      if (prop === 'from') {
+        return () => ({
+          select: () => ({
+            eq: () => ({
+              order: () => ({
+                then: async (resolve: Function) => resolve({ data: [], error: null }),
+                data: [],
+                error: null,
+              }),
+              data: [],
+              error: null,
+            }),
+            order: () => ({
+              then: async (resolve: Function) => resolve({ data: [], error: null }),
+              data: [],
+              error: null,
+            }),
+            then: async (resolve: Function) => resolve({ data: [], error: null }),
+            data: [],
+            error: null,
+          }),
+          insert: () => ({
+            select: () => ({
+              then: async (resolve: Function) => resolve({ data: null, error: new Error(missingMessage) }),
+              single: () => ({
+                then: async (resolve: Function) => resolve({ data: null, error: new Error(missingMessage) }),
+              }),
+            }),
+            then: async (resolve: Function) => resolve({ data: null, error: new Error(missingMessage) }),
+          }),
+          update: () => ({
+            eq: () => ({
+              select: () => ({
+                then: async (resolve: Function) => resolve({ data: null, error: new Error(missingMessage) }),
+                single: () => ({
+                  then: async (resolve: Function) => resolve({ data: null, error: new Error(missingMessage) }),
+                }),
+              }),
+              then: async (resolve: Function) => resolve({ data: null, error: new Error(missingMessage) }),
+            }),
+            then: async (resolve: Function) => resolve({ data: null, error: new Error(missingMessage) }),
+          }),
+          delete: () => ({
+            eq: () => ({
+              then: async (resolve: Function) => resolve({ data: null, error: new Error(missingMessage) }),
+            }),
+            then: async (resolve: Function) => resolve({ data: null, error: new Error(missingMessage) }),
+          }),
+          storage: {
+            from: () => ({
+              upload: async () => ({ data: null, error: new Error(missingMessage) }),
+              getPublicUrl: () => ({ data: { publicUrl: '' } }),
+              list: async () => ({ data: [], error: null }),
+              remove: async () => ({ data: null, error: new Error(missingMessage) }),
+            }),
+          },
+          rpc: () => ({
+            then: async (resolve: Function) => resolve({ data: null, error: new Error(missingMessage) }),
+          }),
+        });
+      }
+      if (prop === 'storage') {
+        return {
+          from: () => ({
+            upload: async () => ({ data: null, error: new Error(missingMessage) }),
+            getPublicUrl: () => ({ data: { publicUrl: '' } }),
+            list: async () => ({ data: [], error: null }),
+            remove: async () => ({ data: null, error: new Error(missingMessage) }),
+          }),
+        };
+      }
+      if (prop === 'rpc') {
+        return () => ({
+          then: async (resolve: Function) => resolve({ data: null, error: new Error(missingMessage) }),
+        });
+      }
+      if (prop === 'then') return undefined;
+      return () => ({
+        then: async (resolve: Function) => resolve({ data: null, error: new Error(missingMessage) }),
+      });
+    },
+  });
+}
+
 let _supabase: ReturnType<typeof createSupabaseClient> | undefined;
 
 // Import the supabase client like this:
@@ -65,4 +165,3 @@ export const supabase = new Proxy({} as ReturnType<typeof createSupabaseClient>,
     return Reflect.get(_supabase, prop, receiver);
   },
 });
-
