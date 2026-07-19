@@ -20,6 +20,9 @@ dist-ssr
 .wrangler/
 .dev.vars
 
+# Vercel prebuilt output (stale bundle, can desync from fresh builds)
+.vercel/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
