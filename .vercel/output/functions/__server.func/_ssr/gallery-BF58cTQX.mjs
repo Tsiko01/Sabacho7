@@ -1,11 +1,11 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { a as require_jsx_runtime, n as useQuery, o as require_react } from "../_libs/react+tanstack__react-query.mjs";
-import { i as useI18n } from "./i18n-QYYPNaBp.mjs";
+import { i as useI18n } from "./i18n-CruZlRQi.mjs";
 import { t as supabase } from "./client-DkzpAgPX.mjs";
 import { i as resolveImageUrl } from "./assets-DPl7XXdf.mjs";
 import { A as ChevronLeft, k as ChevronRight, n as X } from "../_libs/lucide-react.mjs";
-import { i as Header, n as FloatingButtons, r as Footer } from "./FloatingButtons-DdwIOsSi.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/gallery-z6Zb1cu6.js
+import { i as Header, n as FloatingButtons, r as Footer } from "./FloatingButtons-CcRsYBkn.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/gallery-BF58cTQX.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var CATEGORIES = [

@@ -1,12 +1,12 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { a as require_jsx_runtime, o as require_react, r as QueryClientProvider } from "../_libs/react+tanstack__react-query.mjs";
-import { t as I18nProvider } from "./i18n-QYYPNaBp.mjs";
+import { t as I18nProvider } from "./i18n-CruZlRQi.mjs";
 import { t as supabase } from "./client-DkzpAgPX.mjs";
 import { t as ThemeProvider } from "./theme-CDeDvAbH.mjs";
 import { A as redirect, c as HeadContent, d as Outlet, f as lazyRouteComponent, h as Link, m as createRootRouteWithContext, p as createFileRoute, s as Scripts, u as createRouter, v as useRouter } from "../_libs/@tanstack/react-router+[...].mjs";
 import { t as QueryClient } from "../_libs/tanstack__query-core.mjs";
 import { t as Toaster } from "../_libs/sonner.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-DlRnN3is.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-7HApOLAu.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var styles_default = "/assets/styles-C5V23BvC.css";
@@ -188,7 +188,7 @@ function RootComponent() {
 		})] }) })
 	});
 }
-var $$splitComponentImporter$13 = () => import("./routes-p4giM8Ed.mjs");
+var $$splitComponentImporter$13 = () => import("./routes-DSTfsqL2.mjs");
 var Route$14 = createFileRoute("/")({ component: lazyRouteComponent($$splitComponentImporter$13, "component") });
 var $$splitComponentImporter$12 = () => import("./route-Di7iQBCH.mjs");
 var Route$13 = createFileRoute("/_authenticated")({
@@ -208,7 +208,7 @@ var Route$13 = createFileRoute("/_authenticated")({
 	},
 	component: lazyRouteComponent($$splitComponentImporter$12, "component")
 });
-var $$splitComponentImporter$11 = () => import("./about-CqNsLXV7.mjs");
+var $$splitComponentImporter$11 = () => import("./about-BuW1HmOF.mjs");
 var Route$12 = createFileRoute("/about")({
 	head: () => ({ meta: [
 		{ title: "About — SABACHO Marani" },
@@ -227,7 +227,7 @@ var Route$12 = createFileRoute("/about")({
 	] }),
 	component: lazyRouteComponent($$splitComponentImporter$11, "component")
 });
-var $$splitComponentImporter$10 = () => import("./contact-DRgdCh8S.mjs");
+var $$splitComponentImporter$10 = () => import("./contact-oevw2Bt2.mjs");
 var Route$11 = createFileRoute("/contact")({
 	head: () => ({ meta: [
 		{ title: "Contact — SABACHO Marani" },
@@ -246,7 +246,7 @@ var Route$11 = createFileRoute("/contact")({
 	] }),
 	component: lazyRouteComponent($$splitComponentImporter$10, "component")
 });
-var $$splitComponentImporter$9 = () => import("./gallery-z6Zb1cu6.mjs");
+var $$splitComponentImporter$9 = () => import("./gallery-BF58cTQX.mjs");
 var Route$10 = createFileRoute("/gallery")({
 	head: () => ({ meta: [
 		{ title: "Gallery — SABACHO Marani" },
@@ -282,7 +282,7 @@ var Route$9 = createFileRoute("/sitemap.xml")({ server: { handlers: { GET: async
 		"Cache-Control": "public, max-age=3600"
 	} });
 } } } });
-var $$splitComponentImporter$8 = () => import("./tasting-D6LlpmcY.mjs");
+var $$splitComponentImporter$8 = () => import("./tasting-ByJ64nre.mjs");
 var Route$8 = createFileRoute("/tasting")({
 	head: () => ({ meta: [
 		{ title: "Tasting Menu — SABACHO Marani" },
@@ -303,7 +303,7 @@ var Route$8 = createFileRoute("/tasting")({
 });
 var $$splitComponentImporter$7 = () => import("./admin-Dy0vxNho.mjs");
 var Route$7 = createFileRoute("/_authenticated/admin")({ component: lazyRouteComponent($$splitComponentImporter$7, "component") });
-var $$splitComponentImporter$6 = () => import("./admin.login-DPnTfB4X.mjs");
+var $$splitComponentImporter$6 = () => import("./admin.login-DTJxrYec.mjs");
 var Route$6 = createFileRoute("/admin/login")({
 	ssr: false,
 	head: () => ({ meta: [{ title: "Admin — Sabacho" }, {

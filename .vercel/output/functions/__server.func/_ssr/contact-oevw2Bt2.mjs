@@ -1,10 +1,10 @@
 import { a as require_jsx_runtime, n as useQuery } from "../_libs/react+tanstack__react-query.mjs";
-import { i as useI18n } from "./i18n-QYYPNaBp.mjs";
+import { i as useI18n } from "./i18n-CruZlRQi.mjs";
 import { t as supabase } from "./client-DkzpAgPX.mjs";
 import { h as Link } from "../_libs/@tanstack/react-router+[...].mjs";
 import { O as CircleAlert, _ as MapPin, p as Phone, v as Mail } from "../_libs/lucide-react.mjs";
-import { a as MAPS_URL, c as SOCIALS, i as Header, l as WHATSAPP_URL, n as FloatingButtons, o as PHONE, r as Footer, s as PHONE_INTL, t as EMAIL } from "./FloatingButtons-DdwIOsSi.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/contact-DRgdCh8S.js
+import { a as MAPS_URL, c as SOCIALS, i as Header, l as WHATSAPP_URL, n as FloatingButtons, o as PHONE, r as Footer, s as PHONE_INTL, t as EMAIL } from "./FloatingButtons-CcRsYBkn.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/contact-oevw2Bt2.js
 var import_jsx_runtime = require_jsx_runtime();
 function ContactPage() {
 	const { t } = useI18n();

@@ -1,9 +1,9 @@
 import { a as require_jsx_runtime, n as useQuery } from "../_libs/react+tanstack__react-query.mjs";
-import { i as useI18n, r as pickLang } from "./i18n-QYYPNaBp.mjs";
+import { i as useI18n, r as pickLang } from "./i18n-CruZlRQi.mjs";
 import { t as supabase } from "./client-DkzpAgPX.mjs";
 import { i as resolveImageUrl, r as IMAGES } from "./assets-DPl7XXdf.mjs";
-import { i as Header, n as FloatingButtons, r as Footer } from "./FloatingButtons-DdwIOsSi.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/tasting-D6LlpmcY.js
+import { i as Header, n as FloatingButtons, r as Footer } from "./FloatingButtons-CcRsYBkn.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/tasting-ByJ64nre.js
 var import_jsx_runtime = require_jsx_runtime();
 function TastingPage() {
 	const { t, lang } = useI18n();

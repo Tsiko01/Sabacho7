@@ -1,6 +1,6 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { a as require_jsx_runtime, o as require_react } from "../_libs/react+tanstack__react-query.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/i18n-QYYPNaBp.js
+//#region node_modules/.nitro/vite/services/ssr/assets/i18n-CruZlRQi.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var LANGS = [
@@ -43,7 +43,7 @@ var dicts = {
 		"hero.tagline": "Sabacho Marani",
 		"hero.subtitle": "Kakhetian wines. Family cellar. Georgian traditions since generations.",
 		"about.title": "A family cellar in the heart of Kakheti",
-		"about.body": "Sabacho Marani is a private Georgian winery where centuries-old winemaking traditions live on. Our family tends every vine, ferments in traditional qvevri, and welcomes each guest as we welcome our own — with wine, warmth, and story. From the vineyard to the Supra table, everything at Sabacho is made by hand, with patience, and with love for the Georgian craft.",
+		"about.body": "Sabacho Marani has been part of our family history since the 18th century. Here, we create only organic wine and welcome every guest individually, with genuine family warmth and personal attention",
 		"about.badge_years": "Family tradition",
 		"about.badge_qvevri": "Qvevri method",
 		"about.badge_kakheti": "Kakheti region",
@@ -101,7 +101,7 @@ var dicts = {
 		"book.time": "Time",
 		"book.guests": "Guests",
 		"book.experience": "Experience",
-		"book.exp.wine": "Wine Tasting ($25 / person)",
+		"book.exp.wine": "Wine Tasting ($20 / person)",
 		"book.exp.supra": "Georgian Supra ($50 / person)",
 		"book.exp.private": "Private Exclusive Evening",
 		"book.message": "Message",
@@ -296,7 +296,7 @@ var dicts = {
 		"hero.tagline": "Марани Сабачо",
 		"hero.subtitle": "Кахетинские вина. Семейный марани. Грузинские традиции.",
 		"about.title": "Семейный марани в сердце Кахетии",
-		"about.body": "Сабачо Марани — частная грузинская винодельня, где живут вековые традиции. Наша семья ухаживает за каждой лозой, ферментирует вино в квеври и встречает гостей как своих.",
+		"about.body": "«Сабачо Марани» является частью истории нашей семьи с XVIII века. Здесь мы создаём только органическое вино и принимаем каждого гостя индивидуально, с настоящим семейным теплом и вниманием.",
 		"about.badge_years": "Семейная традиция",
 		"about.badge_qvevri": "Квеври",
 		"about.badge_kakheti": "Кахетия",
@@ -354,7 +354,7 @@ var dicts = {
 		"book.time": "Время",
 		"book.guests": "Гости",
 		"book.experience": "Впечатление",
-		"book.exp.wine": "Дегустация вина ($25 / чел)",
+		"book.exp.wine": "Дегустация вина ($20 / чел)",
 		"book.exp.supra": "Грузинское Супра ($50 / чел)",
 		"book.exp.private": "Частный вечер",
 		"book.message": "Сообщение",
@@ -423,14 +423,14 @@ var dicts = {
 		"hero.tagline": "Марані Сабачо",
 		"hero.subtitle": "Кахетинські вина. Родинний марані. Грузинські традиції.",
 		"about.title": "Родинний марані у серці Кахетії",
-		"about.body": "Сабачо Марані — приватна грузинська винарня, де живуть вікові традиції. Наша родина доглядає кожну лозу, ферментує вино у квеврі та вітає гостей як своїх.",
+		"about.body": "«Сабачо Марані» є частиною історії нашої родини з XVIII століття. Тут ми створюємо лише органічне вино та приймаємо кожного гостя індивідуально, з щирим родинним теплом і увагою.",
 		"about.badge_years": "Родинна традиція",
 		"about.badge_qvevri": "Квеврі",
 		"about.badge_kakheti": "Кахетія",
 		"exp.title": "Враження",
 		"exp.subtitle": "Два способи скуштувати Грузію",
 		"exp.wine.title": "Дегустація вина",
-		"exp.wine.price": "$25 / особа",
+		"exp.wine.price": "$20 / особа",
 		"exp.wine.i1": "Дегустація всіх наявних вин",
 		"exp.wine.i2": "Традиційна чача",
 		"exp.wine.i3": "10-річний коньяк",
