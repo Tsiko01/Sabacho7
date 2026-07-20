@@ -176,7 +176,6 @@ function Experiences() {
           <ExperienceCard
             image={IMAGES.cellarTable}
             title={t("exp.wine.title")}
-            price={t("exp.wine.price")}
             items={[t("exp.wine.i1"), t("exp.wine.i2"), t("exp.wine.i3"), t("exp.wine.i4")]}
             icon={<Wine className="w-5 h-5" />}
             onOpen={() => setOpen("wine")}
@@ -184,7 +183,6 @@ function Experiences() {
           <ExperienceCard
             image={IMAGES.gazeboNight}
             title={t("exp.supra.title")}
-            price={t("exp.supra.price")}
             items={[t("exp.supra.i1"), t("exp.supra.i2"), t("exp.supra.i3"), t("exp.supra.i4")]}
             icon={<Utensils className="w-5 h-5" />}
             onOpen={() => setOpen("supra")}
@@ -215,7 +213,6 @@ function Experiences() {
         intro="A guided journey through our family cellar — from qvevri to bottle. Traditional Kakhetian wines, aged Chacha, and 10-year Cognac, poured slowly and paired with warm Georgian snacks."
         sections={[
           { label: "Duration", value: "60–90 minutes" },
-          { label: "From", value: t("exp.wine.price") },
           { label: "What you'll taste", value: `• ${t("exp.wine.i1")}\n• ${t("exp.wine.i2")}\n• ${t("exp.wine.i3")}\n• ${t("exp.wine.i4")}` },
           { label: "Atmosphere", value: "Candlelit stone cellar, hand-carved wooden table, family host guiding every pour." },
           { label: "Private option", value: "Reserve in advance to make the evening yours alone — with wines chosen specially for your group." },
@@ -233,7 +230,6 @@ function Experiences() {
         intro="The Supra is not a dinner — it is Georgia at its table. A tamada leads the toasts, the wine keeps pouring, and stories become part of the meal. You do not simply eat and drink; you are welcomed into a family."
         sections={[
           { label: "Duration", value: "2.5 – 3 hours" },
-          { label: "From", value: t("exp.supra.price") },
           { label: "Experience", value: `• ${t("exp.supra.i1")}\n• ${t("exp.supra.i2")}\n• ${t("exp.supra.i3")}\n• ${t("exp.supra.i4")}` },
           { label: "Georgian hospitality", value: "Toasts to peace, to family, to guests — a tradition that turns strangers into friends by the end of the evening." },
           { label: "The table", value: "Home-cooked Kakhetian dishes made by the family, served under the vine-covered gazebo or in the marani." },
@@ -245,7 +241,7 @@ function Experiences() {
   );
 }
 
-function ExperienceCard({ image, title, price, items, icon, onOpen }: { image: string; title: string; price: string; items: string[]; icon: React.ReactNode; onOpen?: () => void }) {
+function ExperienceCard({ image, title, items, icon, onOpen }: { image: string; title: string; items: string[]; icon: React.ReactNode; onOpen?: () => void }) {
   return (
     <button
       type="button"
@@ -258,10 +254,7 @@ function ExperienceCard({ image, title, price, items, icon, onOpen }: { image: s
         <span className="absolute bottom-4 left-6 text-[10px] uppercase tracking-[0.3em] text-white/80 opacity-0 group-hover:opacity-100 transition-opacity">Discover →</span>
       </div>
       <div className="p-6 md:p-8">
-        <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-2 text-gold">{icon}<h3 className="font-serif text-2xl md:text-3xl text-foreground">{title}</h3></div>
-          <span className="font-serif text-xl text-gold whitespace-nowrap">{price}</span>
-        </div>
         <ul className="mt-5 space-y-2">
           {items.map((it, i) => (
             <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground"><Check className="w-4 h-4 text-gold mt-0.5 shrink-0" />{it}</li>
