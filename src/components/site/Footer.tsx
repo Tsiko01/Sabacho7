@@ -1,6 +1,7 @@
 import { Facebook, Instagram, Youtube, MapPin, Phone as PhoneIcon, Mail } from "lucide-react";
 import { useI18n, LANGS, type Lang } from "@/lib/i18n";
 import { SOCIALS, MAPS_URL, PHONE, EMAIL } from "@/lib/constants";
+import logo from "/logo.png";
 
 export function Footer() {
   const { t, lang, setLang } = useI18n();
@@ -8,8 +9,13 @@ export function Footer() {
     <footer className="border-t border-border/50 bg-background">
       <div className="max-w-7xl mx-auto px-6 md:px-8 py-14 grid gap-10 md:grid-cols-4">
         <div className="md:col-span-2">
-          <div className="font-serif text-3xl tracking-[0.25em] text-gold">SABACHO</div>
-          <div className="text-xs uppercase tracking-[0.35em] text-muted-foreground mt-1">Marani</div>
+          <div className="flex items-center gap-3 mb-2">
+            <img src={logo} alt="Sabacho Marani" className="h-10 w-auto object-contain" />
+            <div>
+              <div className="font-serif text-3xl tracking-[0.25em] text-gold">SABACHO</div>
+              <div className="text-xs uppercase tracking-[0.35em] text-muted-foreground">Marani</div>
+            </div>
+          </div>
           <p className="mt-4 max-w-sm text-sm text-muted-foreground leading-relaxed">{t("footer.tagline")}</p>
           <a href="#book" className="mt-6 inline-flex items-center gap-2 bg-carrot hover:bg-carrot-hover text-white px-5 py-2.5 rounded-md text-xs uppercase tracking-[0.2em] font-medium transition-all">
             {t("cta.book")}

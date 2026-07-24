@@ -4,6 +4,7 @@ import { Menu, X, MapPin, Sun, Moon, Globe } from "lucide-react";
 import { useI18n, LANGS, type Lang } from "@/lib/i18n";
 import { useTheme } from "@/lib/theme";
 import { MAPS_URL } from "@/lib/constants";
+import logo from "/logo.png";
 
 const NAV_ITEMS = [
   { key: "nav.home", to: "/", hash: "" },
@@ -34,9 +35,12 @@ export function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-8 h-16 md:h-20">
-        <Link to="/" className="flex items-baseline gap-2 group">
-          <span className="font-serif text-2xl md:text-3xl tracking-[0.25em] text-gold">SABACHO</span>
-          <span className="hidden sm:inline text-[10px] uppercase tracking-[0.35em] text-muted-foreground">Marani</span>
+        <Link to="/" className="flex items-center gap-3 group">
+          <img src={logo} alt="Sabacho Marani" className="h-8 md:h-10 w-auto object-contain" />
+          <div className="flex items-baseline gap-2">
+            <span className="font-serif text-2xl md:text-3xl tracking-[0.25em] text-gold">SABACHO</span>
+            <span className="hidden sm:inline text-[10px] uppercase tracking-[0.35em] text-muted-foreground">Marani</span>
+          </div>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-7">

@@ -89,15 +89,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "SABACHO Marani — Georgian Wine Experience in Kakheti" },
       { name: "twitter:description", content: "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ca63ec91-7e80-48d3-842a-290cfe830bef/id-preview-fe6115bd--fce75d42-5762-4e17-bd83-b22b9d27a738.lovable.app-1784068056279.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ca63ec91-7e80-48d3-842a-290cfe830bef/id-preview-fe6115bd--fce75d42-5762-4e17-bd83-b22b9d27a738.lovable.app-1784068056279.png" },
+      { property: "og:image", content: "/photos/gazebo-night.webp" },
+      { name: "twitter:image", content: "/photos/gazebo-night.webp" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/logo.png", type: "image/png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" },

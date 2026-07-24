@@ -1,7 +1,11 @@
 {
   "name": "tanstack_start_ts",
   "private": true,
-  "sideEffects": ["./src/server.ts", "./src/lib/error-capture.ts", "./src/styles.css"],
+  "sideEffects": [
+    "./src/server.ts",
+    "./src/lib/error-capture.ts",
+    "./src/styles.css"
+  ],
   "type": "module",
   "scripts": {
     "dev": "vite dev",
@@ -45,6 +49,7 @@
     "@tanstack/react-router": "^1.170.16",
     "@tanstack/react-start": "^1.168.26",
     "@tanstack/router-plugin": "^1.168.18",
+    "bpg-mrgvlovani": "^1.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",

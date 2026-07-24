@@ -1,6 +1,8 @@
 @import "tailwindcss" source(none);
-@source "../src";
 @import "tw-animate-css";
+@import "bpg-mrgvlovani/css/bpg-mrgvlovani.css";
+
+@source "../src";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -162,6 +164,18 @@
   h1, h2, h3, h4, .font-serif {
     font-family: var(--font-serif);
     letter-spacing: -0.01em;
+  }
+
+  /* Georgian font — applied globally only when document language is ka */
+  html[lang="ka"] body {
+    font-family: "BPG Mrgvlovani", var(--font-sans);
+  }
+  html[lang="ka"] h1,
+  html[lang="ka"] h2,
+  html[lang="ka"] h3,
+  html[lang="ka"] h4,
+  html[lang="ka"] .font-serif {
+    font-family: "BPG Mrgvlovani", var(--font-serif);
   }
 }
 

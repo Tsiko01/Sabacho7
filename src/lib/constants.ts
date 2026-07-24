@@ -8,4 +8,4 @@ export const SOCIALS = {
   tiktok: "https://www.tiktok.com/@kaxetitoursabacho",
   youtube: "https://www.youtube.com/@sabacho7",
 };
-export const EMAIL = "info@sabacho-marani.ge";
+export const EMAIL = "madonna.jolokhava7@gmail.com";
