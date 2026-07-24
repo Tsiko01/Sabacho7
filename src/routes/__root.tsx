@@ -14,6 +14,8 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { I18nProvider } from "@/lib/i18n";
 import { ThemeProvider } from "@/lib/theme";
 import { Toaster } from "sonner";
+import { OrganizationSchema } from "@/components/seo/OrganizationSchema";
+import { buildCanonical } from "@/lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -33,6 +35,15 @@ function NotFoundComponent() {
           </Link>
         </div>
       </div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "404 - Page Not Found | SABACHO Marani",
+          description: "The page you're looking for doesn't exist or has been moved.",
+          url: buildCanonical("/404"),
+        }),
+      }} />
     </div>
   );
 }
@@ -82,24 +93,41 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "SABACHO Marani — Georgian Wine Experience in Kakheti" },
       { name: "description", content: "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience." },
+      { name: "keywords", content: "Sabacho, Georgian wine, Kakheti winery, wine tasting Georgia, qvevri wine, Georgian supra, Kakheti wine tour, Sabacho Marani, private wine cellar" },
+      { name: "robots", content: "index, follow" },
       { name: "author", content: "Sabacho Marani" },
+      { name: "creator", content: "Sabacho Marani" },
+      { name: "publisher", content: "Sabacho Marani" },
+      { name: "referrer", content: "strict-origin-when-cross-origin" },
+      { name: "theme-color", content: "#0a0a0a" },
+      { name: "color-scheme", content: "dark" },
+      { name: "format-detection", content: "telephone=yes, address=yes" },
       { property: "og:title", content: "SABACHO Marani — Georgian Wine Experience in Kakheti" },
       { property: "og:description", content: "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience." },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.sabacho.ge" },
+      { property: "og:image", content: "https://www.sabacho.ge/logo.png" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:locale", content: "en_GE" },
+      { property: "og:site_name", content: "SABACHO Marani" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "SABACHO Marani — Georgian Wine Experience in Kakheti" },
       { name: "twitter:description", content: "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience." },
-      { property: "og:image", content: "/photos/gazebo-night.webp" },
-      { name: "twitter:image", content: "/photos/gazebo-night.webp" },
+      { name: "twitter:image", content: "https://www.sabacho.ge/logo.png" },
+      { name: "twitter:site", content: "@sabacho_marani" },
+      { name: "twitter:creator", content: "@sabacho_marani" },
     ],
     links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-      { rel: "icon", href: "/logo.png", type: "image/png" },
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+      { rel: "icon", href: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180" },
+      { rel: "manifest", href: "/site.webmanifest" },
+      { rel: "mask-icon", href: "/safari-pinned-tab.svg", color: "#a67c52" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" as const },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" },
     ],
   }),
@@ -114,6 +142,17 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en" className="dark">
       <head>
         <HeadContent />
+        {/* Google Analytics 4 */}
+        {import.meta.env.VITE_GA_ID && (
+          <>
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.VITE_GA_ID}`} />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${import.meta.env.VITE_GA_ID}',{page_path:window.location.pathname});`,
+              }}
+            />
+          </>
+        )}
       </head>
       <body>
         {children}
@@ -130,6 +169,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <I18nProvider>
+          <OrganizationSchema />
           <Outlet />
           <Toaster theme="dark" position="top-center" richColors />
         </I18nProvider>

@@ -7,15 +7,26 @@ import { FloatingButtons } from "@/components/site/FloatingButtons";
 import { supabase } from "@/integrations/supabase/client";
 import { EMAIL, MAPS_URL, PHONE, PHONE_INTL, SOCIALS, WHATSAPP_URL } from "@/lib/constants";
 import { useI18n } from "@/lib/i18n";
+import { Schema } from "@/components/seo/Schema";
+import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
+import { buildWebPageSchema, buildContactPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — SABACHO Marani" },
+      { title: "Contact & Reservations | SABACHO Marani" },
       { name: "description", content: "Reach Sabacho Marani in Kakheti, Georgia. Phone, WhatsApp, email and social links. Please contact us before visiting — the marani is currently under restoration." },
-      { property: "og:title", content: "Contact — SABACHO Marani" },
-      { property: "og:description", content: "Get in touch with Sabacho Marani in Kakheti, Georgia." },
+      { name: "keywords", content: "contact Sabacho Marani, Kakheti winery contact, Georgian wine reservation, Sabacho phone, Sabacho email, book wine tasting Georgia" },
+      { name: "robots", content: "index, follow" },
+      { name: "canonical", content: "https://www.sabacho.ge/contact" },
+      { property: "og:title", content: "Contact & Reservations | SABACHO Marani" },
+      { property: "og:description", content: "Get in touch with Sabacho Marani in Kakheti, Georgia. Phone, WhatsApp, email and social links." },
+      { property: "og:url", content: "https://www.sabacho.ge/contact" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:title", content: "Contact & Reservations | SABACHO Marani" },
+      { name: "twitter:description", content: "Get in touch with Sabacho Marani in Kakheti, Georgia. Phone, WhatsApp, email and social links." },
     ],
+    links: [],
   }),
   component: ContactPage,
 });
@@ -105,6 +116,9 @@ function ContactPage() {
       </main>
       <Footer />
       <FloatingButtons />
+      <BreadcrumbSchema items={[{ name: "Home", item: "/", position: 1 }, { name: "Contact", item: "/contact", position: 2 }]} />
+      <Schema schema={buildWebPageSchema("Contact & Reservations | SABACHO Marani", "Reach Sabacho Marani in Kakheti, Georgia. Phone, WhatsApp, email and social links.", "/contact")} />
+      <Schema schema={buildContactPageSchema()} />
     </div>
   );
 }

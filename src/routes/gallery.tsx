@@ -8,15 +8,26 @@ import { FloatingButtons } from "@/components/site/FloatingButtons";
 import { supabase } from "@/integrations/supabase/client";
 import { useI18n } from "@/lib/i18n";
 import { resolveImageUrl } from "@/lib/assets";
+import { Schema } from "@/components/seo/Schema";
+import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
+import { buildWebPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
     meta: [
-      { title: "Gallery — SABACHO Marani" },
+      { title: "Gallery | SABACHO Marani" },
       { name: "description", content: "Photographs from Sabacho Marani — the cellar, the garden, the Supra table, and the light of Kakheti." },
-      { property: "og:title", content: "Gallery — SABACHO Marani" },
+      { name: "keywords", content: "Sabacho Marani photos, Kakheti winery gallery, Georgian wine cellar photos, Sabacho garden, Georgian supra table" },
+      { name: "robots", content: "index, follow" },
+      { name: "canonical", content: "https://www.sabacho.ge/gallery" },
+      { property: "og:title", content: "Gallery | SABACHO Marani" },
       { property: "og:description", content: "A visual journey through our Georgian family marani." },
+      { property: "og:url", content: "https://www.sabacho.ge/gallery" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:title", content: "Gallery | SABACHO Marani" },
+      { name: "twitter:description", content: "A visual journey through our Georgian family marani." },
     ],
+    links: [],
   }),
   component: GalleryPage,
 });
@@ -109,6 +120,8 @@ function GalleryPage() {
       </main>
       <Footer />
       <FloatingButtons />
+      <BreadcrumbSchema items={[{ name: "Home", item: "/", position: 1 }, { name: "Gallery", item: "/gallery", position: 2 }]} />
+      <Schema schema={buildWebPageSchema("Gallery | SABACHO Marani", "Photographs from Sabacho Marani — the cellar, the garden, the Supra table, and the light of Kakheti.", "/gallery")} />
     </div>
   );
 }

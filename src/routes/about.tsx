@@ -6,15 +6,26 @@ import { FloatingButtons } from "@/components/site/FloatingButtons";
 import { supabase } from "@/integrations/supabase/client";
 import { IMAGES, resolveImageUrl } from "@/lib/assets";
 import { useI18n } from "@/lib/i18n";
+import { Schema } from "@/components/seo/Schema";
+import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
+import { buildWebPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — SABACHO Marani" },
+      { title: "Our Story | SABACHO Marani" },
       { name: "description", content: "The story of Sabacho Marani — the family, the marani, the village, and the Georgian hospitality behind every glass." },
-      { property: "og:title", content: "About — SABACHO Marani" },
-      { property: "og:description", content: "A Georgian family marani in Kakheti. Meet the people, the place, and the tradition behind Sabacho." },
+      { name: "keywords", content: "Sabacho story, Georgian winery family, Kakheti marani, Georgian wine tradition, Sabacho Marani history, Georgian wine family" },
+      { name: "robots", content: "index, follow" },
+      { name: "canonical", content: "https://www.sabacho.ge/about" },
+      { property: "og:title", content: "Our Story | SABACHO Marani" },
+      { property: "og:description", content: "The story of Sabacho Marani — the family, the marani, the village, and the Georgian hospitality behind every glass." },
+      { property: "og:url", content: "https://www.sabacho.ge/about" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:title", content: "Our Story | SABACHO Marani" },
+      { name: "twitter:description", content: "The story of Sabacho Marani — the family, the marani, the village, and the Georgian hospitality behind every glass." },
     ],
+    links: [],
   }),
   component: AboutPage,
 });
@@ -126,6 +137,8 @@ function AboutPage() {
       </main>
       <Footer />
       <FloatingButtons />
+      <BreadcrumbSchema items={[{ name: "Home", item: "/", position: 1 }, { name: "Our Story", item: "/about", position: 2 }]} />
+      <Schema schema={buildWebPageSchema("Our Story | SABACHO Marani", "The story of Sabacho Marani — the family, the marani, the village, and the Georgian hospitality behind every glass.", "/about")} />
     </div>
   );
 }

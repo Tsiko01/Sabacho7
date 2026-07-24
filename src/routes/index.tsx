@@ -11,8 +11,27 @@ import { HERO_VIDEO, HERO_FALLBACK, IMAGES } from "@/lib/assets";
 import { useI18n, pickLang } from "@/lib/i18n";
 import { supabase } from "@/integrations/supabase/client";
 import { SOCIALS, EMAIL, PHONE } from "@/lib/constants";
+import { Schema } from "@/components/seo/Schema";
+import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
+import { buildWebPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Georgian Wine Experience in Kakheti | SABACHO Marani" },
+      { name: "description", content: "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience." },
+      { name: "keywords", content: "Sabacho, Georgian wine, Kakheti winery, wine tasting Georgia, qvevri wine, Georgian supra, Kakheti wine tour, Sabacho Marani, private wine cellar" },
+      { name: "robots", content: "index, follow" },
+      { name: "canonical", content: "https://www.sabacho.ge/" },
+      { property: "og:title", content: "Georgian Wine Experience in Kakheti | SABACHO Marani" },
+      { property: "og:description", content: "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience." },
+      { property: "og:url", content: "https://www.sabacho.ge/" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:title", content: "Georgian Wine Experience in Kakheti | SABACHO Marani" },
+      { name: "twitter:description", content: "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience." },
+    ],
+    links: [],
+  }),
   component: Index,
 });
 
@@ -32,6 +51,8 @@ function Index() {
       </main>
       <Footer />
       <FloatingButtons />
+      <BreadcrumbSchema items={[{ name: "Home", item: "/", position: 1 }]} />
+      <Schema schema={buildWebPageSchema("SABACHO Marani — Georgian Wine Experience in Kakheti", "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience.", "/")} />
     </div>
   );
 }

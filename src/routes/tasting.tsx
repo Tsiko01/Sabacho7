@@ -6,15 +6,26 @@ import { FloatingButtons } from "@/components/site/FloatingButtons";
 import { supabase } from "@/integrations/supabase/client";
 import { useI18n, pickLang } from "@/lib/i18n";
 import { IMAGES, resolveImageUrl } from "@/lib/assets";
+import { Schema } from "@/components/seo/Schema";
+import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
+import { buildWebPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/tasting")({
   head: () => ({
     meta: [
-      { title: "Tasting Menu — SABACHO Marani" },
+      { title: "Tasting Menu | SABACHO Marani" },
       { name: "description", content: "Wines, Chacha, aged Cognac and traditional Georgian pairings from Sabacho's private cellar." },
-      { property: "og:title", content: "Tasting Menu — SABACHO Marani" },
+      { name: "keywords", content: "Sabacho tasting menu, Georgian wine tasting, qvevri wine Kakheti, chacha tasting, Georgian cognac, Kakheti wine cellar tasting" },
+      { name: "robots", content: "index, follow" },
+      { name: "canonical", content: "https://www.sabacho.ge/tasting" },
+      { property: "og:title", content: "Tasting Menu | SABACHO Marani" },
       { property: "og:description", content: "The complete Sabacho tasting list — wines, spirits, and pairings." },
+      { property: "og:url", content: "https://www.sabacho.ge/tasting" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:title", content: "Tasting Menu | SABACHO Marani" },
+      { name: "twitter:description", content: "The complete Sabacho tasting list — wines, spirits, and pairings." },
     ],
+    links: [],
   }),
   component: TastingPage,
 });
@@ -79,6 +90,8 @@ function TastingPage() {
       </main>
       <Footer />
       <FloatingButtons />
+      <BreadcrumbSchema items={[{ name: "Home", item: "/", position: 1 }, { name: "Tasting Menu", item: "/tasting", position: 2 }]} />
+      <Schema schema={buildWebPageSchema("Tasting Menu | SABACHO Marani", "Wines, Chacha, aged Cognac and traditional Georgian pairings from Sabacho's private cellar.", "/tasting")} />
     </div>
   );
 }
