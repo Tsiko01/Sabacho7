@@ -57,9 +57,9 @@ function TastingPage() {
       <main className="pt-24 md:pt-32 pb-24 px-6 md:px-8">
         <div className="max-w-5xl mx-auto text-center mb-16">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <span className="h-px w-8 bg-gold/60" />
+            <span className="h-px w-8 bg-gold/60" aria-hidden="true" />
             <span className="text-[10px] uppercase tracking-[0.5em] text-gold">{t("nav.tasting")}</span>
-            <span className="h-px w-8 bg-gold/60" />
+            <span className="h-px w-8 bg-gold/60" aria-hidden="true" />
           </div>
           <h1 className="font-serif text-5xl md:text-7xl font-light">{t("tasting.page.title")}</h1>
           <p className="mt-4 text-muted-foreground max-w-xl mx-auto">{t("tasting.page.subtitle")}</p>
@@ -67,7 +67,7 @@ function TastingPage() {
 
         <div className="max-w-6xl mx-auto space-y-14">
           {Object.entries(grouped).map(([cat, list]) => (
-            <section key={cat}>
+            <section key={cat} aria-label={cat}>
               <h2 className="font-serif text-3xl text-gold mb-6 pb-3 border-b border-gold/20">{cat}</h2>
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {list.map((it, i) => (

@@ -62,10 +62,11 @@ function BookingsAdmin() {
                 {b.message && <p className="text-sm text-muted-foreground mt-2 whitespace-pre-line">{b.message}</p>}
               </div>
               <div className="flex items-center gap-2">
-                <select value={b.status} onChange={e => updateStatus.mutate({ id: b.id, status: e.target.value })} className="bg-background border border-border rounded px-3 py-2 text-xs uppercase tracking-widest">
+                <label htmlFor={`booking-status-${b.id}`} className="sr-only">Status</label>
+                <select id={`booking-status-${b.id}`} value={b.status} onChange={e => updateStatus.mutate({ id: b.id, status: e.target.value })} className="bg-background border border-border rounded px-3 py-2 text-xs uppercase tracking-widest" aria-label="Booking status">
                   {STATUSES.map(s => <option key={s} value={s}>{s}</option>)}
                 </select>
-                <button onClick={() => setPendingDelete(b)} className="p-2 border border-destructive/50 text-destructive hover:bg-destructive/10 rounded"><Trash2 className="w-4 h-4" /></button>
+                <button type="button" onClick={() => setPendingDelete(b)} className="p-2 border border-destructive/50 text-destructive hover:bg-destructive/10 rounded" aria-label={`Delete booking for ${b.name}`}><Trash2 className="w-4 h-4" aria-hidden="true" /></button>
               </div>
             </div>
           </div>

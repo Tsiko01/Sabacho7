@@ -86,30 +86,32 @@ function GalleryAdmin() {
 
       <div className="grid gap-3 md:grid-cols-2 mb-8">
         <label className="border border-dashed border-border/60 rounded-xl p-6 flex items-center gap-4 cursor-pointer hover:border-gold/60 transition">
-          <span className="w-11 h-11 rounded-full bg-gold/10 text-gold border border-gold/30 flex items-center justify-center"><Upload className="w-5 h-5" /></span>
+          <span className="w-11 h-11 rounded-full bg-gold/10 text-gold border border-gold/30 flex items-center justify-center"><Upload className="w-5 h-5" aria-hidden="true" /></span>
           <span>
             <span className="block font-serif text-lg">{uploading ? "Uploading…" : "Upload images"}</span>
             <span className="block text-xs text-muted-foreground">JPG, PNG or WEBP. Multiple files supported.</span>
           </span>
-          <input ref={fileRef} type="file" multiple accept="image/*" className="hidden" onChange={(e) => uploadFiles(e.target.files)} />
+          <input ref={fileRef} type="file" multiple accept="image/*" className="hidden" onChange={(e) => uploadFiles(e.target.files)} aria-label="Upload gallery images" />
         </label>
         <form
           className="border border-border/60 rounded-xl p-6 flex flex-col gap-3"
         onSubmit={(e) => { e.preventDefault(); if (urlInput.trim()) addFromUrl.mutate({ url: urlInput.trim(), category: urlCat }); }}
         >
           <div className="flex items-center gap-3">
-            <span className="w-11 h-11 rounded-full bg-gold/10 text-gold border border-gold/30 flex items-center justify-center"><LinkIcon className="w-5 h-5" /></span>
+            <span className="w-11 h-11 rounded-full bg-gold/10 text-gold border border-gold/30 flex items-center justify-center" aria-hidden="true"><LinkIcon className="w-5 h-5" /></span>
             <span>
               <span className="block font-serif text-lg">Add from URL</span>
               <span className="block text-xs text-muted-foreground">Paste an image URL.</span>
             </span>
           </div>
           <div className="flex gap-2 items-center">
-            <select className={`${inp} max-w-[140px]`} value={urlCat} onChange={e => setUrlCat(e.target.value)}>
+            <label htmlFor="gallery-url-category" className="sr-only">Category</label>
+            <select id="gallery-url-category" className={`${inp} max-w-[140px]`} value={urlCat} onChange={e => setUrlCat(e.target.value)} aria-label="Category for added image">
               {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
-            <input className={inp} placeholder="https://…" value={urlInput} onChange={e => setUrlInput(e.target.value)} />
-            <button className="bg-gold hover:brightness-110 text-black px-4 rounded text-xs uppercase tracking-widest">Add</button>
+            <label htmlFor="gallery-url-input" className="sr-only">Image URL</label>
+            <input id="gallery-url-input" className={inp} placeholder="https://…" value={urlInput} onChange={e => setUrlInput(e.target.value)} />
+            <button type="submit" className="bg-gold hover:brightness-110 text-black px-4 rounded text-xs uppercase tracking-widest">Add</button>
           </div>
           <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Category applies to uploads and URL adds.</p>
         </form>
@@ -162,26 +164,30 @@ function GalleryTile({ row, onDelete }: { row: Row; onDelete: () => void }) {
         <img src={resolveImageUrl(row.image_url) ?? row.image_url} alt={row.alt ?? ""} className="w-full h-full object-cover" />
         <span className="absolute top-2 left-2 bg-black/60 backdrop-blur border border-white/15 text-white text-[9px] uppercase tracking-[0.3em] px-2 py-1 rounded-full">{row.category ?? "—"}</span>
         <button
+          type="button"
           onClick={onDelete}
           aria-label="Delete image"
           className="absolute top-2 right-2 p-2 rounded-full bg-black/60 backdrop-blur text-destructive hover:bg-destructive hover:text-white transition border border-white/10"
         >
-          <Trash2 className="w-4 h-4" />
+          <Trash2 className="w-4 h-4" aria-hidden="true" />
         </button>
       </div>
       <div className="p-3 space-y-2">
-        <input className={inp} placeholder="Alt text" value={alt} onChange={e => setAlt(e.target.value)} />
-        <select className={inp} value={category} onChange={e => setCategory(e.target.value)}>
+        <label htmlFor={`gallery-alt-${row.id}`} className="sr-only">Alt text</label>
+        <input id={`gallery-alt-${row.id}`} className={inp} placeholder="Alt text" value={alt} onChange={e => setAlt(e.target.value)} />
+        <label htmlFor={`gallery-cat-${row.id}`} className="sr-only">Category</label>
+        <select id={`gallery-cat-${row.id}`} className={inp} value={category} onChange={e => setCategory(e.target.value)} aria-label="Image category">
           <option value="yard">Yard</option>
           <option value="night">Night</option>
           <option value="marani">Marani</option>
           <option value="wine">Wine</option>
         </select>
         <div className="flex items-center gap-2">
-          <input className={inp} type="number" placeholder="Order" value={order} onChange={e => setOrder(Number(e.target.value))} />
+          <label htmlFor={`gallery-order-${row.id}`} className="sr-only">Sort order</label>
+          <input id={`gallery-order-${row.id}`} className={inp} type="number" placeholder="Order" value={order} onChange={e => setOrder(Number(e.target.value))} />
           <label className="flex items-center gap-1 text-[10px] uppercase tracking-widest whitespace-nowrap"><input type="checkbox" checked={active} onChange={e => setActive(e.target.checked)} /> Active</label>
         </div>
-        <button onClick={() => save.mutate()} className="w-full bg-gold hover:brightness-110 text-black py-1.5 rounded text-[10px] uppercase tracking-widest">Save</button>
+        <button type="button" onClick={() => save.mutate()} className="w-full bg-gold hover:brightness-110 text-black py-1.5 rounded text-[10px] uppercase tracking-widest">Save</button>
       </div>
     </div>
   );

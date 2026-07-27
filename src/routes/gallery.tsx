@@ -71,18 +71,20 @@ function GalleryPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
             <div className="flex items-center justify-center gap-3 mb-4">
-              <span className="h-px w-8 bg-gold/60" />
+              <span className="h-px w-8 bg-gold/60" aria-hidden="true" />
               <span className="text-[10px] uppercase tracking-[0.5em] text-gold">Gallery</span>
-              <span className="h-px w-8 bg-gold/60" />
+              <span className="h-px w-8 bg-gold/60" aria-hidden="true" />
             </div>
             <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-light">{t("gallery.title")}</h1>
             <p className="mt-4 text-muted-foreground max-w-xl mx-auto text-sm md:text-base">{t("gallery.subtitle")}</p>
-            <div className="mt-8 flex flex-wrap justify-center gap-2 text-[10px] uppercase tracking-[0.3em]">
+            <div className="mt-8 flex flex-wrap justify-center gap-2 text-[10px] uppercase tracking-[0.3em]" role="group" aria-label="Filter gallery by category">
               {(["all", ...CATEGORIES] as const).map(c => (
                 <button
                   key={c}
+                  type="button"
                   onClick={() => setFilter(c)}
                   className={`px-4 py-2 rounded-full border transition ${filter === c ? "bg-gold text-black border-gold" : "border-border/60 text-muted-foreground hover:border-gold/60 hover:text-gold"}`}
+                  aria-pressed={filter === c}
                 >
                   {c === "all" ? t("gallery.all") : t(`gallery.filter.${c}`)}
                 </button>
@@ -94,7 +96,7 @@ function GalleryPage() {
           ) : (
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 [column-fill:_balance]">
             {rows.map((g, i) => (
-              <button key={g.id} onClick={() => setOpenIdx(i)} className="block w-full mb-4 overflow-hidden rounded-lg group relative animate-fade-in">
+              <button key={g.id} type="button" onClick={() => setOpenIdx(i)} className="block w-full mb-4 overflow-hidden rounded-lg group relative animate-fade-in" aria-label={g.alt ?? "Sabacho gallery image"}>
                 <img src={resolveImageUrl(g.image_url) ?? ""} alt={g.alt ?? "Sabacho"} loading="lazy" className="w-full h-auto object-cover group-hover:scale-[1.03] transition-transform duration-700" />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors" />
                 {g.category && <span className="absolute top-3 left-3 bg-black/60 backdrop-blur border border-white/15 text-white text-[9px] uppercase tracking-[0.3em] px-3 py-1 rounded-full">{t(`gallery.filter.${g.category}`) || g.category}</span>}
@@ -105,13 +107,13 @@ function GalleryPage() {
         </div>
 
         {openIdx !== null && (
-          <div className="fixed inset-0 bg-black/95 z-[70] flex items-center justify-center p-4 animate-fade-in" onClick={() => setOpenIdx(null)}>
-            <button className="absolute top-4 right-4 md:top-6 md:right-6 text-white p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20" aria-label="Close" onClick={(e) => { e.stopPropagation(); setOpenIdx(null); }}><X className="w-5 h-5" /></button>
-            <button className="absolute left-3 md:left-6 text-white p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20" aria-label="Previous" onClick={(e) => { e.stopPropagation(); setOpenIdx(i => i === null ? 0 : (i - 1 + rows.length) % rows.length); }}><ChevronLeft className="w-5 h-5" /></button>
-            <button className="absolute right-3 md:right-6 text-white p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20" aria-label="Next" onClick={(e) => { e.stopPropagation(); setOpenIdx(i => i === null ? 0 : (i + 1) % rows.length); }}><ChevronRight className="w-5 h-5" /></button>
+          <div className="fixed inset-0 bg-black/95 z-[70] flex items-center justify-center p-4 animate-fade-in" onClick={() => setOpenIdx(null)} role="dialog" aria-modal="true" aria-label="Image gallery lightbox">
+            <button type="button" className="absolute top-4 right-4 md:top-6 md:right-6 text-white p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20" aria-label="Close" onClick={(e) => { e.stopPropagation(); setOpenIdx(null); }}><X className="w-5 h-5" aria-hidden="true" /></button>
+            <button type="button" className="absolute left-3 md:left-6 text-white p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20" aria-label="Previous image" onClick={(e) => { e.stopPropagation(); setOpenIdx(i => i === null ? 0 : (i - 1 + rows.length) % rows.length); }}><ChevronLeft className="w-5 h-5" aria-hidden="true" /></button>
+            <button type="button" className="absolute right-3 md:right-6 text-white p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20" aria-label="Next image" onClick={(e) => { e.stopPropagation(); setOpenIdx(i => i === null ? 0 : (i + 1) % rows.length); }}><ChevronRight className="w-5 h-5" aria-hidden="true" /></button>
             <img
               src={resolveImageUrl(rows[openIdx].image_url) ?? ""}
-              alt={rows[openIdx].alt ?? ""}
+              alt={rows[openIdx].alt ?? "Sabacho gallery image"}
               onClick={(e) => e.stopPropagation()}
               className="max-w-full max-h-full object-contain rounded-lg animate-scale-in"
             />

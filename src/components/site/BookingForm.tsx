@@ -57,26 +57,45 @@ export function BookingForm({ defaultExperience = "wine" }: { defaultExperience?
   const lbl = "block text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-1.5";
 
   return (
-    <form onSubmit={onSubmit} className="grid gap-4 sm:grid-cols-2">
-      <input name="name" required placeholder={t("book.name")} className={inp} maxLength={100} />
-      <input name="email" type="email" required placeholder={t("book.email")} className={inp} maxLength={255} />
-      <input name="phone" type="tel" placeholder={t("book.phone")} className={inp} maxLength={40} />
-      <input name="guests" type="number" min={1} max={50} defaultValue={2} placeholder={t("book.guests")} className={inp} />
+    <form onSubmit={onSubmit} className="grid gap-4 sm:grid-cols-2" noValidate>
+      <div>
+        <label htmlFor="booking-name" className="sr-only">{t("book.name")}</label>
+        <input id="booking-name" name="name" required placeholder={t("book.name")} className={inp} maxLength={100} autoComplete="name" />
+      </div>
+      <div>
+        <label htmlFor="booking-email" className="sr-only">{t("book.email")}</label>
+        <input id="booking-email" name="email" type="email" required placeholder={t("book.email")} className={inp} maxLength={255} autoComplete="email" />
+      </div>
+      <div>
+        <label htmlFor="booking-phone" className="sr-only">{t("book.phone")}</label>
+        <input id="booking-phone" name="phone" type="tel" placeholder={t("book.phone")} className={inp} maxLength={40} autoComplete="tel" />
+      </div>
+      <div>
+        <label htmlFor="booking-guests" className="sr-only">{t("book.guests")}</label>
+        <input id="booking-guests" name="guests" type="number" min={1} max={50} defaultValue={2} placeholder={t("book.guests")} className={inp} autoComplete="off" />
+      </div>
       <div>
         <label htmlFor="booking_date" className={lbl}>{t("book.date")}</label>
-        <input id="booking_date" name="booking_date" type="date" required className={inp} />
+        <input id="booking_date" name="booking_date" type="date" required className={inp} autoComplete="off" />
       </div>
       <div>
         <label htmlFor="booking_time" className={lbl}>{t("book.time")}</label>
-        <input id="booking_time" name="booking_time" type="time" className={inp} />
+        <input id="booking_time" name="booking_time" type="time" className={inp} autoComplete="off" />
       </div>
-      <select name="experience" defaultValue={defaultExperience} className={`${inp} sm:col-span-2`}>
-        <option value="wine" className="bg-background">{t("book.exp.wine")}</option>
-        <option value="supra" className="bg-background">{t("book.exp.supra")}</option>
-        <option value="private" className="bg-background">{t("book.exp.private")}</option>
-      </select>
-      <textarea name="message" rows={4} placeholder={t("book.message")} className={`${inp} sm:col-span-2 resize-none`} maxLength={2000} />
+      <div className="sm:col-span-2">
+        <label htmlFor="booking-experience" className="sr-only">{t("book.experience")}</label>
+        <select id="booking-experience" name="experience" defaultValue={defaultExperience} className={`${inp}`} aria-label={t("book.experience")}>
+          <option value="wine" className="bg-background">{t("book.exp.wine")}</option>
+          <option value="supra" className="bg-background">{t("book.exp.supra")}</option>
+          <option value="private" className="bg-background">{t("book.exp.private")}</option>
+        </select>
+      </div>
+      <div className="sm:col-span-2">
+        <label htmlFor="booking-message" className="sr-only">{t("book.message")}</label>
+        <textarea id="booking-message" name="message" rows={4} placeholder={t("book.message")} className={`${inp} resize-none`} maxLength={2000} autoComplete="off" />
+      </div>
       <button
+        type="submit"
         disabled={loading}
         className="sm:col-span-2 bg-carrot hover:bg-carrot-hover disabled:opacity-60 disabled:cursor-not-allowed text-white px-6 py-3.5 rounded-md text-xs uppercase tracking-[0.25em] font-medium transition-all hover:scale-[1.01]"
       >

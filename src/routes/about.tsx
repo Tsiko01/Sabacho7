@@ -58,14 +58,14 @@ function AboutPage() {
       <Header />
       <main>
         {/* HERO */}
-        <section className="relative h-[85vh] min-h-[540px] overflow-hidden">
-          <img src={heroImg} alt="" className="absolute inset-0 w-full h-full object-cover animate-kenburns" />
+        <section className="relative h-[85vh] min-h-[540px] overflow-hidden" aria-label={t("about.our_story")}>
+          <img src={heroImg} alt="" className="absolute inset-0 w-full h-full object-cover animate-kenburns" aria-hidden="true" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-background" />
           <div className="relative h-full flex flex-col justify-center items-center text-center px-6 z-10">
             <div className="flex items-center gap-3 mb-6 animate-fade-in">
-              <span className="h-px w-10 bg-gold/60" />
+              <span className="h-px w-10 bg-gold/60" aria-hidden="true" />
               <span className="text-[10px] uppercase tracking-[0.5em] text-gold">{t("about.our_story")}</span>
-              <span className="h-px w-10 bg-gold/60" />
+              <span className="h-px w-10 bg-gold/60" aria-hidden="true" />
             </div>
             <h1 className="font-serif text-white text-5xl sm:text-7xl md:text-8xl font-light leading-[0.95] drop-shadow-2xl animate-fade-in">
               {c.hero_title || t("about.hero_title_default")}
@@ -77,9 +77,9 @@ function AboutPage() {
         </section>
 
         {/* MARANI */}
-        <section className="relative py-24 md:py-32 px-6 md:px-8 bg-secondary/30">
+        <section className="relative py-24 md:py-32 px-6 md:px-8 bg-secondary/30" aria-label={c.marani_title || t("about.marani_title_default")}>
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-            <img src={maraniImg} alt={c.marani_title} className="rounded-2xl w-full aspect-[4/5] object-cover" />
+            <img src={maraniImg} alt={c.marani_title || t("about.marani_title_default")} className="rounded-2xl w-full aspect-[4/5] object-cover" />
             <div>
               <div className="text-[10px] uppercase tracking-[0.4em] text-gold mb-3">{t("about.marani_eyebrow")}</div>
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-tight">{c.marani_title || t("about.marani_title_default")}</h2>
@@ -89,13 +89,13 @@ function AboutPage() {
         </section>
 
         {/* PEOPLE */}
-        <section className="relative py-24 md:py-32 px-6 md:px-8">
+        <section className="relative py-24 md:py-32 px-6 md:px-8" aria-label={t("about.people_title")}>
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-14">
               <div className="flex items-center justify-center gap-3 mb-4">
-                <span className="h-px w-8 bg-gold/60" />
+                <span className="h-px w-8 bg-gold/60" aria-hidden="true" />
                 <span className="text-[10px] uppercase tracking-[0.5em] text-gold">{t("about.people_eyebrow")}</span>
-                <span className="h-px w-8 bg-gold/60" />
+                <span className="h-px w-8 bg-gold/60" aria-hidden="true" />
               </div>
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light">{t("about.people_title")}</h2>
             </div>
@@ -111,10 +111,10 @@ function AboutPage() {
         </section>
 
         {/* VILLAGE */}
-        <section className="relative py-24 md:py-32 px-6 md:px-8">
+        <section className="relative py-24 md:py-32 px-6 md:px-8" aria-label={c.village_title || t("about.village_title_default")}>
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
             <div className="md:order-2">
-              <img src={villageImg} alt={c.village_title} className="rounded-2xl w-full aspect-[4/5] object-cover" />
+              <img src={villageImg} alt={c.village_title || t("about.village_title_default")} className="rounded-2xl w-full aspect-[4/5] object-cover" />
             </div>
             <div className="md:order-1">
               <div className="text-[10px] uppercase tracking-[0.4em] text-gold mb-3">{t("about.village_eyebrow")}</div>
@@ -125,7 +125,7 @@ function AboutPage() {
         </section>
 
         {/* CTA */}
-        <section className="relative py-24 md:py-32 px-6 md:px-8 bg-gradient-to-b from-background to-secondary/40">
+        <section className="relative py-24 md:py-32 px-6 md:px-8 bg-gradient-to-b from-background to-secondary/40" aria-label={c.cta_title || t("about.cta_title_default")}>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-serif text-4xl md:text-6xl font-light leading-tight text-gold">{c.cta_title || t("about.cta_title_default")}</h2>
             <p className="mt-6 text-muted-foreground text-base md:text-lg leading-relaxed">{c.cta_body}</p>
@@ -151,7 +151,7 @@ function ProfileCard({ name, role, bio, image }: { name?: string; role?: string;
         {resolved ? (
           <img src={resolved} alt={name ?? ""} className="w-full h-full object-cover" />
         ) : (
-          <div className="w-full h-full flex items-center justify-center font-serif text-4xl text-gold/50">{(name ?? "S").slice(0, 1)}</div>
+          <div className="w-full h-full flex items-center justify-center font-serif text-4xl text-gold/50" aria-hidden="true">{(name ?? "S").slice(0, 1)}</div>
         )}
       </div>
       {role && <div className="mt-4 text-[10px] uppercase tracking-[0.4em] text-gold">{role}</div>}

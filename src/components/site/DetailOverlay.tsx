@@ -39,6 +39,7 @@ export function DetailOverlay({
       onClick={onClose}
       aria-modal="true"
       role="dialog"
+      aria-label={title}
     >
       <div className="absolute inset-0 bg-black/80 backdrop-blur-md" />
       <div
@@ -46,11 +47,12 @@ export function DetailOverlay({
         className="relative w-full max-w-4xl max-h-[95vh] bg-background border border-gold/30 rounded-t-3xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-black/60 flex flex-col animate-scale-in"
       >
         <button
+          type="button"
           onClick={onClose}
           aria-label="Close"
           className="absolute top-4 right-4 z-10 w-11 h-11 rounded-full bg-black/50 backdrop-blur border border-white/20 text-white flex items-center justify-center hover:bg-black/70 hover:border-gold/60 transition"
         >
-          <X className="w-5 h-5" />
+          <X className="w-5 h-5" aria-hidden="true" />
         </button>
         <div className="overflow-y-auto">
           {image && (
@@ -59,7 +61,7 @@ export function DetailOverlay({
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
               {eyebrow && (
                 <div className="absolute bottom-5 left-6 flex items-center gap-3">
-                  <span className="h-px w-8 bg-gold/70" />
+                  <span className="h-px w-8 bg-gold/70" aria-hidden="true" />
                   <span className="text-[10px] uppercase tracking-[0.4em] text-gold">{eyebrow}</span>
                 </div>
               )}
@@ -81,12 +83,14 @@ export function DetailOverlay({
           {onBook && (
             <div className="mt-10 flex flex-col sm:flex-row gap-3">
               <button
+                type="button"
                 onClick={() => { onBook(); onClose(); }}
                 className="flex-1 bg-carrot hover:bg-carrot-hover text-white px-8 py-4 rounded-md text-xs uppercase tracking-[0.3em] font-medium transition-all hover:scale-[1.01] shadow-xl"
               >
                 {bookLabel}
               </button>
               <button
+                type="button"
                 onClick={onClose}
                 className="border border-border hover:border-gold/60 text-foreground px-8 py-4 rounded-md text-xs uppercase tracking-[0.3em]"
               >
