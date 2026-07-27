@@ -44,7 +44,7 @@ function FaqsAdmin() {
           <h1 className="font-serif text-4xl">Frequently Asked Questions</h1>
           <p className="text-sm text-muted-foreground">Manage FAQ content shown on the homepage. Available in all four languages.</p>
         </div>
-        <button onClick={() => add.mutate()} className="inline-flex items-center gap-2 bg-carrot hover:bg-carrot-hover text-white px-4 py-2 rounded text-xs uppercase tracking-widest"><Plus className="w-4 h-4" /> Add FAQ</button>
+        <button type="button" onClick={() => add.mutate()} className="inline-flex items-center gap-2 bg-carrot hover:bg-carrot-hover text-white px-4 py-2 rounded text-xs uppercase tracking-widest"><Plus className="w-4 h-4" aria-hidden="true" /> Add FAQ</button>
       </div>
       <div className="space-y-4">
         {items.map(f => <FaqEditor key={f.id} row={f} />)}
@@ -85,7 +85,7 @@ function FaqEditor({ row }: { row: Faq }) {
 
   return (
     <div className="border border-border/60 rounded-xl bg-card">
-      <button onClick={() => setOpen(v => !v)} className="w-full flex items-center justify-between p-4 text-left hover:bg-secondary/40">
+      <button type="button" onClick={() => setOpen(v => !v)} className="w-full flex items-center justify-between p-4 text-left hover:bg-secondary/40" aria-expanded={open} aria-controls={`faq-editor-${row.id}`}>
         <div className="min-w-0">
           <div className="font-serif text-lg truncate">{form.question || "(empty question)"}</div>
           <div className="text-xs text-muted-foreground">order {form.sort_order} · {form.active ? "Visible" : "Hidden"}</div>
@@ -93,7 +93,7 @@ function FaqEditor({ row }: { row: Faq }) {
         <span className="text-gold text-xs uppercase tracking-widest shrink-0 ml-4">{open ? "Close" : "Edit"}</span>
       </button>
       {open && (
-        <div className="p-5 border-t border-border/60 grid gap-3 md:grid-cols-2">
+        <div id={`faq-editor-${row.id}`} className="p-5 border-t border-border/60 grid gap-3 md:grid-cols-2">
           <div className="md:col-span-2 text-[10px] uppercase tracking-[0.3em] text-gold">Question</div>
           <input className={inp} placeholder="Question (EN)" value={form.question} onChange={e => setForm(f => ({ ...f, question: e.target.value }))} />
           <input className={inp} placeholder="Question (KA / ქართული)" value={form.question_ka ?? ""} onChange={e => setForm(f => ({ ...f, question_ka: e.target.value }))} />
@@ -110,8 +110,8 @@ function FaqEditor({ row }: { row: Faq }) {
           <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={form.active} onChange={e => setForm(f => ({ ...f, active: e.target.checked }))} /> Visible on site</label>
 
           <div className="md:col-span-2 flex justify-end gap-2 pt-2">
-            <button onClick={() => setAskDelete(true)} className="inline-flex items-center gap-2 border border-destructive/60 text-destructive hover:bg-destructive hover:text-destructive-foreground px-4 py-2 rounded text-xs uppercase tracking-widest transition"><Trash2 className="w-4 h-4" /> Delete</button>
-            <button onClick={() => save.mutate()} className="inline-flex items-center gap-2 bg-gold hover:brightness-110 text-black px-4 py-2 rounded text-xs uppercase tracking-widest"><Save className="w-4 h-4" /> Save</button>
+            <button type="button" onClick={() => setAskDelete(true)} className="inline-flex items-center gap-2 border border-destructive/60 text-destructive hover:bg-destructive hover:text-destructive-foreground px-4 py-2 rounded text-xs uppercase tracking-widest transition"><Trash2 className="w-4 h-4" aria-hidden="true" /> Delete</button>
+            <button type="button" onClick={() => save.mutate()} className="inline-flex items-center gap-2 bg-gold hover:brightness-110 text-black px-4 py-2 rounded text-xs uppercase tracking-widest"><Save className="w-4 h-4" aria-hidden="true" /> Save</button>
           </div>
         </div>
       )}

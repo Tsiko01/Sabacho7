@@ -75,7 +75,7 @@ function AboutAdmin() {
         <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={rest.active ?? true} onChange={e => setRest(r => ({ ...r, active: e.target.checked }))} /> Show notice</label>
         <input className={inp} placeholder="Notice title" value={rest.title ?? ""} onChange={e => setRest(r => ({ ...r, title: e.target.value }))} />
         <textarea className={`${inp} min-h-24`} placeholder="Notice body" value={rest.body ?? ""} onChange={e => setRest(r => ({ ...r, body: e.target.value }))} />
-        <div className="flex justify-end"><button onClick={() => saveRest.mutate()} className="inline-flex items-center gap-2 bg-gold hover:brightness-110 text-black px-4 py-2 rounded text-xs uppercase tracking-widest"><Save className="w-4 h-4" />Save notice</button></div>
+        <div className="flex justify-end"><button type="button" onClick={() => saveRest.mutate()} className="inline-flex items-center gap-2 bg-gold hover:brightness-110 text-black px-4 py-2 rounded text-xs uppercase tracking-widest"><Save className="w-4 h-4" aria-hidden="true" />Save notice</button></div>
       </Section>
 
       <Section title="Hero">
@@ -93,13 +93,13 @@ function AboutAdmin() {
         <input className={inp} placeholder="Owner image URL" value={about.owner_image ?? ""} onChange={e => set("owner_image", e.target.value)} />
       </Section>
 
-      <Section title="Hosts" action={<button onClick={() => setAbout(a => ({ ...a, hosts: [...(a.hosts ?? []), { name: "", role: "", bio: "", image: "" }] }))} className="inline-flex items-center gap-2 border border-border hover:border-gold hover:text-gold px-3 py-1.5 rounded text-xs uppercase tracking-widest"><Plus className="w-4 h-4" />Add host</button>}>
+      <Section title="Hosts" action={<button type="button" onClick={() => setAbout(a => ({ ...a, hosts: [...(a.hosts ?? []), { name: "", role: "", bio: "", image: "" }] }))} className="inline-flex items-center gap-2 border border-border hover:border-gold hover:text-gold px-3 py-1.5 rounded text-xs uppercase tracking-widest"><Plus className="w-4 h-4" aria-hidden="true" />Add host</button>}>
         {hosts.length === 0 && <p className="text-sm text-muted-foreground">No hosts yet.</p>}
         {hosts.map((h, i) => (
           <div key={i} className="border border-border/60 rounded-lg p-4 space-y-2">
             <div className="flex items-center justify-between">
               <span className="text-xs uppercase tracking-widest text-muted-foreground">Host {i + 1}</span>
-              <button onClick={() => setAbout(a => ({ ...a, hosts: (a.hosts ?? []).filter((_, j) => j !== i) }))} className="text-destructive hover:brightness-125"><Trash2 className="w-4 h-4" /></button>
+              <button type="button" onClick={() => setAbout(a => ({ ...a, hosts: (a.hosts ?? []).filter((_, j) => j !== i) }))} className="text-destructive hover:brightness-125" aria-label={`Delete host ${h.name || i + 1}`}><Trash2 className="w-4 h-4" aria-hidden="true" /></button>
             </div>
             <div className="grid gap-2 md:grid-cols-2">
               <input className={inp} placeholder="Name" value={h.name} onChange={e => setAbout(a => ({ ...a, hosts: (a.hosts ?? []).map((x, j) => j === i ? { ...x, name: e.target.value } : x) }))} />
@@ -129,7 +129,7 @@ function AboutAdmin() {
       </Section>
 
       <div className="sticky bottom-4 flex justify-end">
-        <button onClick={() => saveAbout.mutate()} className="inline-flex items-center gap-2 bg-carrot hover:bg-carrot-hover text-white px-6 py-3 rounded text-xs uppercase tracking-widest shadow-2xl"><Save className="w-4 h-4" /> Save About page</button>
+        <button type="button" onClick={() => saveAbout.mutate()} className="inline-flex items-center gap-2 bg-carrot hover:bg-carrot-hover text-white px-6 py-3 rounded text-xs uppercase tracking-widest shadow-2xl"><Save className="w-4 h-4" aria-hidden="true" /> Save About page</button>
       </div>
     </div>
   );

@@ -38,10 +38,10 @@ function Dashboard() {
       <h1 className="font-serif text-4xl mb-2">Dashboard</h1>
       <p className="text-sm text-muted-foreground mb-8">Manage tastings, gallery, and reservations.</p>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Stat icon={<Coffee />} label="Tastings" value={stats.tastings} />
-        <Stat icon={<ImageIcon />} label="Gallery" value={stats.gallery} />
-        <Stat icon={<CalendarClock />} label="Bookings" value={stats.bookings} />
-        <Stat icon={<CalendarClock />} label="Pending" value={stats.pending} accent />
+        <Stat icon={<Coffee aria-hidden="true" />} label="Tastings" value={stats.tastings} />
+        <Stat icon={<ImageIcon aria-hidden="true" />} label="Gallery" value={stats.gallery} />
+        <Stat icon={<CalendarClock aria-hidden="true" />} label="Bookings" value={stats.bookings} />
+        <Stat icon={<CalendarClock aria-hidden="true" />} label="Pending" value={stats.pending} accent />
       </div>
 
       <div className="mt-12">
@@ -55,7 +55,7 @@ function Dashboard() {
 
         {bookings.length === 0 ? (
           <div className="border border-dashed border-border/60 rounded-2xl p-14 text-center">
-            <div className="w-14 h-14 rounded-full bg-gold/10 text-gold border border-gold/30 mx-auto flex items-center justify-center"><Mail className="w-5 h-5" /></div>
+            <div className="w-14 h-14 rounded-full bg-gold/10 text-gold border border-gold/30 mx-auto flex items-center justify-center" aria-hidden="true"><Mail className="w-5 h-5" /></div>
             <h3 className="font-serif text-2xl mt-5">No reservations yet</h3>
             <p className="text-sm text-muted-foreground mt-2 max-w-sm mx-auto">When guests reserve an evening through the site, their requests will appear here.</p>
           </div>

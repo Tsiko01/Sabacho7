@@ -1,0 +1,59 @@
+# Sabacho's Marani
+
+> A private Georgian winery in Kakheti, Georgia. Family-owned since the 18th century. Offers wine tasting, traditional Georgian Supra feasts, Chacha, and aged Cognac experiences in a family marani setting.
+
+## Official website
+
+https://www.sabacho.ge
+
+## Primary language
+
+English (en)
+
+## Supported languages
+
+- English (en)
+- Georgian / ქართული (ka)
+- Russian / Русский (ru)
+- Ukrainian / Українська (uk)
+
+## Main pages
+
+- https://www.sabacho.ge/ — Home page with hero, about, experiences, testimonials, FAQ, booking form
+- https://www.sabacho.ge/about — Our story, the marani, the family, the village
+- https://www.sabacho.ge/tasting — Tasting menu with wines, spirits, and pairings
+- https://www.sabacho.ge/gallery — Photo gallery of the cellar, garden, wine, and atmosphere
+- https://www.sabacho.ge/contact — Contact information, location, WhatsApp, phone, email
+
+## Wine Experiences
+
+- Wine Tasting — Tasting of all available wines, traditional Chacha, 10-year-old Cognac, Georgian snacks (60–90 min)
+- Georgian Supra — Full traditional feast with authentic dishes, private dining atmosphere (2.5–3 hours)
+- Private Exclusive Evening — Entire evening dedicated to your group only with candlelit cellar experience
+
+## Reservations
+
+Reservations are required. Book via the website booking form or contact by phone / WhatsApp.
+
+- Phone: +995 597 171 455
+- Email: madonna.jolokhava7@gmail.com
+- WhatsApp: https://wa.me/995597171455
+
+## Contact
+
+- Address: Sabacho Winery, Kakheti, Georgia
+- Google Maps: https://www.google.com/maps/place/Sabacho+Winery/@41.6727913,45.6769744,17z
+
+## Privacy Policy
+
+This website collects minimal data through a booking form (name, email, phone, date, number of guests, message). Data is stored securely in Supabase and used only for managing booking requests. No analytics cookies are set without consent. Google Analytics may be used if configured via `VITE_GA_ID` environment variable.
+
+## Terms
+
+By submitting the booking form, you agree to be contacted regarding your reservation. The winery reserves the right to modify or cancel reservations due to restoration work or unforeseen circumstances.
+
+## Robots guidance
+
+- All public pages: `index, follow`
+- Admin pages: `noindex`
+- Sitemap: https://www.sabacho.ge/sitemap.xml

@@ -109,6 +109,7 @@ function ContactPage() {
                 loading="lazy"
                 className="w-full h-full"
                 referrerPolicy="no-referrer-when-downgrade"
+                style={{ aspectRatio: "4/3" }}
               />
             </div>
           </div>
