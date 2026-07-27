@@ -146,8 +146,6 @@ export function getGlobalLinks(): LinkEntry[] {
     { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180" },
     { rel: "manifest", href: "/site.webmanifest" },
     { rel: "mask-icon", href: "/safari-pinned-tab.svg", color: "#a67c52" },
-    { rel: "preconnect", href: "https://fonts.googleapis.com" },
-    { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
   ];
 }
 

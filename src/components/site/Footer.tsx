@@ -10,7 +10,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 md:px-8 py-14 grid gap-10 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="flex items-center gap-3 mb-2">
-            <img src={logo} alt="Sabacho Marani" className="h-10 w-auto object-contain" />
+            <img src={logo} alt="Sabacho Marani" width={40} height={40} decoding="async" className="h-10 w-auto object-contain" />
             <div>
               <div className="font-serif text-3xl tracking-[0.25em] text-gold">SABACHO</div>
               <div className="text-xs uppercase tracking-[0.35em] text-muted-foreground">Marani</div>

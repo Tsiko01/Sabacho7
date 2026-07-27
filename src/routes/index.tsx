@@ -61,31 +61,46 @@ function Hero() {
   const { t } = useI18n();
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoOk, setVideoOk] = useState(true);
+  const [videoReady, setVideoReady] = useState(false);
 
   useEffect(() => {
-    if (videoRef.current) videoRef.current.play().catch(() => setVideoOk(false));
+    // Defer video load until after first paint to protect LCP
+    const id = requestAnimationFrame(() => {
+      if (videoRef.current) {
+        videoRef.current.load();
+        videoRef.current.play().catch(() => setVideoOk(false));
+      }
+    });
+    return () => cancelAnimationFrame(id);
   }, []);
 
   return (
     <section className="relative h-screen min-h-[640px] w-full overflow-hidden" aria-label="Hero banner">
       <div className="absolute inset-0">
-        {videoOk ? (
+        {/* Static poster image loads instantly as LCP element */}
+        <img
+          src={HERO_FALLBACK}
+          alt="Sabacho at night"
+          width={1920}
+          height={1080}
+          fetchPriority="high"
+          decoding="async"
+          className={`w-full h-full object-cover animate-kenburns transition-opacity duration-700 ${videoReady ? "opacity-0" : "opacity-100"}`}
+          style={{ aspectRatio: "16/9" }}
+        />
+        {videoOk && (
           <video
             ref={videoRef}
             src={HERO_VIDEO}
-            autoPlay
             muted
             loop
             playsInline
-            poster={HERO_FALLBACK}
+            preload="none"
             onError={() => setVideoOk(false)}
-            className="w-full h-full object-cover animate-kenburns"
+            onCanPlay={() => setVideoReady(true)}
+            className={`absolute inset-0 w-full h-full object-cover animate-kenburns transition-opacity duration-700 ${videoReady ? "opacity-100" : "opacity-0"}`}
             style={{ aspectRatio: "16/9" }}
-          >
-            <track kind="captions" src="/captions/hero.en.vtt" srcLang="en" label="English" default />
-          </video>
-        ) : (
-          <img src={HERO_FALLBACK} alt="Sabacho at night" className="w-full h-full object-cover animate-kenburns" style={{ aspectRatio: "16/9" }} />
+          />
         )}
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
       </div>
@@ -150,10 +165,10 @@ function About() {
       <div className="max-w-7xl mx-auto grid gap-14 md:grid-cols-2 items-center">
         <div className="relative order-2 md:order-1">
           <div className="grid grid-cols-2 gap-4">
-            <img src={IMAGES.maraniInterior} alt="Sabacho marani interior" loading="lazy" width={600} height={800} className="rounded-lg w-full aspect-[3/4] object-cover" />
+            <img src={IMAGES.maraniInterior} alt="Sabacho marani interior" loading="lazy" width={600} height={800} decoding="async" className="rounded-lg w-full aspect-[3/4] object-cover" />
             <div className="space-y-4 pt-10">
-              <img src={IMAGES.cellarTable} alt="Cellar table" loading="lazy" width={480} height={600} className="rounded-lg w-full aspect-[4/5] object-cover" />
-              <img src={IMAGES.gardenDay} alt="Garden" loading="lazy" width={400} height={400} className="rounded-lg w-full aspect-square object-cover" />
+              <img src={IMAGES.cellarTable} alt="Cellar table" loading="lazy" width={480} height={600} decoding="async" className="rounded-lg w-full aspect-[4/5] object-cover" />
+              <img src={IMAGES.gardenDay} alt="Garden" loading="lazy" width={400} height={400} decoding="async" className="rounded-lg w-full aspect-square object-cover" />
             </div>
           </div>
           <div className="absolute -bottom-4 -left-4 hidden md:block glass rounded-lg px-5 py-3">
@@ -274,7 +289,7 @@ function ExperienceCard({ image, title, items, icon, onOpen }: { image: string; 
       aria-label={`${title} — ${items.join(", ")}`}
     >
       <div className="aspect-[16/10] overflow-hidden">
-        <img src={image} alt={title} loading="lazy" width={800} height={500} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        <img src={image} alt={title} loading="lazy" width={800} height={500} decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         <span className="absolute bottom-4 left-6 text-[10px] uppercase tracking-[0.3em] text-white/80 opacity-0 group-hover:opacity-100 transition-opacity">Discover →</span>
       </div>
@@ -296,7 +311,7 @@ function TastingTeaser() {
     <section className="relative py-20 md:py-28 px-6 md:px-8" aria-label={t("nav.tasting")}>
       <div className="max-w-6xl mx-auto relative overflow-hidden rounded-3xl border border-gold/30 bg-gradient-to-br from-secondary via-background to-secondary/50">
         <div className="absolute inset-0">
-          <img src={IMAGES.cellarBottles} alt="" className="w-full h-full object-cover opacity-20" aria-hidden="true" />
+          <img src={IMAGES.cellarBottles} alt="" loading="lazy" decoding="async" width={1200} height={800} className="w-full h-full object-cover opacity-20" aria-hidden="true" style={{ objectFit: "cover" }} />
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
         </div>
         <div className="relative p-8 md:p-16 grid md:grid-cols-2 gap-10 items-center">
@@ -312,8 +327,8 @@ function TastingTeaser() {
             </a>
           </div>
           <div className="grid grid-cols-2 gap-3">
-            <img src={IMAGES.cellarBottles} alt="" loading="lazy" width={400} height={400} className="rounded-lg aspect-square object-cover" aria-hidden="true" />
-            <img src={IMAGES.cellarTable} alt="" loading="lazy" width={400} height={400} className="rounded-lg aspect-square object-cover mt-8" aria-hidden="true" />
+            <img src={IMAGES.cellarBottles} alt="" loading="lazy" width={400} height={400} decoding="async" className="rounded-lg aspect-square object-cover" aria-hidden="true" />
+            <img src={IMAGES.cellarTable} alt="" loading="lazy" width={400} height={400} decoding="async" className="rounded-lg aspect-square object-cover mt-8" aria-hidden="true" />
           </div>
         </div>
       </div>

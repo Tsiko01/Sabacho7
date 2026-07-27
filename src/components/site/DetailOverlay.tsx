@@ -57,7 +57,7 @@ export function DetailOverlay({
         <div className="overflow-y-auto">
           {image && (
             <div className="relative w-full h-56 sm:h-72 md:h-96 overflow-hidden">
-              <img src={image} alt={title} className="w-full h-full object-cover" />
+              <img src={image} alt={title} loading="lazy" decoding="async" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
               {eyebrow && (
                 <div className="absolute bottom-5 left-6 flex items-center gap-3">

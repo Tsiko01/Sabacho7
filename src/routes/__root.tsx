@@ -124,9 +124,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "shortcut icon", href: "/logo.png", type: "image/png" },
       { rel: "apple-touch-icon", href: "/logo.png" },
       { rel: "manifest", href: "/site.webmanifest" },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" as const },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" },
+      { rel: "stylesheet", href: "/fonts/fonts.css", media: "print", onload: "this.media='all'" },
     ],
   }),
   shellComponent: RootShell,
@@ -140,15 +138,17 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en" className="dark">
       <head>
         <HeadContent />
-        {/* Google Analytics 4 */}
+        {/* Preload hero poster image for LCP optimization */}
+        <link rel="preload" href="/photos/gazebo-night.webp" as="image" type="image/webp" fetchPriority="high" />
+        {/* Google Analytics 4 — loaded async to avoid blocking rendering */}
         {import.meta.env.VITE_GA_ID && (
           <>
-            <script async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.VITE_GA_ID}`} />
             <script
               dangerouslySetInnerHTML={{
                 __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${import.meta.env.VITE_GA_ID}',{page_path:window.location.pathname});`,
               }}
             />
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.VITE_GA_ID}`} />
           </>
         )}
       </head>

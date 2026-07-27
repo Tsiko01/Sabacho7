@@ -59,7 +59,7 @@ function AboutPage() {
       <main>
         {/* HERO */}
         <section className="relative h-[85vh] min-h-[540px] overflow-hidden" aria-label={t("about.our_story")}>
-          <img src={heroImg} alt="" className="absolute inset-0 w-full h-full object-cover animate-kenburns" aria-hidden="true" width={1920} height={1080} />
+          <img src={heroImg} alt="" decoding="async" fetchPriority="high" className="absolute inset-0 w-full h-full object-cover animate-kenburns" aria-hidden="true" width={1920} height={1080} />
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-background" />
           <div className="relative h-full flex flex-col justify-center items-center text-center px-6 z-10">
             <div className="flex items-center gap-3 mb-6 animate-fade-in">
@@ -79,7 +79,7 @@ function AboutPage() {
         {/* MARANI */}
         <section className="relative py-24 md:py-32 px-6 md:px-8 bg-secondary/30" aria-label={c.marani_title || t("about.marani_title_default")}>
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-            <img src={maraniImg} alt={c.marani_title || t("about.marani_title_default")} className="rounded-2xl w-full aspect-[4/5] object-cover" width={800} height={1000} />
+            <img src={maraniImg} alt={c.marani_title || t("about.marani_title_default")} loading="lazy" decoding="async" className="rounded-2xl w-full aspect-[4/5] object-cover" width={800} height={1000} />
             <div>
               <div className="text-[10px] uppercase tracking-[0.4em] text-gold mb-3">{t("about.marani_eyebrow")}</div>
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-tight">{c.marani_title || t("about.marani_title_default")}</h2>
@@ -114,7 +114,7 @@ function AboutPage() {
         <section className="relative py-24 md:py-32 px-6 md:px-8" aria-label={c.village_title || t("about.village_title_default")}>
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
             <div className="md:order-2">
-              <img src={villageImg} alt={c.village_title || t("about.village_title_default")} className="rounded-2xl w-full aspect-[4/5] object-cover" width={800} height={1000} />
+              <img src={villageImg} alt={c.village_title || t("about.village_title_default")} loading="lazy" decoding="async" className="rounded-2xl w-full aspect-[4/5] object-cover" width={800} height={1000} />
             </div>
             <div className="md:order-1">
               <div className="text-[10px] uppercase tracking-[0.4em] text-gold mb-3">{t("about.village_eyebrow")}</div>
@@ -149,7 +149,7 @@ function ProfileCard({ name, role, bio, image }: { name?: string; role?: string;
     <div className="text-center">
       <div className="mx-auto w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden border border-gold/40 shadow-xl shadow-black/40 bg-secondary/40">
         {resolved ? (
-          <img src={resolved} alt={name ?? ""} className="w-full h-full object-cover" width={128} height={128} />
+          <img src={resolved} alt={name ?? ""} loading="lazy" decoding="async" className="w-full h-full object-cover" width={128} height={128} />
         ) : (
           <div className="w-full h-full flex items-center justify-center font-serif text-4xl text-gold/50" aria-hidden="true">{(name ?? "S").slice(0, 1)}</div>
         )}

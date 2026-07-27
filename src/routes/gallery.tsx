@@ -97,7 +97,9 @@ function GalleryPage() {
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 [column-fill:_balance]">
             {rows.map((g, i) => (
               <button key={g.id} type="button" onClick={() => setOpenIdx(i)} className="block w-full mb-4 overflow-hidden rounded-lg group relative animate-fade-in" aria-label={g.alt ?? "Sabacho gallery image"}>
-                <img src={resolveImageUrl(g.image_url) ?? ""} alt={g.alt ?? "Sabacho"} loading="lazy" className="w-full h-auto object-cover group-hover:scale-[1.03] transition-transform duration-700" />
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img src={resolveImageUrl(g.image_url) ?? ""} alt={g.alt ?? "Sabacho"} loading="lazy" decoding="async" width={400} height={300} className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700" />
+                </div>
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors" />
                 {g.category && <span className="absolute top-3 left-3 bg-black/60 backdrop-blur border border-white/15 text-white text-[9px] uppercase tracking-[0.3em] px-3 py-1 rounded-full">{t(`gallery.filter.${g.category}`) || g.category}</span>}
               </button>

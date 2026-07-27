@@ -73,7 +73,7 @@ function TastingPage() {
                 {list.map((it, i) => (
                   <article key={it.id} className="glass rounded-xl overflow-hidden group hover:border-gold/50 transition">
                     <div className="aspect-[4/3] overflow-hidden">
-                      <img src={resolveImageUrl(it.image_url) || fallback[i % fallback.length]} alt={it.name} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                      <img src={resolveImageUrl(it.image_url) || fallback[i % fallback.length]} alt={it.name} loading="lazy" decoding="async" width={400} height={300} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                     </div>
                     <div className="p-5">
                       <h3 className="font-serif text-2xl">{pickLang(it, "name", lang) || it.name}</h3>
