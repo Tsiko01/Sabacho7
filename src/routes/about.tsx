@@ -5,7 +5,7 @@ import { Footer } from "@/components/site/Footer";
 import { FloatingButtons } from "@/components/site/FloatingButtons";
 import { supabase } from "@/integrations/supabase/client";
 import { IMAGES, resolveImageUrl } from "@/lib/assets";
-import { useI18n } from "@/lib/i18n";
+import { useI18n, pickLang } from "@/lib/i18n";
 import { Schema } from "@/components/seo/Schema";
 import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
 import { buildWebPageSchema } from "@/lib/seo";
@@ -31,16 +31,26 @@ export const Route = createFileRoute("/about")({
 });
 
 type AboutContent = {
-  hero_title?: string; hero_subtitle?: string; hero_image?: string;
-  owner_name?: string; owner_role?: string; owner_bio?: string; owner_image?: string;
+  hero_title?: string; hero_title_ka?: string; hero_title_ru?: string; hero_title_uk?: string;
+  hero_subtitle?: string; hero_subtitle_ka?: string; hero_subtitle_ru?: string; hero_subtitle_uk?: string;
+  hero_image?: string;
+  owner_name?: string; owner_name_ka?: string; owner_name_ru?: string; owner_name_uk?: string;
+  owner_role?: string; owner_role_ka?: string; owner_role_ru?: string; owner_role_uk?: string;
+  owner_bio?: string; owner_bio_ka?: string; owner_bio_ru?: string; owner_bio_uk?: string;
+  owner_image?: string;
   hosts?: { name: string; role: string; bio: string; image?: string }[];
-  marani_title?: string; marani_body?: string; marani_image?: string;
-  village_title?: string; village_body?: string; village_image?: string;
-  cta_title?: string; cta_body?: string;
+  marani_title?: string; marani_title_ka?: string; marani_title_ru?: string; marani_title_uk?: string;
+  marani_body?: string; marani_body_ka?: string; marani_body_ru?: string; marani_body_uk?: string;
+  marani_image?: string;
+  village_title?: string; village_title_ka?: string; village_title_ru?: string; village_title_uk?: string;
+  village_body?: string; village_body_ka?: string; village_body_ru?: string; village_body_uk?: string;
+  village_image?: string;
+  cta_title?: string; cta_title_ka?: string; cta_title_ru?: string; cta_title_uk?: string;
+  cta_body?: string; cta_body_ka?: string; cta_body_ru?: string; cta_body_uk?: string;
 };
 
 function AboutPage() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const { data } = useQuery({
     queryKey: ["site_content", "about_page"],
     queryFn: async () => {
@@ -52,6 +62,18 @@ function AboutPage() {
   const heroImg = resolveImageUrl(c.hero_image) || IMAGES.gazeboNight;
   const maraniImg = resolveImageUrl(c.marani_image) || IMAGES.cellarBottles;
   const villageImg = resolveImageUrl(c.village_image) || IMAGES.gardenPath;
+
+  const heroTitle = pickLang(c, "hero_title", lang) || t("about.hero_title_default");
+  const heroSubtitle = pickLang(c, "hero_subtitle", lang) || t("about.hero_subtitle_default");
+  const maraniTitle = pickLang(c, "marani_title", lang) || t("about.marani_title_default");
+  const maraniBody = pickLang(c, "marani_body", lang) || t("about.marani_body_default");
+  const villageTitle = pickLang(c, "village_title", lang) || t("about.village_title_default");
+  const villageBody = pickLang(c, "village_body", lang) || t("about.village_body_default");
+  const ctaTitle = pickLang(c, "cta_title", lang) || t("about.cta_title_default");
+  const ctaBody = pickLang(c, "cta_body", lang) || t("about.cta_body_default");
+  const ownerName = pickLang(c, "owner_name", lang) || t("about.owner_name_default");
+  const ownerRole = pickLang(c, "owner_role", lang) || t("about.owner_role_default");
+  const ownerBio = pickLang(c, "owner_bio", lang) || t("about.owner_bio_default");
 
   return (
     <div className="bg-background text-foreground">
@@ -68,22 +90,22 @@ function AboutPage() {
               <span className="h-px w-10 bg-gold/60" aria-hidden="true" />
             </div>
             <h1 className="font-serif text-white text-5xl sm:text-7xl md:text-8xl font-light leading-[0.95] drop-shadow-2xl animate-fade-in">
-              {c.hero_title || t("about.hero_title_default")}
+              {heroTitle}
             </h1>
             <p className="mt-6 text-white/85 max-w-2xl mx-auto text-base md:text-lg leading-relaxed animate-fade-in">
-              {c.hero_subtitle || t("about.hero_subtitle_default")}
+              {heroSubtitle}
             </p>
           </div>
         </section>
 
         {/* MARANI */}
-        <section className="relative py-24 md:py-32 px-6 md:px-8 bg-secondary/30" aria-label={c.marani_title || t("about.marani_title_default")}>
+        <section className="relative py-24 md:py-32 px-6 md:px-8 bg-secondary/30" aria-label={maraniTitle}>
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-            <img src={maraniImg} alt={c.marani_title || t("about.marani_title_default")} loading="lazy" decoding="async" className="rounded-2xl w-full aspect-[4/5] object-cover" width={800} height={1000} />
+            <img src={maraniImg} alt={maraniTitle} loading="lazy" decoding="async" className="rounded-2xl w-full aspect-[4/5] object-cover" width={800} height={1000} />
             <div>
               <div className="text-[10px] uppercase tracking-[0.4em] text-gold mb-3">{t("about.marani_eyebrow")}</div>
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-tight">{c.marani_title || t("about.marani_title_default")}</h2>
-              <p className="mt-6 text-muted-foreground leading-relaxed md:text-lg whitespace-pre-line">{c.marani_body}</p>
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-tight">{maraniTitle}</h2>
+              <p className="mt-6 text-muted-foreground leading-relaxed md:text-lg whitespace-pre-line">{maraniBody}</p>
             </div>
           </div>
         </section>
@@ -102,7 +124,7 @@ function AboutPage() {
 
             {/* Owner + Hosts as compact circular portraits */}
             <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
-              <ProfileCard name={c.owner_name || "The Sabacho Family"} role={c.owner_role || "Owner & Host"} bio={c.owner_bio} image={c.owner_image} />
+              <ProfileCard name={ownerName} role={ownerRole} bio={ownerBio} image={c.owner_image} />
               {(c.hosts ?? []).map((h, i) => (
                 <ProfileCard key={i} name={h.name} role={h.role} bio={h.bio} image={h.image} />
               ))}
@@ -111,24 +133,24 @@ function AboutPage() {
         </section>
 
         {/* VILLAGE */}
-        <section className="relative py-24 md:py-32 px-6 md:px-8" aria-label={c.village_title || t("about.village_title_default")}>
+        <section className="relative py-24 md:py-32 px-6 md:px-8" aria-label={villageTitle}>
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
             <div className="md:order-2">
-              <img src={villageImg} alt={c.village_title || t("about.village_title_default")} loading="lazy" decoding="async" className="rounded-2xl w-full aspect-[4/5] object-cover" width={800} height={1000} />
+              <img src={villageImg} alt={villageTitle} loading="lazy" decoding="async" className="rounded-2xl w-full aspect-[4/5] object-cover" width={800} height={1000} />
             </div>
             <div className="md:order-1">
               <div className="text-[10px] uppercase tracking-[0.4em] text-gold mb-3">{t("about.village_eyebrow")}</div>
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-tight">{c.village_title || t("about.village_title_default")}</h2>
-              <p className="mt-6 text-muted-foreground leading-relaxed md:text-lg whitespace-pre-line">{c.village_body}</p>
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-tight">{villageTitle}</h2>
+              <p className="mt-6 text-muted-foreground leading-relaxed md:text-lg whitespace-pre-line">{villageBody}</p>
             </div>
           </div>
         </section>
 
         {/* CTA */}
-        <section className="relative py-24 md:py-32 px-6 md:px-8 bg-gradient-to-b from-background to-secondary/40" aria-label={c.cta_title || t("about.cta_title_default")}>
+        <section className="relative py-24 md:py-32 px-6 md:px-8 bg-gradient-to-b from-background to-secondary/40" aria-label={ctaTitle}>
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-serif text-4xl md:text-6xl font-light leading-tight text-gold">{c.cta_title || t("about.cta_title_default")}</h2>
-            <p className="mt-6 text-muted-foreground text-base md:text-lg leading-relaxed">{c.cta_body}</p>
+            <h2 className="font-serif text-4xl md:text-6xl font-light leading-tight text-gold">{ctaTitle}</h2>
+            <p className="mt-6 text-muted-foreground text-base md:text-lg leading-relaxed">{ctaBody}</p>
             <Link to="/" hash="book" className="mt-10 inline-flex items-center gap-2 bg-carrot hover:bg-carrot-hover text-white px-10 py-4 rounded-md text-xs uppercase tracking-[0.3em] font-medium transition-all hover:scale-[1.03] shadow-2xl">
               {t("cta.book")}
             </Link>

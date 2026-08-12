@@ -217,6 +217,7 @@ function Experiences() {
             title={t("exp.wine.title")}
             items={[t("exp.wine.i1"), t("exp.wine.i2"), t("exp.wine.i3"), t("exp.wine.i4")]}
             icon={<Wine className="w-5 h-5" aria-hidden="true" />}
+            price={t("exp.wine.price")}
             onOpen={() => setOpen("wine")}
           />
           <ExperienceCard
@@ -224,6 +225,7 @@ function Experiences() {
             title={t("exp.supra.title")}
             items={[t("exp.supra.i1"), t("exp.supra.i2"), t("exp.supra.i3"), t("exp.supra.i4")]}
             icon={<Utensils className="w-5 h-5" aria-hidden="true" />}
+            price={t("exp.supra.price")}
             onOpen={() => setOpen("supra")}
           />
         </div>
@@ -251,6 +253,7 @@ function Experiences() {
         title={t("exp.wine.title")}
         intro="A guided journey through our family cellar — from qvevri to bottle. Traditional Kakhetian wines, aged Chacha, and 10-year Cognac, poured slowly and paired with warm Georgian snacks."
         sections={[
+          { label: "From", value: t("exp.wine.price") },
           { label: "Duration", value: "60–90 minutes" },
           { label: "What you'll taste", value: `• ${t("exp.wine.i1")}\n• ${t("exp.wine.i2")}\n• ${t("exp.wine.i3")}\n• ${t("exp.wine.i4")}` },
           { label: "Atmosphere", value: "Candlelit stone cellar, hand-carved wooden table, family host guiding every pour." },
@@ -268,6 +271,7 @@ function Experiences() {
         title={t("exp.supra.title")}
         intro="The Supra is not a dinner — it is Georgia at its table. A tamada leads the toasts, the wine keeps pouring, and stories become part of the meal. You do not simply eat and drink; you are welcomed into a family."
         sections={[
+          { label: "From", value: t("exp.supra.price") },
           { label: "Duration", value: "2.5 – 3 hours" },
           { label: "Experience", value: `• ${t("exp.supra.i1")}\n• ${t("exp.supra.i2")}\n• ${t("exp.supra.i3")}\n• ${t("exp.supra.i4")}` },
           { label: "Georgian hospitality", value: "Toasts to peace, to family, to guests — a tradition that turns strangers into friends by the end of the evening." },
@@ -280,7 +284,7 @@ function Experiences() {
   );
 }
 
-function ExperienceCard({ image, title, items, icon, onOpen }: { image: string; title: string; items: string[]; icon: React.ReactNode; onOpen?: () => void }) {
+function ExperienceCard({ image, title, items, icon, price, onOpen }: { image: string; title: string; items: string[]; icon: React.ReactNode; price?: string; onOpen?: () => void }) {
   return (
     <button
       type="button"
@@ -294,7 +298,7 @@ function ExperienceCard({ image, title, items, icon, onOpen }: { image: string; 
         <span className="absolute bottom-4 left-6 text-[10px] uppercase tracking-[0.3em] text-white/80 opacity-0 group-hover:opacity-100 transition-opacity">Discover →</span>
       </div>
       <div className="p-6 md:p-8">
-          <div className="flex items-center gap-2 text-gold">{icon}<h3 className="font-serif text-2xl md:text-3xl text-foreground">{title}</h3></div>
+          <div className="flex items-center gap-2 text-gold">{icon}<h3 className="font-serif text-2xl md:text-3xl text-foreground">{title}</h3>{price && <span className="ml-auto text-sm font-medium text-gold whitespace-nowrap">{price}</span>}</div>
         <ul className="mt-5 space-y-2">
           {items.map((it, i) => (
             <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground"><Check className="w-4 h-4 text-gold mt-0.5 shrink-0" aria-hidden="true" />{it}</li>
@@ -320,7 +324,7 @@ function TastingTeaser() {
               <span className="h-px w-8 bg-gold/60" aria-hidden="true" />
               <span className="text-[10px] uppercase tracking-[0.5em] text-gold">{t("nav.tasting")}</span>
             </div>
-            <h2 className="font-serif text-5xl md:text-6xl text-foreground">დეგუსტაცია</h2>
+            <h2 className="font-serif text-5xl md:text-6xl text-foreground">{t("tasting.teaser.title")}</h2>
             <p className="mt-4 text-muted-foreground max-w-md leading-relaxed">{t("tasting.teaser.subtitle")}</p>
             <a href="/tasting" className="mt-8 inline-flex items-center gap-2 bg-gold hover:brightness-110 text-black px-7 py-3.5 rounded-md text-xs uppercase tracking-[0.25em] font-medium transition-all hover:scale-[1.03]">
               {t("cta.view_tasting")} <ChevronRight className="w-4 h-4" aria-hidden="true" />

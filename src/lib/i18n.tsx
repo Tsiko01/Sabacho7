@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 
 export type Lang = "en" | "ka" | "ru" | "uk";
 
@@ -45,6 +45,8 @@ const dicts: Record<Lang, Dict> = {
     "exp.supra.i2": "Full traditional Supra feast",
     "exp.supra.i3": "Authentic Georgian dishes",
     "exp.supra.i4": "Private dining atmosphere",
+    "exp.wine.price": "From/$20",
+    "exp.supra.price": "From/$50",
     "exp.private.title": "Private Exclusive Evening",
     "exp.private.body": "Reserve in advance and the entire evening at Sabacho is dedicated to your group only. A candlelit cellar, a Georgian host at your table, wine chosen by our family — for you alone.",
     "wines.title": "Wine Collection",
@@ -85,8 +87,8 @@ const dicts: Record<Lang, Dict> = {
     "book.time": "Time",
     "book.guests": "Guests",
     "book.experience": "Experience",
-    "book.exp.wine": "Wine Tasting",
-    "book.exp.supra": "Georgian Supra",
+    "book.exp.wine": "Wine Tasting (From/$20)",
+    "book.exp.supra": "Georgian Supra (From/$50)",
     "book.exp.private": "Private Exclusive Evening",
     "book.message": "Message",
     "book.submit": "Send Reservation",
@@ -132,6 +134,12 @@ const dicts: Record<Lang, Dict> = {
     "about.marani_title_default": "The Marani",
     "about.village_title_default": "The Village",
     "about.cta_title_default": "Come and experience SABACHO",
+    "about.cta_body_default": "Reserve an evening at our marani. We will be waiting for you.",
+    "about.marani_body_default": "A marani is more than a cellar — it is the heart of a Georgian home. Ours is built of stone, cooled by earth, and filled with qvevri buried deep in the ground. Here wine is not made in factories, but in silence, patience, and prayer.",
+    "about.village_body_default": "Sabacho sits in a quiet Kakhetian village, where mornings begin with mist over the vineyards and evenings end under vines heavy with grapes. The pace is slow, the hospitality unhurried, the wine honest.",
+    "about.owner_name_default": "The Sabacho Family",
+    "about.owner_role_default": "Owner & Host",
+    "about.owner_bio_default": "Generations of Kakhetian winemakers welcome you into their home. Every bottle, every dish, every toast — made with our own hands.",
     "exp.eyebrow": "Experiences",
     "reviews.eyebrow": "Reviews",
     "faq.eyebrow": "FAQ",
@@ -170,6 +178,8 @@ const dicts: Record<Lang, Dict> = {
     "exp.supra.i2": "სრული ტრადიციული სუფრა",
     "exp.supra.i3": "ავთენტური ქართული კერძები",
     "exp.supra.i4": "კერძო სასადილო ატმოსფერო",
+    "exp.wine.price": "From/$20",
+    "exp.supra.price": "From/$50",
     "exp.private.title": "კერძო ექსკლუზიური საღამო",
     "exp.private.body": "წინასწარი ჯავშნისას მთელი საღამო ეძღვნება მხოლოდ თქვენს ჯგუფს.",
     "wines.title": "ღვინის კოლექცია",
@@ -209,8 +219,8 @@ const dicts: Record<Lang, Dict> = {
     "book.time": "დრო",
     "book.guests": "სტუმრები",
     "book.experience": "გამოცდილება",
-    "book.exp.wine": "ღვინის დეგუსტაცია",
-    "book.exp.supra": "ქართული სუფრა",
+    "book.exp.wine": "ღვინის დეგუსტაცია (From/$20)",
+    "book.exp.supra": "ქართული სუფრა (From/$50)",
     "book.exp.private": "კერძო ექსკლუზიური საღამო",
     "book.message": "შეტყობინება",
     "book.submit": "ჯავშნის გაგზავნა",
@@ -256,6 +266,12 @@ const dicts: Record<Lang, Dict> = {
     "about.marani_title_default": "მარანი",
     "about.village_title_default": "სოფელი",
     "about.cta_title_default": "ეწვიე საბაჩოს",
+    "about.cta_body_default": "დაჯავშნეთ საღამო ჩვენს მარანში. ჩვენ თქვენ გელოდებით.",
+    "about.marani_body_default": "მარანი მხოლოდ სარდაფი კი არა — ის ქართული სახლის გულია. ჩვენი მარანი ქვითაა აგებული, მიწით გაგრილებული და ქვევრებით სავსე, ღრმად მიწაში ჩაფლული. აქ ღვინო ფაბრიკაში კი არა, სიჩუმეში, მოთმინებაში და ლოცვაში იქმნება.",
+    "about.village_body_default": "საბაჩო მშვიდ კახურ სოფელში მდებარეობს, სადაც დილა ნისლით იწყება ვენახებზე, ხოლო საღამო ყურძნით დატვირთული ვაზის ქვეშ მთავრდება. ტემპი ნელია, სტუმართმოყვარეობა აჩქარებული არაა, ღვინო პატიოსანია.",
+    "about.owner_name_default": "საბაჩოს ოჯახი",
+    "about.owner_role_default": "მფლობელი და მასპინძელი",
+    "about.owner_bio_default": "კახელი მეღვინეების თაობები გიწვევენ თავიანთ სახლში. ყოველი ბოთლი, ყოველი კერძი, ყოველი სადღეგრძელო — ჩვენი ხელით გაკეთებული.",
     "exp.eyebrow": "გამოცდილება",
     "reviews.eyebrow": "მიმოხილვები",
     "faq.eyebrow": "კითხვები",
@@ -294,6 +310,8 @@ const dicts: Record<Lang, Dict> = {
     "exp.supra.i2": "Полное застолье",
     "exp.supra.i3": "Аутентичные блюда",
     "exp.supra.i4": "Приватная атмосфера",
+    "exp.wine.price": "From/$20",
+    "exp.supra.price": "From/$50",
     "exp.private.title": "Частный эксклюзивный вечер",
     "exp.private.body": "При предварительном бронировании весь вечер посвящён только вашей группе.",
     "wines.title": "Коллекция вин",
@@ -334,8 +352,8 @@ const dicts: Record<Lang, Dict> = {
     "book.time": "Время",
     "book.guests": "Гости",
     "book.experience": "Впечатление",
-    "book.exp.wine": "Дегустация вина",
-    "book.exp.supra": "Грузинское Супра",
+    "book.exp.wine": "Дегустация вина (From/$20)",
+    "book.exp.supra": "Грузинское Супра (From/$50)",
     "book.exp.private": "Частный вечер",
     "book.message": "Сообщение",
     "book.submit": "Отправить заявку",
@@ -381,6 +399,12 @@ const dicts: Record<Lang, Dict> = {
     "about.marani_title_default": "Марани",
     "about.village_title_default": "Село",
     "about.cta_title_default": "Приезжайте в SABACHO",
+    "about.cta_body_default": "Забронируйте вечер в нашем марани. Мы будем ждать вас.",
+    "about.marani_body_default": "Марани — это не просто погреб, это сердце грузинского дома. Наш марани построен из камня, охлаждён землёй и наполнен квеври, глубоко в землю. Вино создаётся не на заводах, а в тишине, терпении и молитве.",
+    "about.village_body_default": "Сабачо расположен в тихом кахетинском селе, где утра начинаются с тумана над виноградниками, а вечера заканчиваются под лозами, тяжёлыми от винограда. Темп медленный, гостеприимство неторопливое, вино честное.",
+    "about.owner_name_default": "Семья Сабачо",
+    "about.owner_role_default": "Владелец и хозяин",
+    "about.owner_bio_default": "Поколения кахетинских виноделов приветствуют вас в своём доме. Каждая бутылка, каждое блюдо, каждый тост — сделаны нашими руками.",
     "exp.eyebrow": "Впечатления",
     "reviews.eyebrow": "Отзывы",
     "faq.eyebrow": "FAQ",
@@ -419,6 +443,8 @@ const dicts: Record<Lang, Dict> = {
     "exp.supra.i2": "Повне частування",
     "exp.supra.i3": "Автентичні страви",
     "exp.supra.i4": "Приватна атмосфера",
+    "exp.wine.price": "From/$20",
+    "exp.supra.price": "From/$50",
     "exp.private.title": "Приватний ексклюзивний вечір",
     "exp.private.body": "За попереднім бронюванням увесь вечір присвячений лише вашій групі.",
     "wines.title": "Колекція вин",
@@ -459,8 +485,8 @@ const dicts: Record<Lang, Dict> = {
     "book.time": "Час",
     "book.guests": "Гості",
     "book.experience": "Враження",
-    "book.exp.wine": "Дегустація вина",
-    "book.exp.supra": "Грузинське Супра",
+    "book.exp.wine": "Дегустація вина (From/$20)",
+    "book.exp.supra": "Грузинське Супра (From/$50)",
     "book.exp.private": "Приватний вечір",
     "book.message": "Повідомлення",
     "book.submit": "Надіслати запит",
@@ -506,6 +532,12 @@ const dicts: Record<Lang, Dict> = {
     "about.marani_title_default": "Марані",
     "about.village_title_default": "Село",
     "about.cta_title_default": "Приїжджайте до SABACHO",
+    "about.cta_body_default": "Забронюйте вечір у нашому марані. Ми будемо чекати на вас.",
+    "about.marani_body_default": "Марані — це не просто погріб, це серце грузинського дому. Наш марані побудований з каменю, охолоджений землею та наповнений квеврі, глибоко в землю.  Вино створюється не на заводах, а в тиші, терпінні та молитві.",
+    "about.village_body_default": "Сабачо розташований у тихому кахетинському селі, де ранки починаються з туману над виноградниками, а вечори закінчуються під лозами, важкими від винограду. Темп повільний, гостинність некваплива, вино чесне.",
+    "about.owner_name_default": "Родина Сабачо",
+    "about.owner_role_default": "Власник і господар",
+    "about.owner_bio_default": "Покоління кахетинських виноробів вітають вас у своєму домі. Кожна пляшка, кожна страва, кожен тост — зроблені нашими руками.",
     "exp.eyebrow": "Враження",
     "reviews.eyebrow": "Відгуки",
     "faq.eyebrow": "FAQ",
@@ -516,20 +548,26 @@ const dicts: Record<Lang, Dict> = {
 type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: (key: string) => string };
 const I18nCtx = createContext<Ctx | null>(null);
 
+function getInitialLang(): Lang {
+  if (typeof window === "undefined") return "en";
+  try {
+    const saved = localStorage.getItem("sabacho-lang") as Lang | null;
+    if (saved && dicts[saved]) return saved;
+  } catch {}
+  return "en";
+}
+
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>("en");
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem("sabacho-lang") as Lang | null;
-      if (saved && dicts[saved]) setLang(saved);
-    } catch {}
-  }, []);
+  const [lang, setLang] = useState<Lang>(getInitialLang);
   useEffect(() => {
     try { localStorage.setItem("sabacho-lang", lang); } catch {}
     if (typeof document !== "undefined") document.documentElement.lang = lang;
   }, [lang]);
-  const t = (k: string) => dicts[lang][k] ?? dicts.en[k] ?? k;
-  return <I18nCtx.Provider value={{ lang, setLang, t }}>{children}</I18nCtx.Provider>;
+  const t = useMemo<(key: string) => string>(() => {
+    return (k: string) => dicts[lang][k] ?? dicts.en[k] ?? k;
+  }, [lang]);
+  const value = useMemo<Ctx>(() => ({ lang, setLang, t }), [lang, t]);
+  return <I18nCtx.Provider value={value}>{children}</I18nCtx.Provider>;
 }
 
 export function useI18n() {
