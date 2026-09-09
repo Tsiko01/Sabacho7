@@ -116,7 +116,7 @@ function Hero() {
             SABACHO
           </h1>
           <p className="mt-6 font-serif text-2xl md:text-3xl text-gold italic tracking-wide">
-            Georgian Wine
+            Georgian Heritage
           </p>
           <p className="mt-4 text-sm md:text-base text-white/80 max-w-xl mx-auto leading-relaxed">
             {t("hero.subtitle")}
