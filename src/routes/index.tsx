@@ -253,6 +253,8 @@ function About() {
       </div>
       <ImageLightbox
         open={lightbox !== null}
+        index={lightbox ?? 0}
+        total={photos.length}
         src={lightbox !== null ? photos[lightbox].src : null}
         alt={lightbox !== null ? photos[lightbox].alt : ""}
         onClose={() => setLightbox(null)}

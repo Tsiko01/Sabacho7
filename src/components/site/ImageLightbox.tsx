@@ -17,6 +17,8 @@ export function ImageLightbox({
   onPrev,
   onNext,
   footer,
+  index,
+  total,
 }: {
   open: boolean;
   src?: string | null;
@@ -25,10 +27,24 @@ export function ImageLightbox({
   onPrev?: () => void;
   onNext?: () => void;
   footer?: React.ReactNode;
+  index?: number;
+  total?: number;
 }) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const lastFocusedRef = useRef<HTMLElement | null>(null);
   const wasOpenRef = useRef(false);
+  const lastTapRef = useRef(0);
+
+  const navigateFromTap = (action: () => void) => {
+    const now = Date.now();
+    if (now - lastTapRef.current < 250) return;
+    lastTapRef.current = now;
+    action();
+  };
+
+  const hasBounds = index !== undefined && total !== undefined;
+  const canGoPrev = !hasBounds || index > 0;
+  const canGoNext = !hasBounds || index < total - 1;
 
   useEffect(() => {
     if (!open) {
@@ -71,6 +87,28 @@ export function ImageLightbox({
       aria-modal="true"
       aria-label={alt || "Image lightbox"}
     >
+      {onPrev && (
+        <button
+          type="button"
+          aria-label="Previous image"
+          className="absolute inset-y-0 left-0 w-1/2 hidden max-md:block focus:outline-none"
+          onClick={(e) => {
+            e.stopPropagation();
+            if (canGoPrev) navigateFromTap(onPrev);
+          }}
+        />
+      )}
+      {onNext && (
+        <button
+          type="button"
+          aria-label="Next image"
+          className="absolute inset-y-0 right-0 w-1/2 hidden max-md:block focus:outline-none"
+          onClick={(e) => {
+            e.stopPropagation();
+            if (canGoNext) navigateFromTap(onNext);
+          }}
+        />
+      )}
       <button
         type="button"
         className="absolute top-4 right-4 md:top-6 md:right-6 text-white p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20"
@@ -85,7 +123,7 @@ export function ImageLightbox({
       {onPrev && (
         <button
           type="button"
-          className="absolute left-3 md:left-6 text-white p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20"
+          className="absolute left-3 md:left-6 text-white p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 max-md:hidden"
           aria-label="Previous image"
           onClick={(e) => {
             e.stopPropagation();
@@ -98,7 +136,7 @@ export function ImageLightbox({
       {onNext && (
         <button
           type="button"
-          className="absolute right-3 md:right-6 text-white p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20"
+          className="absolute right-3 md:right-6 text-white p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 max-md:hidden"
           aria-label="Next image"
           onClick={(e) => {
             e.stopPropagation();

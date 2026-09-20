@@ -99,6 +99,8 @@ function GalleryPage() {
         {openIdx !== null && (
           <ImageLightbox
             open={true}
+            index={openIdx}
+            total={rows.length}
             src={resolveImageUrl(rows[openIdx].image_url) ?? ""}
             alt={rows[openIdx].alt ?? "Sabacho gallery image"}
             onClose={() => setOpenIdx(null)}
