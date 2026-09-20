@@ -8,6 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { Analytics } from "@vercel/analytics/react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -35,15 +36,18 @@ function NotFoundComponent() {
           </Link>
         </div>
       </div>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{
-        __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          name: "404 - Page Not Found | SABACHO Marani",
-          description: "The page you're looking for doesn't exist or has been moved.",
-          url: buildCanonical("/404"),
-        }),
-      }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "404 - Page Not Found | SABACHO Marani",
+            description: "The page you're looking for doesn't exist or has been moved.",
+            url: buildCanonical("/404"),
+          }),
+        }}
+      />
     </div>
   );
 }
@@ -92,8 +96,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "SABACHO Marani — Georgian Wine Experience in Kakheti" },
-      { name: "description", content: "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience." },
-      { name: "keywords", content: "Sabacho, Georgian wine, Kakheti winery, wine tasting Georgia, qvevri wine, Georgian supra, Kakheti wine tour, Sabacho Marani, private wine cellar" },
+      {
+        name: "description",
+        content:
+          "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience.",
+      },
+      {
+        name: "keywords",
+        content:
+          "Sabacho, Georgian wine, Kakheti winery, wine tasting Georgia, qvevri wine, Georgian supra, Kakheti wine tour, Sabacho Marani, private wine cellar",
+      },
       { name: "robots", content: "index, follow" },
       { name: "author", content: "Sabacho Marani" },
       { name: "creator", content: "Sabacho Marani" },
@@ -103,7 +115,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "color-scheme", content: "dark" },
       { name: "format-detection", content: "telephone=yes, address=yes" },
       { property: "og:title", content: "SABACHO Marani — Georgian Wine Experience in Kakheti" },
-      { property: "og:description", content: "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience." },
+      {
+        property: "og:description",
+        content:
+          "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience.",
+      },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://www.sabacho.ge" },
       { property: "og:image", content: "https://www.sabacho.ge/logo.png" },
@@ -113,7 +129,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "SABACHO Marani" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "SABACHO Marani — Georgian Wine Experience in Kakheti" },
-      { name: "twitter:description", content: "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience." },
+      {
+        name: "twitter:description",
+        content:
+          "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience.",
+      },
       { name: "twitter:image", content: "https://www.sabacho.ge/logo.png" },
       { name: "twitter:site", content: "@sabacho_marani" },
       { name: "twitter:creator", content: "@sabacho_marani" },
@@ -139,7 +159,13 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         <HeadContent />
         {/* Preload hero poster image for LCP optimization */}
-        <link rel="preload" href="/photos/gazebo-night.webp" as="image" type="image/webp" fetchPriority="high" />
+        <link
+          rel="preload"
+          href="/photos/gazebo-night.webp"
+          as="image"
+          type="image/webp"
+          fetchPriority="high"
+        />
         {/* Google Analytics 4 — loaded async to avoid blocking rendering */}
         {import.meta.env.VITE_GA_ID && (
           <>
@@ -148,12 +174,16 @@ function RootShell({ children }: { children: ReactNode }) {
                 __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${import.meta.env.VITE_GA_ID}',{page_path:window.location.pathname});`,
               }}
             />
-            <script async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.VITE_GA_ID}`} />
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.VITE_GA_ID}`}
+            />
           </>
         )}
       </head>
       <body>
         {children}
+        <Analytics />
         <Scripts />
       </body>
     </html>

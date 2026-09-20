@@ -94,7 +94,7 @@
   --gold: oklch(0.75 0.13 78);
   --gold-soft: oklch(0.85 0.09 82);
   --carrot: oklch(0.55 0.19 42);
-  --carrot-hover: oklch(0.50 0.20 40);
+  --carrot-hover: oklch(0.5 0.2 40);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -134,7 +134,7 @@
   --gold: oklch(0.75 0.13 78);
   --gold-soft: oklch(0.62 0.11 78);
   --carrot: oklch(0.55 0.19 42);
-  --carrot-hover: oklch(0.50 0.20 40);
+  --carrot-hover: oklch(0.5 0.2 40);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -161,7 +161,11 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4, .font-serif {
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-serif {
     font-family: var(--font-serif);
     letter-spacing: -0.01em;
   }
@@ -202,25 +206,53 @@
 }
 
 @keyframes kenburns {
-  0% { transform: scale(1) translate(0,0); }
-  100% { transform: scale(1.15) translate(-1.5%, -1%); }
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.15) translate(-1.5%, -1%);
+  }
 }
-.animate-kenburns { animation: kenburns 20s ease-out both; }
+.animate-kenburns {
+  animation: kenburns 20s ease-out both;
+}
 
 @keyframes fadeup {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-.animate-fadeup { animation: fadeup 0.9s ease-out both; }
+.animate-fadeup {
+  animation: fadeup 0.9s ease-out both;
+}
 
 @keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
-.animate-fade-in { animation: fade-in 0.5s ease-out both; }
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out both;
+}
 
 @keyframes scale-in {
-  from { opacity: 0; transform: scale(0.92); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
-.animate-scale-in { animation: scale-in 0.3s ease-out both; }
+.animate-scale-in {
+  animation: scale-in 0.3s ease-out both;
+}

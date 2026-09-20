@@ -25,13 +25,21 @@ export function resolveImageUrl(url: string | null | undefined): string | null {
 export type GalleryCategory = "winery" | "wines" | "vineyard" | "food" | "guests" | "atmosphere";
 
 export const GALLERY: { src: string; category: GalleryCategory; alt: string }[] = [
-  { src: IMAGES.gazeboNight, category: "atmosphere", alt: "Sabacho gazebo at night under a full moon" },
+  {
+    src: IMAGES.gazeboNight,
+    category: "atmosphere",
+    alt: "Sabacho gazebo at night under a full moon",
+  },
   { src: IMAGES.gardenLantern, category: "atmosphere", alt: "Garden lantern at Sabacho at night" },
   { src: IMAGES.lampNight, category: "atmosphere", alt: "Stone lamp column at night" },
   { src: IMAGES.cellarBottles, category: "wines", alt: "Aged wine bottles in the Sabacho cellar" },
   { src: IMAGES.maraniInterior, category: "winery", alt: "Traditional Sabacho marani interior" },
   { src: IMAGES.cellarTable, category: "winery", alt: "Hand-carved wooden table in the cellar" },
   { src: IMAGES.gardenDay, category: "vineyard", alt: "Sabacho garden by daylight" },
-  { src: IMAGES.gardenPomegranate, category: "vineyard", alt: "Pomegranate trees in the Sabacho garden" },
+  {
+    src: IMAGES.gardenPomegranate,
+    category: "vineyard",
+    alt: "Pomegranate trees in the Sabacho garden",
+  },
   { src: IMAGES.gardenPath, category: "vineyard", alt: "Stone path through the vineyard" },
 ];

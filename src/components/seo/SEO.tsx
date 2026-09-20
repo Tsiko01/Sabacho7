@@ -17,7 +17,15 @@ export function useSEO(options: SEOInput = {}) {
     const meta = seoMetaToEntries(seo);
     const links = getGlobalLinks();
     return { meta, links };
-  }, [options.title, options.description, options.keywords, options.ogImage, options.noindex, options.nofollow, options.canonicalPath]);
+  }, [
+    options.title,
+    options.description,
+    options.keywords,
+    options.ogImage,
+    options.noindex,
+    options.nofollow,
+    options.canonicalPath,
+  ]);
 }
 
 /**
