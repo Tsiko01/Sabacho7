@@ -28,7 +28,7 @@ if (typeof process !== "undefined" && typeof process.on === "function") {
 if (
   typeof console !== "undefined" &&
   typeof console.error === "function" &&
-  !(console.error as any).__captured
+  !(console.error as { __captured?: boolean }).__captured
 ) {
   const orig = console.error.bind(console);
   const wrapped = (...args: unknown[]) => {
@@ -36,7 +36,7 @@ if (
     if (err) record(err);
     orig(...(args as []));
   };
-  (wrapped as any).__captured = true;
+  (wrapped as { __captured?: boolean }).__captured = true;
   console.error = wrapped as typeof console.error;
 }
 

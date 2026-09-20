@@ -4,10 +4,11 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -102,6 +103,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "theme-color", content: "#0a0a0a" },
       { name: "color-scheme", content: "dark" },
       { name: "format-detection", content: "telephone=yes, address=yes" },
+      ...(import.meta.env.VITE_GOOGLE_VERIFICATION
+        ? [{ name: "google-site-verification", content: import.meta.env.VITE_GOOGLE_VERIFICATION }]
+        : []),
       { property: "og:title", content: "SABACHO Marani — Georgian Wine Experience in Kakheti" },
       { property: "og:description", content: "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience." },
       { property: "og:type", content: "website" },
@@ -120,11 +124,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/logo.png", type: "image/png" },
-      { rel: "shortcut icon", href: "/logo.png", type: "image/png" },
-      { rel: "apple-touch-icon", href: "/logo.png" },
+      { rel: "icon", href: "/favicon-32x32.png", type: "image/png" },
+      { rel: "shortcut icon", href: "/favicon.ico" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       { rel: "manifest", href: "/site.webmanifest" },
-      { rel: "stylesheet", href: "/fonts/fonts.css", media: "print", onload: "this.media='all'" },
     ],
   }),
   shellComponent: RootShell,
@@ -138,6 +141,8 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en" className="dark">
       <head>
         <HeadContent />
+        {/* Self-hosted fonts (Inter, Cormorant Garamond) — ~1KB CSS; woff2 files load lazily via font-display:swap */}
+        <link rel="stylesheet" href="/fonts/fonts.css" />
         {/* Preload hero poster image for LCP optimization */}
         <link rel="preload" href="/photos/gazebo-night.webp" as="image" type="image/webp" fetchPriority="high" />
         {/* Google Analytics 4 — loaded async to avoid blocking rendering */}
@@ -162,6 +167,19 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: s => s.location.pathname });
+  const firstRender = useRef(true);
+
+  useEffect(() => {
+    if (!import.meta.env.VITE_GA_ID || typeof window === "undefined") return;
+    const gtag = (window as Window & { gtag?: (...args: unknown[]) => void }).gtag;
+    if (typeof gtag !== "function") return;
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+    gtag("config", import.meta.env.VITE_GA_ID, { page_path: pathname });
+  }, [pathname]);
 
   return (
     <QueryClientProvider client={queryClient}>

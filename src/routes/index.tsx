@@ -5,12 +5,13 @@ import { ChevronRight, Star, Sparkles, Wine, Utensils, Check } from "lucide-reac
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { FloatingButtons } from "@/components/site/FloatingButtons";
+import { ImageLightbox } from "@/components/site/ImageLightbox";
 import { BookingForm } from "@/components/site/BookingForm";
 import { DetailOverlay } from "@/components/site/DetailOverlay";
 import { HERO_VIDEO, HERO_FALLBACK, IMAGES } from "@/lib/assets";
 import { useI18n, pickLang } from "@/lib/i18n";
 import { supabase } from "@/integrations/supabase/client";
-import { SOCIALS, EMAIL, PHONE } from "@/lib/constants";
+import { SOCIALS, EMAIL, PHONE, PHONE_INTL } from "@/lib/constants";
 import { Schema } from "@/components/seo/Schema";
 import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
 import { buildWebPageSchema } from "@/lib/seo";
@@ -22,7 +23,6 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience." },
       { name: "keywords", content: "Sabacho, Georgian wine, Kakheti winery, wine tasting Georgia, qvevri wine, Georgian supra, Kakheti wine tour, Sabacho Marani, private wine cellar" },
       { name: "robots", content: "index, follow" },
-      { name: "canonical", content: "https://www.sabacho.ge/" },
       { property: "og:title", content: "Georgian Wine Experience in Kakheti | SABACHO Marani" },
       { property: "og:description", content: "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience." },
       { property: "og:url", content: "https://www.sabacho.ge/" },
@@ -30,7 +30,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:title", content: "Georgian Wine Experience in Kakheti | SABACHO Marani" },
       { name: "twitter:description", content: "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience." },
     ],
-    links: [],
+    links: [{ rel: "canonical", href: "https://www.sabacho.ge/" }],
   }),
   component: Index,
 });
@@ -100,7 +100,10 @@ function Hero() {
             onCanPlay={() => setVideoReady(true)}
             className={`absolute inset-0 w-full h-full object-cover animate-kenburns transition-opacity duration-700 ${videoReady ? "opacity-100" : "opacity-0"}`}
             style={{ aspectRatio: "16/9" }}
-          />
+          >
+            {/* Accessible description track — only shown when captions are enabled */}
+            <track kind="captions" srcLang="en" label="English" src="/captions/hero.en.vtt" />
+          </video>
         )}
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
       </div>
@@ -112,10 +115,10 @@ function Hero() {
             <span className="text-[10px] uppercase tracking-[0.5em] text-gold">Kakheti · Georgia</span>
             <span className="h-px w-10 bg-gold/60" aria-hidden="true" />
           </div>
-          <h1 className="font-serif text-white text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-light leading-[0.95] drop-shadow-2xl tracking-[0.08em]">
+          <h1 className="font-serif text-white text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-medium leading-[0.95] drop-shadow-2xl tracking-[0.08em]">
             SABACHO
           </h1>
-          <p className="mt-6 font-serif text-2xl md:text-3xl text-gold italic tracking-wide">
+          <p className="mt-6 font-serif text-2xl md:text-3xl text-gold italic tracking-wide font-medium">
             Georgian Heritage
           </p>
           <p className="mt-4 text-sm md:text-base text-white/80 max-w-xl mx-auto leading-relaxed">
@@ -160,18 +163,71 @@ function SectionHeading({ eyebrow, title, subtitle }: { eyebrow?: string; title:
 
 function About() {
   const { t } = useI18n();
+  const photos = [
+    { src: IMAGES.maraniInterior, alt: "Sabacho marani interior" },
+    { src: IMAGES.cellarTable, alt: "Cellar table" },
+    { src: IMAGES.gardenDay, alt: "Garden" },
+  ];
+  const [lightbox, setLightbox] = useState<number | null>(null);
   return (
     <section id="about" className="relative py-24 md:py-32 px-6 md:px-8" aria-label={t("nav.about")}>
       <div className="max-w-7xl mx-auto grid gap-14 md:grid-cols-2 items-center">
         <div className="relative order-2 md:order-1">
-          <div className="grid grid-cols-2 gap-4">
-            <img src={IMAGES.maraniInterior} alt="Sabacho marani interior" loading="lazy" width={600} height={800} decoding="async" className="rounded-lg w-full aspect-[3/4] object-cover" />
-            <div className="space-y-4 pt-10">
-              <img src={IMAGES.cellarTable} alt="Cellar table" loading="lazy" width={480} height={600} decoding="async" className="rounded-lg w-full aspect-[4/5] object-cover" />
-              <img src={IMAGES.gardenDay} alt="Garden" loading="lazy" width={400} height={400} decoding="async" className="rounded-lg w-full aspect-square object-cover" />
+          <div className="grid grid-cols-2 items-start gap-5 md:gap-6">
+            <button
+              type="button"
+              onClick={() => setLightbox(0)}
+              aria-label="View Sabacho marani interior in full size"
+              className="block self-start p-0 m-0 bg-transparent border-0 text-left cursor-pointer translate-y-[-38px]"
+            >
+              <img
+                src={IMAGES.maraniInterior}
+                alt="Sabacho marani interior"
+                loading="lazy"
+                width={600}
+                height={800}
+                decoding="async"
+                className="rounded-lg w-full aspect-[3/4] object-cover"
+              />
+            </button>
+
+            <div className="flex flex-col gap-5 md:gap-6">
+              <button
+                type="button"
+                onClick={() => setLightbox(1)}
+                aria-label="View Cellar table in full size"
+                className="block p-0 m-0 bg-transparent border-0 text-left cursor-pointer"
+              >
+                <img
+                  src={IMAGES.cellarTable}
+                  alt="Cellar table"
+                  loading="lazy"
+                  width={480}
+                  height={600}
+                  decoding="async"
+                  className="rounded-lg w-full aspect-[4/5] object-cover"
+                />
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setLightbox(2)}
+                aria-label="View Garden in full size"
+                className="block p-0 m-0 bg-transparent border-0 text-left cursor-pointer"
+              >
+                <img
+                  src={IMAGES.gardenDay}
+                  alt="Garden"
+                  loading="lazy"
+                  width={480}
+                  height={600}
+                  decoding="async"
+                  className="rounded-lg w-full aspect-[4/5] object-cover"
+                />
+              </button>
             </div>
           </div>
-          <div className="absolute -bottom-4 -left-4 hidden md:block glass rounded-lg px-5 py-3">
+          <div className="absolute bottom-4 left-4 hidden md:block glass rounded-lg px-5 py-3">
             <div className="font-serif text-2xl text-gold">Sabacho</div>
             <div className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">Est. Kakheti</div>
           </div>
@@ -195,6 +251,19 @@ function About() {
           </div>
         </div>
       </div>
+      <ImageLightbox
+        open={lightbox !== null}
+        src={lightbox !== null ? photos[lightbox].src : null}
+        alt={lightbox !== null ? photos[lightbox].alt : ""}
+        onClose={() => setLightbox(null)}
+        onPrev={() => setLightbox(lightbox === null ? 0 : (lightbox - 1 + photos.length) % photos.length)}
+        onNext={() => setLightbox(lightbox === null ? 0 : (lightbox + 1) % photos.length)}
+        footer={
+          <Link to="/gallery" className="inline-flex items-center gap-2 text-white hover:text-gold text-xs uppercase tracking-[0.3em] border-b border-white/40 pb-1">
+            {t("cta.view_gallery")} <ChevronRight className="w-4 h-4" aria-hidden="true" />
+          </Link>
+        }
+      />
     </section>
   );
 }
@@ -437,7 +506,7 @@ function ContactStrip() {
           <span className="h-px w-8 bg-gold/60" aria-hidden="true" />
         </div>
         <p className="text-sm text-muted-foreground max-w-xl mx-auto">
-          <a href={`tel:${PHONE}`} className="hover:text-gold" aria-label={`Call us at ${PHONE}`}>+995 {PHONE}</a> · <a href={`mailto:${EMAIL}`} className="hover:text-gold" aria-label={`Send us an email at ${EMAIL}`}>{EMAIL}</a>
+          <a href={`tel:${PHONE_INTL}`} className="hover:text-gold" aria-label={`Call us at ${PHONE_INTL}`}>+995 {PHONE}</a> · <a href={`mailto:${EMAIL}`} className="hover:text-gold" aria-label={`Send us an email at ${EMAIL}`}>{EMAIL}</a>
         </p>
         <div className="mt-4 flex items-center justify-center gap-4 text-xs uppercase tracking-[0.2em]">
           <a href={SOCIALS.instagram} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-gold" aria-label="Visit our Instagram page">Instagram</a>

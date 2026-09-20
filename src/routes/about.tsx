@@ -17,7 +17,6 @@ export const Route = createFileRoute("/about")({
       { name: "description", content: "The story of Sabacho Marani — the family, the marani, the village, and the Georgian hospitality behind every glass." },
       { name: "keywords", content: "Sabacho story, Georgian winery family, Kakheti marani, Georgian wine tradition, Sabacho Marani history, Georgian wine family" },
       { name: "robots", content: "index, follow" },
-      { name: "canonical", content: "https://www.sabacho.ge/about" },
       { property: "og:title", content: "Our Story | SABACHO Marani" },
       { property: "og:description", content: "The story of Sabacho Marani — the family, the marani, the village, and the Georgian hospitality behind every glass." },
       { property: "og:url", content: "https://www.sabacho.ge/about" },
@@ -25,7 +24,7 @@ export const Route = createFileRoute("/about")({
       { name: "twitter:title", content: "Our Story | SABACHO Marani" },
       { name: "twitter:description", content: "The story of Sabacho Marani — the family, the marani, the village, and the Georgian hospitality behind every glass." },
     ],
-    links: [],
+    links: [{ rel: "canonical", href: "https://www.sabacho.ge/about" }],
   }),
   component: AboutPage,
 });

@@ -18,7 +18,6 @@ export const Route = createFileRoute("/contact")({
       { name: "description", content: "Reach Sabacho Marani in Kakheti, Georgia. Phone, WhatsApp, email and social links. Please contact us before visiting — the marani is currently under restoration." },
       { name: "keywords", content: "contact Sabacho Marani, Kakheti winery contact, Georgian wine reservation, Sabacho phone, Sabacho email, book wine tasting Georgia" },
       { name: "robots", content: "index, follow" },
-      { name: "canonical", content: "https://www.sabacho.ge/contact" },
       { property: "og:title", content: "Contact & Reservations | SABACHO Marani" },
       { property: "og:description", content: "Get in touch with Sabacho Marani in Kakheti, Georgia. Phone, WhatsApp, email and social links." },
       { property: "og:url", content: "https://www.sabacho.ge/contact" },
@@ -26,7 +25,7 @@ export const Route = createFileRoute("/contact")({
       { name: "twitter:title", content: "Contact & Reservations | SABACHO Marani" },
       { name: "twitter:description", content: "Get in touch with Sabacho Marani in Kakheti, Georgia. Phone, WhatsApp, email and social links." },
     ],
-    links: [],
+    links: [{ rel: "canonical", href: "https://www.sabacho.ge/contact" }],
   }),
   component: ContactPage,
 });

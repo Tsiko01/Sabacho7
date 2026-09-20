@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { X } from "lucide-react";
 
 export function DetailOverlay({
@@ -22,20 +22,34 @@ export function DetailOverlay({
   onBook?: () => void;
   bookLabel?: string;
 }) {
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const lastFocusedRef = useRef<HTMLElement | null>(null);
+  const wasOpenRef = useRef(false);
+
   useEffect(() => {
-    if (!open) return;
+    if (!open) {
+      wasOpenRef.current = false;
+      return;
+    }
+    if (!wasOpenRef.current) {
+      wasOpenRef.current = true;
+      lastFocusedRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      dialogRef.current?.focus();
+    }
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     document.addEventListener("keydown", onKey);
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = prev; };
+    return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = prev; lastFocusedRef.current?.focus(); lastFocusedRef.current = null; };
   }, [open, onClose]);
 
   if (!open) return null;
 
   return (
     <div
-      className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center p-0 sm:p-6 animate-fade-in"
+      ref={dialogRef}
+      tabIndex={-1}
+      className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center p-0 sm:p-6 animate-fade-in outline-none"
       onClick={onClose}
       aria-modal="true"
       role="dialog"

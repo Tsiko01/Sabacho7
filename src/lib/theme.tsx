@@ -15,7 +15,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (typeof document === "undefined") return;
     document.documentElement.classList.toggle("dark", theme === "dark");
-    try { localStorage.setItem("sabacho-theme", theme); } catch {}
+    try { localStorage.setItem("sabacho-theme", theme); } catch { /* ignore (private mode) */ }
   }, [theme]);
 
   return (

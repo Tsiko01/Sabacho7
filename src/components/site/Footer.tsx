@@ -1,6 +1,7 @@
+import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Youtube, MapPin, Phone as PhoneIcon, Mail } from "lucide-react";
 import { useI18n, LANGS, type Lang } from "@/lib/i18n";
-import { SOCIALS, MAPS_URL, PHONE, EMAIL } from "@/lib/constants";
+import { SOCIALS, MAPS_URL, PHONE, PHONE_INTL, EMAIL } from "@/lib/constants";
 import logo from "/logo.png";
 
 export function Footer() {
@@ -17,15 +18,15 @@ export function Footer() {
             </div>
           </div>
           <p className="mt-4 max-w-sm text-sm text-muted-foreground leading-relaxed">{t("footer.tagline")}</p>
-          <a href="#book" className="mt-6 inline-flex items-center gap-2 bg-carrot hover:bg-carrot-hover text-white px-5 py-2.5 rounded-md text-xs uppercase tracking-[0.2em] font-medium transition-all">
+          <Link to="/" hash="book" className="mt-6 inline-flex items-center gap-2 bg-carrot hover:bg-carrot-hover text-white px-5 py-2.5 rounded-md text-xs uppercase tracking-[0.2em] font-medium transition-all">
             {t("cta.book")}
-          </a>
+          </Link>
         </div>
         <div>
           <h3 className="text-xs uppercase tracking-[0.25em] text-gold mb-4">{t("nav.contact")}</h3>
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li className="flex items-start gap-2"><MapPin className="w-4 h-4 mt-0.5 shrink-0" aria-hidden="true" focusable="false" /><a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="hover:text-gold">{t("contact.address")}</a></li>
-            <li className="flex items-center gap-2"><PhoneIcon className="w-4 h-4" aria-hidden="true" focusable="false" /><a href={`tel:${PHONE}`} className="hover:text-gold">{PHONE}</a></li>
+            <li className="flex items-center gap-2"><PhoneIcon className="w-4 h-4" aria-hidden="true" focusable="false" /><a href={`tel:${PHONE_INTL}`} className="hover:text-gold">{PHONE}</a></li>
             <li className="flex items-center gap-2"><Mail className="w-4 h-4" aria-hidden="true" focusable="false" /><a href={`mailto:${EMAIL}`} className="hover:text-gold">{EMAIL}</a></li>
           </ul>
         </div>

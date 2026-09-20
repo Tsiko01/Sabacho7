@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Phone, MapPin, X, MessageCircle } from "lucide-react";
-import { MAPS_URL, PHONE, WHATSAPP_URL } from "@/lib/constants";
+import { MAPS_URL, PHONE_INTL, WHATSAPP_URL } from "@/lib/constants";
 
 type Action = { label: string; href: string; target?: string; icon: React.ReactNode; className: string };
 
@@ -31,7 +31,7 @@ export function FloatingButtons() {
     },
     {
       label: "Call",
-      href: `tel:${PHONE}`,
+      href: `tel:${PHONE_INTL}`,
       icon: <Phone className="w-5 h-5" />,
       className: "bg-carrot text-white",
     },

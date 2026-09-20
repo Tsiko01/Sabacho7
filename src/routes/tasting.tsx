@@ -17,7 +17,6 @@ export const Route = createFileRoute("/tasting")({
       { name: "description", content: "Wines, Chacha, aged Cognac and traditional Georgian pairings from Sabacho's private cellar." },
       { name: "keywords", content: "Sabacho tasting menu, Georgian wine tasting, qvevri wine Kakheti, chacha tasting, Georgian cognac, Kakheti wine cellar tasting" },
       { name: "robots", content: "index, follow" },
-      { name: "canonical", content: "https://www.sabacho.ge/tasting" },
       { property: "og:title", content: "Tasting Menu | SABACHO Marani" },
       { property: "og:description", content: "The complete Sabacho tasting list — wines, spirits, and pairings." },
       { property: "og:url", content: "https://www.sabacho.ge/tasting" },
@@ -25,7 +24,7 @@ export const Route = createFileRoute("/tasting")({
       { name: "twitter:title", content: "Tasting Menu | SABACHO Marani" },
       { name: "twitter:description", content: "The complete Sabacho tasting list — wines, spirits, and pairings." },
     ],
-    links: [],
+    links: [{ rel: "canonical", href: "https://www.sabacho.ge/tasting" }],
   }),
   component: TastingPage,
 });

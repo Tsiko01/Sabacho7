@@ -4,11 +4,11 @@ import type {} from "@tanstack/react-start";
 const SITE_URL = import.meta.env.VITE_SITE_URL || "https://www.sabacho.ge";
 
 const entries = [
-  { path: "/", priority: "1.0", changefreq: "weekly" as const, lastmod: "2026-07-24" },
-  { path: "/about", priority: "0.8", changefreq: "monthly" as const, lastmod: "2026-07-24" },
-  { path: "/contact", priority: "0.7", changefreq: "monthly" as const, lastmod: "2026-07-24" },
-  { path: "/gallery", priority: "0.6", changefreq: "weekly" as const, lastmod: "2026-07-24" },
-  { path: "/tasting", priority: "0.8", changefreq: "weekly" as const, lastmod: "2026-07-24" },
+  { path: "/", priority: "1.0", changefreq: "weekly" as const, lastmod: "2026-09-16" },
+  { path: "/about", priority: "0.8", changefreq: "monthly" as const, lastmod: "2026-09-16" },
+  { path: "/contact", priority: "0.7", changefreq: "monthly" as const, lastmod: "2026-09-16" },
+  { path: "/gallery", priority: "0.6", changefreq: "weekly" as const, lastmod: "2026-09-16" },
+  { path: "/tasting", priority: "0.8", changefreq: "weekly" as const, lastmod: "2026-09-16" },
 ];
 
 export const Route = createFileRoute("/sitemap.xml")({

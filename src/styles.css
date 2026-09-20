@@ -201,6 +201,20 @@
   background-color: var(--carrot-hover);
 }
 
+/* English pages: +100 font weight to every word */
+html[lang="en"] {
+  font-weight: 500;
+}
+html[lang="en"] .font-thin { font-weight: 200; }
+html[lang="en"] .font-extralight { font-weight: 300; }
+html[lang="en"] .font-light { font-weight: 400; }
+html[lang="en"] .font-normal { font-weight: 500; }
+html[lang="en"] .font-medium { font-weight: 600; }
+html[lang="en"] .font-semibold { font-weight: 700; }
+html[lang="en"] .font-bold { font-weight: 800; }
+html[lang="en"] .font-extrabold { font-weight: 900; }
+html[lang="en"] .font-black { font-weight: 900; }
+
 @keyframes kenburns {
   0% { transform: scale(1) translate(0,0); }
   100% { transform: scale(1.15) translate(-1.5%, -1%); }

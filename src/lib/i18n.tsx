@@ -25,6 +25,7 @@ const dicts: Record<Lang, Dict> = {
     "cta.reserve": "Reserve",
     "cta.view_experiences": "View Experiences",
     "cta.view_tasting": "View Tasting Menu",
+    "cta.view_gallery": "View Gallery",
     "cta.learn_more": "Learn More",
     "hero.tagline": "Sabacho Marani",
     "hero.subtitle": "Family cellar. Georgian traditions since generations.",
@@ -158,6 +159,7 @@ const dicts: Record<Lang, Dict> = {
     "cta.reserve": "დაჯავშნა",
     "cta.view_experiences": "გამოცდილების ნახვა",
     "cta.view_tasting": "დეგუსტაციის მენიუ",
+    "cta.view_gallery": "გალერეის ნახვა",
     "cta.learn_more": "მეტის ნახვა",
     "hero.tagline": "საბაჩოს მარანი",
     "hero.subtitle": "კახური ღვინოები. საოჯახო მარანი. ქართული ტრადიცია.",
@@ -290,6 +292,7 @@ const dicts: Record<Lang, Dict> = {
     "cta.reserve": "Забронировать",
     "cta.view_experiences": "Посмотреть впечатления",
     "cta.view_tasting": "Меню дегустации",
+    "cta.view_gallery": "Смотреть галерею",
     "cta.learn_more": "Подробнее",
     "hero.tagline": "Марани Сабачо",
     "hero.subtitle": "Кахетинские вина. Семейный марани. Грузинские традиции.",
@@ -423,6 +426,7 @@ const dicts: Record<Lang, Dict> = {
     "cta.reserve": "Забронювати",
     "cta.view_experiences": "Переглянути враження",
     "cta.view_tasting": "Меню дегустації",
+    "cta.view_gallery": "Перейти до галереї",
     "cta.learn_more": "Докладніше",
     "hero.tagline": "Марані Сабачо",
     "hero.subtitle": "Кахетинські вина. Родинний марані. Грузинські традиції.",
@@ -548,19 +552,26 @@ const dicts: Record<Lang, Dict> = {
 type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: (key: string) => string };
 const I18nCtx = createContext<Ctx | null>(null);
 
-function getInitialLang(): Lang {
+function readSavedLang(): Lang {
   if (typeof window === "undefined") return "en";
   try {
     const saved = localStorage.getItem("sabacho-lang") as Lang | null;
     if (saved && dicts[saved]) return saved;
-  } catch {}
+  } catch { /* ignore (private mode) */ }
   return "en";
 }
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>(getInitialLang);
+  // Start from "en" so the first client render matches the server-rendered
+  // HTML (avoids hydration mismatch errors). The user's saved language is
+  // applied immediately after hydration below.
+  const [lang, setLang] = useState<Lang>("en");
   useEffect(() => {
-    try { localStorage.setItem("sabacho-lang", lang); } catch {}
+    const saved = readSavedLang();
+    if (saved !== "en") setLang(saved);
+  }, []);
+  useEffect(() => {
+    try { localStorage.setItem("sabacho-lang", lang); } catch { /* ignore (private mode) */ }
     if (typeof document !== "undefined") document.documentElement.lang = lang;
   }, [lang]);
   const t = useMemo<(key: string) => string>(() => {

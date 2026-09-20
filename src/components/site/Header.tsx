@@ -45,14 +45,15 @@ export function Header() {
           {NAV_ITEMS.map(item => {
             const isActive = item.to === "/" ? currentPath === "/" : currentPath.startsWith(item.to);
             return (
-              <a
+              <Link
                 key={item.key + item.hash}
-                href={`${item.to}${item.hash}`}
+                to={item.to}
+                hash={item.hash || undefined}
                 className="text-xs uppercase tracking-[0.2em] text-foreground/80 hover:text-gold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
                 aria-current={isActive ? "page" : undefined}
               >
                 {t(item.key)}
-              </a>
+              </Link>
             );
           })}
         </nav>
@@ -111,12 +112,13 @@ export function Header() {
             <MapPin className="w-4 h-4" aria-hidden="true" />
           </a>
 
-          <a
-            href="/#book"
+          <Link
+            to="/"
+            hash="book"
             className="hidden md:inline-flex items-center gap-2 bg-carrot hover:bg-carrot-hover text-white px-5 py-2 rounded-md text-xs uppercase tracking-[0.2em] font-medium transition-all hover:scale-[1.03] shadow-lg shadow-black/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
           >
             {t("cta.book")}
-          </a>
+          </Link>
 
           <button
             className="lg:hidden p-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
@@ -135,15 +137,16 @@ export function Header() {
             {NAV_ITEMS.map(item => {
               const isActive = item.to === "/" ? currentPath === "/" : currentPath.startsWith(item.to);
               return (
-                <a
+                <Link
                   key={item.key + item.hash}
-                  href={`${item.to}${item.hash}`}
+                  to={item.to}
+                  hash={item.hash || undefined}
                   onClick={() => setOpen(false)}
                   className="px-3 py-3 rounded text-sm uppercase tracking-[0.2em] hover:bg-gold/10 hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
                   aria-current={isActive ? "page" : undefined}
                 >
                   {t(item.key)}
-                </a>
+                </Link>
               );
             })}
             <a
@@ -154,13 +157,14 @@ export function Header() {
             >
               <MapPin className="w-4 h-4" aria-hidden="true" /> {t("nav.location")}
             </a>
-            <a
-              href="/#book"
+            <Link
+              to="/"
+              hash="book"
               onClick={() => setOpen(false)}
               className="mt-2 text-center bg-carrot hover:bg-carrot-hover text-white px-5 py-3 rounded-md text-xs uppercase tracking-[0.2em] font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
             >
               {t("cta.book")}
-            </a>
+            </Link>
           </nav>
         </div>
       )}

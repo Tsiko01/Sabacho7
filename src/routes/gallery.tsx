@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { FloatingButtons } from "@/components/site/FloatingButtons";
+import { ImageLightbox } from "@/components/site/ImageLightbox";
 import { supabase } from "@/integrations/supabase/client";
 import { useI18n } from "@/lib/i18n";
 import { resolveImageUrl } from "@/lib/assets";
@@ -19,7 +19,6 @@ export const Route = createFileRoute("/gallery")({
       { name: "description", content: "Photographs from Sabacho Marani — the cellar, the garden, the Supra table, and the light of Kakheti." },
       { name: "keywords", content: "Sabacho Marani photos, Kakheti winery gallery, Georgian wine cellar photos, Sabacho garden, Georgian supra table" },
       { name: "robots", content: "index, follow" },
-      { name: "canonical", content: "https://www.sabacho.ge/gallery" },
       { property: "og:title", content: "Gallery | SABACHO Marani" },
       { property: "og:description", content: "A visual journey through our Georgian family marani." },
       { property: "og:url", content: "https://www.sabacho.ge/gallery" },
@@ -27,7 +26,7 @@ export const Route = createFileRoute("/gallery")({
       { name: "twitter:title", content: "Gallery | SABACHO Marani" },
       { name: "twitter:description", content: "A visual journey through our Georgian family marani." },
     ],
-    links: [],
+    links: [{ rel: "canonical", href: "https://www.sabacho.ge/gallery" }],
   }),
   component: GalleryPage,
 });
@@ -52,17 +51,6 @@ function GalleryPage() {
 
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   useEffect(() => { setOpenIdx(null); }, [filter]);
-
-  useEffect(() => {
-    if (openIdx === null) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpenIdx(null);
-      if (e.key === "ArrowRight") setOpenIdx(i => (i === null ? 0 : (i + 1) % rows.length));
-      if (e.key === "ArrowLeft") setOpenIdx(i => (i === null ? 0 : (i - 1 + rows.length) % rows.length));
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [openIdx, rows.length]);
 
   return (
     <div className="bg-background text-foreground min-h-screen">
@@ -109,17 +97,14 @@ function GalleryPage() {
         </div>
 
         {openIdx !== null && (
-          <div className="fixed inset-0 bg-black/95 z-[70] flex items-center justify-center p-4 animate-fade-in" onClick={() => setOpenIdx(null)} role="dialog" aria-modal="true" aria-label="Image gallery lightbox">
-            <button type="button" className="absolute top-4 right-4 md:top-6 md:right-6 text-white p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20" aria-label="Close" onClick={(e) => { e.stopPropagation(); setOpenIdx(null); }}><X className="w-5 h-5" aria-hidden="true" /></button>
-            <button type="button" className="absolute left-3 md:left-6 text-white p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20" aria-label="Previous image" onClick={(e) => { e.stopPropagation(); setOpenIdx(i => i === null ? 0 : (i - 1 + rows.length) % rows.length); }}><ChevronLeft className="w-5 h-5" aria-hidden="true" /></button>
-            <button type="button" className="absolute right-3 md:right-6 text-white p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20" aria-label="Next image" onClick={(e) => { e.stopPropagation(); setOpenIdx(i => i === null ? 0 : (i + 1) % rows.length); }}><ChevronRight className="w-5 h-5" aria-hidden="true" /></button>
-            <img
-              src={resolveImageUrl(rows[openIdx].image_url) ?? ""}
-              alt={rows[openIdx].alt ?? "Sabacho gallery image"}
-              onClick={(e) => e.stopPropagation()}
-              className="max-w-full max-h-full object-contain rounded-lg animate-scale-in"
-            />
-          </div>
+          <ImageLightbox
+            open={true}
+            src={resolveImageUrl(rows[openIdx].image_url) ?? ""}
+            alt={rows[openIdx].alt ?? "Sabacho gallery image"}
+            onClose={() => setOpenIdx(null)}
+            onPrev={() => setOpenIdx(i => (i === null ? 0 : (i - 1 + rows.length) % rows.length))}
+            onNext={() => setOpenIdx(i => (i === null ? 0 : (i + 1) % rows.length))}
+          />
         )}
       </main>
       <Footer />
