@@ -11,10 +11,5 @@ interface SchemaProps {
  */
 export function Schema({ schema }: SchemaProps) {
   const json = toJsonLdString(schema);
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: json }}
-    />
-  );
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json }} />;
 }

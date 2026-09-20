@@ -29,7 +29,8 @@ const dicts: Record<Lang, Dict> = {
     "hero.tagline": "Sabacho Marani",
     "hero.subtitle": "Family cellar. Georgian traditions since generations.",
     "about.title": "A family cellar in the heart of Kakheti",
-    "about.body": "Sabacho cellar has been part of our family history since the 18th century. Here, we create only organic wine and welcome every guest individually, with genuine family warmth and personal attention",
+    "about.body":
+      "Sabacho cellar has been part of our family history since the 18th century. Here, we create only organic wine and welcome every guest individually, with genuine family warmth and personal attention",
     "about.badge_years": "Family tradition",
     "about.badge_qvevri": "Qvevri method",
     "about.badge_kakheti": "Kakheti region",
@@ -48,16 +49,19 @@ const dicts: Record<Lang, Dict> = {
     "exp.wine.price": "From/$20",
     "exp.supra.price": "From/$50",
     "exp.private.title": "Private Exclusive Evening",
-    "exp.private.body": "Reserve in advance and the entire evening at Sabacho is dedicated to your group only. A candlelit cellar, a Georgian host at your table, wine chosen by our family — for you alone.",
+    "exp.private.body":
+      "Reserve in advance and the entire evening at Sabacho is dedicated to your group only. A candlelit cellar, a Georgian host at your table, wine chosen by our family — for you alone.",
     "wines.title": "Collection",
     "wines.subtitle": "The signatures of our cellar",
     "wines.variety": "Grape",
     "wines.notes": "Tasting notes",
     "wines.serving": "Serving",
     "tasting.teaser.title": "Tasting",
-    "tasting.teaser.subtitle": "Discover the authentic flavors of Georgian wine and traditional drinks.",
+    "tasting.teaser.subtitle":
+      "Discover the authentic flavors of Georgian wine and traditional drinks.",
     "tasting.page.title": "SABACHO Tasting Experience",
-    "tasting.page.subtitle": "The complete list of wines, spirits and pairings served at our cellar.",
+    "tasting.page.subtitle":
+      "The complete list of wines, spirits and pairings served at our cellar.",
     "gallery.title": "Gallery",
     "gallery.subtitle": "The garden, the cellar, the light of Kakheti.",
     "gallery.all": "All",
@@ -69,9 +73,11 @@ const dicts: Record<Lang, Dict> = {
     "testimonials.title": "Guests remember",
     "faq.title": "Frequently asked",
     "faq.q1": "Is a reservation required?",
-    "faq.a1": "Yes — Sabacho is a private family cellar, so please book in advance to guarantee your seat and menu.",
+    "faq.a1":
+      "Yes — Sabacho is a private family cellar, so please book in advance to guarantee your seat and menu.",
     "faq.q2": "How long does the tasting take?",
-    "faq.a2": "Wine tastings usually run 60–90 minutes. A full Supra evening is typically 2.5–3 hours.",
+    "faq.a2":
+      "Wine tastings usually run 60–90 minutes. A full Supra evening is typically 2.5–3 hours.",
     "faq.q3": "Can we reserve a private evening?",
     "faq.a3": "Absolutely. With advance notice we dedicate the entire evening to your group only.",
     "faq.q4": "What languages do you host in?",
@@ -114,11 +120,13 @@ const dicts: Record<Lang, Dict> = {
     "cta.reserve_tasting": "Reserve a Tasting",
     "cta.discover": "Discover",
     "wines.origin": "Origin",
-    "wines.origin_body": "Made by hand in our family marani in Kakheti, Georgia — fermented in traditional qvevri buried in the earth.",
+    "wines.origin_body":
+      "Made by hand in our family marani in Kakheti, Georgia — fermented in traditional qvevri buried in the earth.",
     "wines.from_cellar": "From the cellar",
     "restoration.eyebrow": "A note from the family",
     "restoration.title": "SABACHO Marani is currently under restoration",
-    "restoration.body": "We are lovingly renewing our marani. Please contact us directly before planning a visit — we are happy to confirm availability and welcome you personally.",
+    "restoration.body":
+      "We are lovingly renewing our marani. Please contact us directly before planning a visit — we are happy to confirm availability and welcome you personally.",
     "restoration.whatsapp": "Message on WhatsApp",
     "restoration.call": "Call directly",
     "contact.get_in_touch": "Get in touch",
@@ -135,11 +143,14 @@ const dicts: Record<Lang, Dict> = {
     "about.village_title_default": "The Village",
     "about.cta_title_default": "Come and experience SABACHO",
     "about.cta_body_default": "Reserve an evening at our marani. We will be waiting for you.",
-    "about.marani_body_default": "A marani is more than a cellar — it is the heart of a Georgian home. Ours is built of stone, cooled by earth, and filled with qvevri buried deep in the ground. Here wine is not made in factories, but in silence, patience, and prayer.",
-    "about.village_body_default": "Sabacho sits in a quiet Kakhetian village, where mornings begin with mist over the vineyards and evenings end under vines heavy with grapes. The pace is slow, the hospitality unhurried, the wine honest.",
+    "about.marani_body_default":
+      "A marani is more than a cellar — it is the heart of a Georgian home. Ours is built of stone, cooled by earth, and filled with qvevri buried deep in the ground. Here wine is not made in factories, but in silence, patience, and prayer.",
+    "about.village_body_default":
+      "Sabacho sits in a quiet Kakhetian village, where mornings begin with mist over the vineyards and evenings end under vines heavy with grapes. The pace is slow, the hospitality unhurried, the wine honest.",
     "about.owner_name_default": "The Sabacho Family",
     "about.owner_role_default": "Owner & Host",
-    "about.owner_bio_default": "Generations of Kakhetian winemakers welcome you into their home. Every bottle, every dish, every toast — made with our own hands.",
+    "about.owner_bio_default":
+      "Generations of Kakhetian winemakers welcome you into their home. Every bottle, every dish, every toast — made with our own hands.",
     "exp.eyebrow": "Experiences",
     "reviews.eyebrow": "Reviews",
     "faq.eyebrow": "FAQ",
@@ -162,7 +173,8 @@ const dicts: Record<Lang, Dict> = {
     "hero.tagline": "საბაჩოს მარანი",
     "hero.subtitle": "კახური ღვინოები. საოჯახო მარანი. ქართული ტრადიცია.",
     "about.title": "საოჯახო მარანი საბაჩო",
-    "about.body": "საბაჩოს მარანი მე-18 საუკუნიდან ჩვენი ოჯახის ისტორიის ნაწილია. აქ მხოლოდ ბიო ღვინოს ვქმნით და თითოეულ სტუმარს  ინდივიდუალურად, ოჯახური სითბოთი და ყურადღებით ვმასპინძლობთ.",
+    "about.body":
+      "საბაჩოს მარანი მე-18 საუკუნიდან ჩვენი ოჯახის ისტორიის ნაწილია. აქ მხოლოდ ბიო ღვინოს ვქმნით და თითოეულ სტუმარს  ინდივიდუალურად, ოჯახური სითბოთი და ყურადღებით ვმასპინძლობთ.",
     "about.badge_years": "საოჯახო ტრადიცია",
     "about.badge_qvevri": "ქვევრი",
     "about.badge_kakheti": "კახეთი",
@@ -246,11 +258,13 @@ const dicts: Record<Lang, Dict> = {
     "cta.reserve_tasting": "დეგუსტაციის დაჯავშნა",
     "cta.discover": "აღმოაჩინე",
     "wines.origin": "წარმოშობა",
-    "wines.origin_body": "ხელით ნაწარმოები ჩვენს საოჯახო მარანში კახეთში — დადუღებული ტრადიციულ ქვევრში.",
+    "wines.origin_body":
+      "ხელით ნაწარმოები ჩვენს საოჯახო მარანში კახეთში — დადუღებული ტრადიციულ ქვევრში.",
     "wines.from_cellar": "მარნიდან",
     "restoration.eyebrow": "ოჯახის შეტყობინება",
     "restoration.title": "საბაჩოს მარანი ამჟამად რესტავრაციაშია",
-    "restoration.body": "ვცვლით და ვაახლებთ მარანს სიყვარულით. გთხოვთ, დაგვიკავშირდეთ ვიზიტამდე — მოხარულები ვიქნებით, დაგადასტუროთ თარიღი და მოგიწვიოთ პირადად.",
+    "restoration.body":
+      "ვცვლით და ვაახლებთ მარანს სიყვარულით. გთხოვთ, დაგვიკავშირდეთ ვიზიტამდე — მოხარულები ვიქნებით, დაგადასტუროთ თარიღი და მოგიწვიოთ პირადად.",
     "restoration.whatsapp": "WhatsApp-ით მოწერა",
     "restoration.call": "დარეკვა",
     "contact.get_in_touch": "დაგვიკავშირდი",
@@ -267,11 +281,14 @@ const dicts: Record<Lang, Dict> = {
     "about.village_title_default": "სოფელი",
     "about.cta_title_default": "ეწვიე საბაჩოს",
     "about.cta_body_default": "დაჯავშნეთ საღამო ჩვენს მარანში. ჩვენ თქვენ გელოდებით.",
-    "about.marani_body_default": "მარანი მხოლოდ სარდაფი კი არა — ის ქართული სახლის გულია. ჩვენი მარანი ქვითაა აგებული, მიწით გაგრილებული და ქვევრებით სავსე, ღრმად მიწაში ჩაფლული. აქ ღვინო ფაბრიკაში კი არა, სიჩუმეში, მოთმინებაში და ლოცვაში იქმნება.",
-    "about.village_body_default": "საბაჩო მშვიდ კახურ სოფელში მდებარეობს, სადაც დილა ნისლით იწყება ვენახებზე, ხოლო საღამო ყურძნით დატვირთული ვაზის ქვეშ მთავრდება. ტემპი ნელია, სტუმართმოყვარეობა აჩქარებული არაა, ღვინო პატიოსანია.",
+    "about.marani_body_default":
+      "მარანი მხოლოდ სარდაფი კი არა — ის ქართული სახლის გულია. ჩვენი მარანი ქვითაა აგებული, მიწით გაგრილებული და ქვევრებით სავსე, ღრმად მიწაში ჩაფლული. აქ ღვინო ფაბრიკაში კი არა, სიჩუმეში, მოთმინებაში და ლოცვაში იქმნება.",
+    "about.village_body_default":
+      "საბაჩო მშვიდ კახურ სოფელში მდებარეობს, სადაც დილა ნისლით იწყება ვენახებზე, ხოლო საღამო ყურძნით დატვირთული ვაზის ქვეშ მთავრდება. ტემპი ნელია, სტუმართმოყვარეობა აჩქარებული არაა, ღვინო პატიოსანია.",
     "about.owner_name_default": "საბაჩოს ოჯახი",
     "about.owner_role_default": "მფლობელი და მასპინძელი",
-    "about.owner_bio_default": "კახელი მეღვინეების თაობები გიწვევენ თავიანთ სახლში. ყოველი ბოთლი, ყოველი კერძი, ყოველი სადღეგრძელო — ჩვენი ხელით გაკეთებული.",
+    "about.owner_bio_default":
+      "კახელი მეღვინეების თაობები გიწვევენ თავიანთ სახლში. ყოველი ბოთლი, ყოველი კერძი, ყოველი სადღეგრძელო — ჩვენი ხელით გაკეთებული.",
     "exp.eyebrow": "გამოცდილება",
     "reviews.eyebrow": "მიმოხილვები",
     "faq.eyebrow": "კითხვები",
@@ -294,7 +311,8 @@ const dicts: Record<Lang, Dict> = {
     "hero.tagline": "Марани Сабачо",
     "hero.subtitle": "Кахетинские вина. Семейный марани. Грузинские традиции.",
     "about.title": "Семейный марани в сердце Кахетии",
-    "about.body": "«Сабачо Марани» является частью истории нашей семьи с XVIII века. Здесь мы создаём только органическое вино и принимаем каждого гостя индивидуально, с настоящим семейным теплом и вниманием.",
+    "about.body":
+      "«Сабачо Марани» является частью истории нашей семьи с XVIII века. Здесь мы создаём только органическое вино и принимаем каждого гостя индивидуально, с настоящим семейным теплом и вниманием.",
     "about.badge_years": "Семейная традиция",
     "about.badge_qvevri": "Квеври",
     "about.badge_kakheti": "Кахетия",
@@ -379,11 +397,13 @@ const dicts: Record<Lang, Dict> = {
     "cta.reserve_tasting": "Забронировать дегустацию",
     "cta.discover": "Узнать",
     "wines.origin": "Происхождение",
-    "wines.origin_body": "Сделано вручную в нашем семейном марани в Кахетии, Грузия — ферментировано в традиционном квеври.",
+    "wines.origin_body":
+      "Сделано вручную в нашем семейном марани в Кахетии, Грузия — ферментировано в традиционном квеври.",
     "wines.from_cellar": "Из погреба",
     "restoration.eyebrow": "Обращение семьи",
     "restoration.title": "Марани Сабачо на реставрации",
-    "restoration.body": "Мы бережно обновляем наш марани. Пожалуйста, свяжитесь с нами перед визитом — мы рады подтвердить дату и лично пригласить вас.",
+    "restoration.body":
+      "Мы бережно обновляем наш марани. Пожалуйста, свяжитесь с нами перед визитом — мы рады подтвердить дату и лично пригласить вас.",
     "restoration.whatsapp": "Написать в WhatsApp",
     "restoration.call": "Позвонить",
     "contact.get_in_touch": "Связаться с нами",
@@ -400,11 +420,14 @@ const dicts: Record<Lang, Dict> = {
     "about.village_title_default": "Село",
     "about.cta_title_default": "Приезжайте в SABACHO",
     "about.cta_body_default": "Забронируйте вечер в нашем марани. Мы будем ждать вас.",
-    "about.marani_body_default": "Марани — это не просто погреб, это сердце грузинского дома. Наш марани построен из камня, охлаждён землёй и наполнен квеври, глубоко в землю. Вино создаётся не на заводах, а в тишине, терпении и молитве.",
-    "about.village_body_default": "Сабачо расположен в тихом кахетинском селе, где утра начинаются с тумана над виноградниками, а вечера заканчиваются под лозами, тяжёлыми от винограда. Темп медленный, гостеприимство неторопливое, вино честное.",
+    "about.marani_body_default":
+      "Марани — это не просто погреб, это сердце грузинского дома. Наш марани построен из камня, охлаждён землёй и наполнен квеври, глубоко в землю. Вино создаётся не на заводах, а в тишине, терпении и молитве.",
+    "about.village_body_default":
+      "Сабачо расположен в тихом кахетинском селе, где утра начинаются с тумана над виноградниками, а вечера заканчиваются под лозами, тяжёлыми от винограда. Темп медленный, гостеприимство неторопливое, вино честное.",
     "about.owner_name_default": "Семья Сабачо",
     "about.owner_role_default": "Владелец и хозяин",
-    "about.owner_bio_default": "Поколения кахетинских виноделов приветствуют вас в своём доме. Каждая бутылка, каждое блюдо, каждый тост — сделаны нашими руками.",
+    "about.owner_bio_default":
+      "Поколения кахетинских виноделов приветствуют вас в своём доме. Каждая бутылка, каждое блюдо, каждый тост — сделаны нашими руками.",
     "exp.eyebrow": "Впечатления",
     "reviews.eyebrow": "Отзывы",
     "faq.eyebrow": "FAQ",
@@ -427,7 +450,8 @@ const dicts: Record<Lang, Dict> = {
     "hero.tagline": "Марані Сабачо",
     "hero.subtitle": "Кахетинські вина. Родинний марані. Грузинські традиції.",
     "about.title": "Родинний марані у серці Кахетії",
-    "about.body": "«Сабачо Марані» є частиною історії нашої родини з XVIII століття. Тут ми створюємо лише органічне вино та приймаємо кожного гостя індивідуально, з щирим родинним теплом і увагою.",
+    "about.body":
+      "«Сабачо Марані» є частиною історії нашої родини з XVIII століття. Тут ми створюємо лише органічне вино та приймаємо кожного гостя індивідуально, з щирим родинним теплом і увагою.",
     "about.badge_years": "Родинна традиція",
     "about.badge_qvevri": "Квеврі",
     "about.badge_kakheti": "Кахетія",
@@ -512,11 +536,13 @@ const dicts: Record<Lang, Dict> = {
     "cta.reserve_tasting": "Забронювати дегустацію",
     "cta.discover": "Дізнатися",
     "wines.origin": "Походження",
-    "wines.origin_body": "Виготовлено вручну в нашому родинному марані в Кахетії — ферментоване у традиційному квеврі.",
+    "wines.origin_body":
+      "Виготовлено вручну в нашому родинному марані в Кахетії — ферментоване у традиційному квеврі.",
     "wines.from_cellar": "З погреба",
     "restoration.eyebrow": "Звернення родини",
     "restoration.title": "Марані Сабачо на реставрації",
-    "restoration.body": "Ми дбайливо оновлюємо наш марані. Будь ласка, зв'яжіться з нами перед візитом — раді підтвердити дату та особисто вас запросити.",
+    "restoration.body":
+      "Ми дбайливо оновлюємо наш марані. Будь ласка, зв'яжіться з нами перед візитом — раді підтвердити дату та особисто вас запросити.",
     "restoration.whatsapp": "Написати у WhatsApp",
     "restoration.call": "Зателефонувати",
     "contact.get_in_touch": "Зв'яжіться з нами",
@@ -533,11 +559,14 @@ const dicts: Record<Lang, Dict> = {
     "about.village_title_default": "Село",
     "about.cta_title_default": "Приїжджайте до SABACHO",
     "about.cta_body_default": "Забронюйте вечір у нашому марані. Ми будемо чекати на вас.",
-    "about.marani_body_default": "Марані — це не просто погріб, це серце грузинського дому. Наш марані побудований з каменю, охолоджений землею та наповнений квеврі, глибоко в землю.  Вино створюється не на заводах, а в тиші, терпінні та молитві.",
-    "about.village_body_default": "Сабачо розташований у тихому кахетинському селі, де ранки починаються з туману над виноградниками, а вечори закінчуються під лозами, важкими від винограду. Темп повільний, гостинність некваплива, вино чесне.",
+    "about.marani_body_default":
+      "Марані — це не просто погріб, це серце грузинського дому. Наш марані побудований з каменю, охолоджений землею та наповнений квеврі, глибоко в землю.  Вино створюється не на заводах, а в тиші, терпінні та молитві.",
+    "about.village_body_default":
+      "Сабачо розташований у тихому кахетинському селі, де ранки починаються з туману над виноградниками, а вечори закінчуються під лозами, важкими від винограду. Темп повільний, гостинність некваплива, вино чесне.",
     "about.owner_name_default": "Родина Сабачо",
     "about.owner_role_default": "Власник і господар",
-    "about.owner_bio_default": "Покоління кахетинських виноробів вітають вас у своєму домі. Кожна пляшка, кожна страва, кожен тост — зроблені нашими руками.",
+    "about.owner_bio_default":
+      "Покоління кахетинських виноробів вітають вас у своєму домі. Кожна пляшка, кожна страва, кожен тост — зроблені нашими руками.",
     "exp.eyebrow": "Враження",
     "reviews.eyebrow": "Відгуки",
     "faq.eyebrow": "FAQ",
@@ -560,7 +589,9 @@ function getInitialLang(): Lang {
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [lang, setLang] = useState<Lang>(getInitialLang);
   useEffect(() => {
-    try { localStorage.setItem("sabacho-lang", lang); } catch {}
+    try {
+      localStorage.setItem("sabacho-lang", lang);
+    } catch {}
     if (typeof document !== "undefined") document.documentElement.lang = lang;
   }, [lang]);
   const t = useMemo<(key: string) => string>(() => {
@@ -576,7 +607,11 @@ export function useI18n() {
   return c;
 }
 
-export function pickLang<T extends Record<string, unknown>>(row: T, base: string, lang: Lang): string {
+export function pickLang<T extends Record<string, unknown>>(
+  row: T,
+  base: string,
+  lang: Lang,
+): string {
   const key = lang === "en" ? base : `${base}_${lang}`;
   const v = (row as Record<string, unknown>)[key];
   if (typeof v === "string" && v.trim()) return v;

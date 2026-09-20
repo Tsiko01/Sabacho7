@@ -24,11 +24,16 @@ export function DetailOverlay({
 }) {
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
     document.addEventListener("keydown", onKey);
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = prev; };
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
   }, [open, onClose]);
 
   if (!open) return null;
@@ -57,47 +62,66 @@ export function DetailOverlay({
         <div className="overflow-y-auto">
           {image && (
             <div className="relative w-full h-56 sm:h-72 md:h-96 overflow-hidden">
-              <img src={image} alt={title} loading="lazy" decoding="async" className="w-full h-full object-cover" />
+              <img
+                src={image}
+                alt={title}
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
               {eyebrow && (
                 <div className="absolute bottom-5 left-6 flex items-center gap-3">
                   <span className="h-px w-8 bg-gold/70" aria-hidden="true" />
-                  <span className="text-[10px] uppercase tracking-[0.4em] text-gold">{eyebrow}</span>
+                  <span className="text-[10px] uppercase tracking-[0.4em] text-gold">
+                    {eyebrow}
+                  </span>
                 </div>
               )}
             </div>
           )}
           <div className="p-6 md:p-10">
-          <h2 className="font-serif text-3xl md:text-5xl leading-tight text-foreground">{title}</h2>
-          {intro && <p className="mt-4 text-muted-foreground leading-relaxed md:text-lg">{intro}</p>}
-          {sections && sections.length > 0 && (
-            <div className="mt-8 grid gap-5 sm:grid-cols-2">
-              {sections.map((s, i) => (
-                <div key={i} className="border-t border-border/60 pt-4">
-                  <div className="text-[10px] uppercase tracking-[0.3em] text-gold">{s.label}</div>
-                  <div className="mt-2 text-sm text-foreground/90 leading-relaxed whitespace-pre-line">{s.value}</div>
-                </div>
-              ))}
-            </div>
-          )}
-          {onBook && (
-            <div className="mt-10 flex flex-col sm:flex-row gap-3">
-              <button
-                type="button"
-                onClick={() => { onBook(); onClose(); }}
-                className="flex-1 bg-carrot hover:bg-carrot-hover text-white px-8 py-4 rounded-md text-xs uppercase tracking-[0.3em] font-medium transition-all hover:scale-[1.01] shadow-xl"
-              >
-                {bookLabel}
-              </button>
-              <button
-                type="button"
-                onClick={onClose}
-                className="border border-border hover:border-gold/60 text-foreground px-8 py-4 rounded-md text-xs uppercase tracking-[0.3em]"
-              >
-                Close
-              </button>
-            </div>
-          )}
+            <h2 className="font-serif text-3xl md:text-5xl leading-tight text-foreground">
+              {title}
+            </h2>
+            {intro && (
+              <p className="mt-4 text-muted-foreground leading-relaxed md:text-lg">{intro}</p>
+            )}
+            {sections && sections.length > 0 && (
+              <div className="mt-8 grid gap-5 sm:grid-cols-2">
+                {sections.map((s, i) => (
+                  <div key={i} className="border-t border-border/60 pt-4">
+                    <div className="text-[10px] uppercase tracking-[0.3em] text-gold">
+                      {s.label}
+                    </div>
+                    <div className="mt-2 text-sm text-foreground/90 leading-relaxed whitespace-pre-line">
+                      {s.value}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+            {onBook && (
+              <div className="mt-10 flex flex-col sm:flex-row gap-3">
+                <button
+                  type="button"
+                  onClick={() => {
+                    onBook();
+                    onClose();
+                  }}
+                  className="flex-1 bg-carrot hover:bg-carrot-hover text-white px-8 py-4 rounded-md text-xs uppercase tracking-[0.3em] font-medium transition-all hover:scale-[1.01] shadow-xl"
+                >
+                  {bookLabel}
+                </button>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="border border-border hover:border-gold/60 text-foreground px-8 py-4 rounded-md text-xs uppercase tracking-[0.3em]"
+                >
+                  Close
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

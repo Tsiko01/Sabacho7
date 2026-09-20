@@ -1,4 +1,10 @@
-import { buildOrganizationSchema, buildWebSiteSchema, buildLocalBusinessSchema, buildProfessionalServiceSchema, buildPersonSchema } from "@/lib/seo";
+import {
+  buildOrganizationSchema,
+  buildWebSiteSchema,
+  buildLocalBusinessSchema,
+  buildProfessionalServiceSchema,
+  buildPersonSchema,
+} from "@/lib/seo";
 import { Schema } from "./Schema";
 
 /**

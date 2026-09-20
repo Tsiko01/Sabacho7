@@ -2,14 +2,22 @@ import { useEffect, useState } from "react";
 import { Phone, MapPin, X, MessageCircle } from "lucide-react";
 import { MAPS_URL, PHONE, WHATSAPP_URL } from "@/lib/constants";
 
-type Action = { label: string; href: string; target?: string; icon: React.ReactNode; className: string };
+type Action = {
+  label: string;
+  href: string;
+  target?: string;
+  icon: React.ReactNode;
+  className: string;
+};
 
 export function FloatingButtons() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [open]);
@@ -49,20 +57,24 @@ export function FloatingButtons() {
             aria-label={a.label}
             tabIndex={open ? 0 : -1}
             className={`flex items-center gap-3 pr-0 transition-all duration-500 ${
-              open ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-6 pointer-events-none"
+              open
+                ? "opacity-100 translate-y-0 pointer-events-auto"
+                : "opacity-0 translate-y-6 pointer-events-none"
             }`}
             style={{ transitionDelay: open ? `${i * 70}ms` : `${(actions.length - i) * 30}ms` }}
           >
             <span className="hidden sm:inline-block bg-background/85 backdrop-blur border border-border/60 text-foreground text-[10px] uppercase tracking-[0.3em] px-3 py-2 rounded-full shadow-lg">
               {a.label}
             </span>
-            <span className={`w-12 h-12 rounded-full flex items-center justify-center shadow-xl shadow-black/40 hover:scale-110 transition-transform ${a.className}`}>
+            <span
+              className={`w-12 h-12 rounded-full flex items-center justify-center shadow-xl shadow-black/40 hover:scale-110 transition-transform ${a.className}`}
+            >
               {a.icon}
             </span>
           </a>
         ))}
         <button
-          onClick={() => setOpen(v => !v)}
+          onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Close menu" : "Open contact menu"}
           aria-expanded={open}
           className={`w-14 h-14 rounded-full flex items-center justify-center shadow-2xl shadow-black/50 transition-all duration-500 ${
