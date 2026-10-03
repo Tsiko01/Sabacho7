@@ -8,6 +8,9 @@ export const IMAGES = {
   gardenDay: "/photos/garden-day.webp",
   gardenPomegranate: "/photos/garden-pomegranate.webp",
   gardenPath: "/photos/garden-path.webp",
+  cellarChacha: "/photos/cellar-chacha.webp",
+  georgianSufra:"/photos/georgian-sufra.webp",
+  buxari: "/photos/buxari.webp",
 };
 
 export const HERO_VIDEO = "/photos/hero.mp4";

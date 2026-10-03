@@ -181,7 +181,7 @@ function About() {
               className="block self-start p-0 m-0 bg-transparent border-0 text-left cursor-pointer translate-y-[-38px]"
             >
               <img
-                src={IMAGES.maraniInterior}
+                src={IMAGES.cellarBottles}
                 alt="Sabacho marani interior"
                 loading="lazy"
                 width={600}
@@ -199,7 +199,7 @@ function About() {
                 className="block p-0 m-0 bg-transparent border-0 text-left cursor-pointer"
               >
                 <img
-                  src={IMAGES.cellarTable}
+                  src={IMAGES.buxari}
                   alt="Cellar table"
                   loading="lazy"
                   width={480}
@@ -216,7 +216,7 @@ function About() {
                 className="block p-0 m-0 bg-transparent border-0 text-left cursor-pointer"
               >
                 <img
-                  src={IMAGES.gardenDay}
+                  src={IMAGES.gardenPomegranate}
                   alt="Garden"
                   loading="lazy"
                   width={480}
@@ -284,7 +284,7 @@ function Experiences() {
         <SectionHeading eyebrow={t("exp.eyebrow")} title={t("exp.subtitle")} />
         <div className="grid gap-6 md:grid-cols-2">
           <ExperienceCard
-            image={IMAGES.cellarTable}
+            image={IMAGES.cellarChacha}
             title={t("exp.wine.title")}
             items={[t("exp.wine.i1"), t("exp.wine.i2"), t("exp.wine.i3"), t("exp.wine.i4")]}
             icon={<Wine className="w-5 h-5" aria-hidden="true" />}
@@ -292,7 +292,7 @@ function Experiences() {
             onOpen={() => setOpen("wine")}
           />
           <ExperienceCard
-            image={IMAGES.gazeboNight}
+            image={IMAGES.georgianSufra}
             title={t("exp.supra.title")}
             items={[t("exp.supra.i1"), t("exp.supra.i2"), t("exp.supra.i3"), t("exp.supra.i4")]}
             icon={<Utensils className="w-5 h-5" aria-hidden="true" />}
@@ -320,7 +320,7 @@ function Experiences() {
         open={open === "wine"}
         onClose={() => setOpen(null)}
         eyebrow={t("exp.wine.title")}
-        image={IMAGES.cellarTable}
+        image={IMAGES.cellarChacha}
         title={t("exp.wine.title")}
         intro="A guided journey through our family cellar — from qvevri to bottle. Traditional Kakhetian wines, aged Chacha, and 10-year Cognac, poured slowly and paired with warm Georgian snacks."
         sections={[
@@ -338,7 +338,7 @@ function Experiences() {
         open={open === "supra"}
         onClose={() => setOpen(null)}
         eyebrow={t("exp.supra.title")}
-        image={IMAGES.gazeboNight}
+        image={IMAGES.georgianSufra}
         title={t("exp.supra.title")}
         intro="The Supra is not a dinner — it is Georgia at its table. A tamada leads the toasts, the wine keeps pouring, and stories become part of the meal. You do not simply eat and drink; you are welcomed into a family."
         sections={[
