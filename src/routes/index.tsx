@@ -100,10 +100,7 @@ function Hero() {
             onCanPlay={() => setVideoReady(true)}
             className={`absolute inset-0 w-full h-full object-cover animate-kenburns transition-opacity duration-700 ${videoReady ? "opacity-100" : "opacity-0"}`}
             style={{ aspectRatio: "16/9" }}
-          >
-            {/* Accessible description track — only shown when captions are enabled */}
-            <track kind="captions" srcLang="en" label="English" src="/captions/hero.en.vtt" />
-          </video>
+          />
         )}
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
       </div>
