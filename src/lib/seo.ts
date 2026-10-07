@@ -1,4 +1,13 @@
-import type { SEOInput, SEOMeta, MetaEntry, LinkEntry, BreadcrumbItem, OrganizationData, FAQItem, JsonLdEntry } from "@/types/seo";
+import type {
+  SEOInput,
+  SEOMeta,
+  MetaEntry,
+  LinkEntry,
+  BreadcrumbItem,
+  OrganizationData,
+  FAQItem,
+  JsonLdEntry,
+} from "@/types/seo";
 import { SOCIALS, EMAIL, PHONE_INTL, PHONE, MAPS_URL } from "@/lib/constants";
 
 // ─── Environment & Defaults ───────────────────────────────────────────────────
@@ -51,13 +60,14 @@ export function generateSEO(input: SEOInput = {}): SEOMeta {
 
   const fullTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
   const canonical = canonicalPath !== undefined ? buildCanonical(canonicalPath) : undefined;
-  const robots = noindex && nofollow
-    ? "noindex, nofollow"
-    : noindex
-      ? "noindex, follow"
-      : nofollow
-        ? "index, nofollow"
-        : "index, follow";
+  const robots =
+    noindex && nofollow
+      ? "noindex, nofollow"
+      : noindex
+        ? "noindex, follow"
+        : nofollow
+          ? "index, nofollow"
+          : "index, follow";
 
   return {
     title: fullTitle,
@@ -109,14 +119,16 @@ export function seoMetaToEntries(meta: SEOMeta): MetaEntry[] {
   if (meta.ogUrl) entries.push({ property: "og:url", content: meta.ogUrl });
   if (meta.ogImage) entries.push({ property: "og:image", content: meta.ogImage });
   if (meta.ogImageWidth) entries.push({ property: "og:image:width", content: meta.ogImageWidth });
-  if (meta.ogImageHeight) entries.push({ property: "og:image:height", content: meta.ogImageHeight });
+  if (meta.ogImageHeight)
+    entries.push({ property: "og:image:height", content: meta.ogImageHeight });
   if (meta.ogLocale) entries.push({ property: "og:locale", content: meta.ogLocale });
   if (meta.ogSiteName) entries.push({ property: "og:site_name", content: meta.ogSiteName });
 
   // Twitter
   if (meta.twitterCard) entries.push({ name: "twitter:card", content: meta.twitterCard });
   if (meta.twitterTitle) entries.push({ name: "twitter:title", content: meta.twitterTitle });
-  if (meta.twitterDescription) entries.push({ name: "twitter:description", content: meta.twitterDescription });
+  if (meta.twitterDescription)
+    entries.push({ name: "twitter:description", content: meta.twitterDescription });
   if (meta.twitterImage) entries.push({ name: "twitter:image", content: meta.twitterImage });
   if (meta.twitterSite) entries.push({ name: "twitter:site", content: meta.twitterSite });
   if (meta.twitterCreator) entries.push({ name: "twitter:creator", content: meta.twitterCreator });
@@ -211,7 +223,8 @@ export function buildLocalBusinessSchema(): JsonLdEntry {
     url: SITE_URL,
     telephone: PHONE_INTL,
     email: EMAIL,
-    description: "Private Georgian winery in Kakheti offering wine tastings, Supra feasts, Chacha and aged Cognac experiences.",
+    description:
+      "Private Georgian winery in Kakheti offering wine tastings, Supra feasts, Chacha and aged Cognac experiences.",
     priceRange: "₾50–₾200",
     address: {
       "@type": "PostalAddress",
@@ -227,13 +240,48 @@ export function buildLocalBusinessSchema(): JsonLdEntry {
       longitude: 45.6769744,
     },
     openingHoursSpecification: [
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Monday", opens: "10:00", closes: "20:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Tuesday", opens: "10:00", closes: "20:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Wednesday", opens: "10:00", closes: "20:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Thursday", opens: "10:00", closes: "20:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Friday", opens: "10:00", closes: "22:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "10:00", closes: "22:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "12:00", closes: "18:00" },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Monday",
+        opens: "10:00",
+        closes: "20:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Tuesday",
+        opens: "10:00",
+        closes: "20:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Wednesday",
+        opens: "10:00",
+        closes: "20:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Thursday",
+        opens: "10:00",
+        closes: "20:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Friday",
+        opens: "10:00",
+        closes: "22:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Saturday",
+        opens: "10:00",
+        closes: "22:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Sunday",
+        opens: "12:00",
+        closes: "18:00",
+      },
     ],
     sameAs: organizationData.sameAs,
   };
@@ -252,9 +300,21 @@ export function buildProfessionalServiceSchema(): JsonLdEntry {
       "@type": "OfferCatalog",
       name: "Wine Experiences",
       itemListElement: [
-        { "@type": "Offer", name: "Wine Tasting", description: "Guided cellar wine tasting experience" },
-        { "@type": "Offer", name: "Supra Feast", description: "Traditional Georgian supra with wine and food" },
-        { "@type": "Offer", name: "Private Evening", description: "Exclusive private evening at the marani" },
+        {
+          "@type": "Offer",
+          name: "Wine Tasting",
+          description: "Guided cellar wine tasting experience",
+        },
+        {
+          "@type": "Offer",
+          name: "Supra Feast",
+          description: "Traditional Georgian supra with wine and food",
+        },
+        {
+          "@type": "Offer",
+          name: "Private Evening",
+          description: "Exclusive private evening at the marani",
+        },
       ],
     },
   };
@@ -271,7 +331,8 @@ export function buildServiceSchema(): JsonLdEntry {
       name: SITE_NAME,
     },
     areaServed: "Kakheti, Georgia",
-    description: "Wine tasting, Supra feasts, Chacha and aged Cognac experiences at a private Georgian marani.",
+    description:
+      "Wine tasting, Supra feasts, Chacha and aged Cognac experiences at a private Georgian marani.",
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Experiences",
@@ -296,7 +357,12 @@ export function buildPersonSchema(): JsonLdEntry {
     jobTitle: "Owner & Host",
     url: SITE_URL,
     sameAs: [SOCIALS.facebook, SOCIALS.instagram],
-    knowsAbout: ["Georgian wine", "Qvevri winemaking", "Kakhetian hospitality", "Georgian supra traditions"],
+    knowsAbout: [
+      "Georgian wine",
+      "Qvevri winemaking",
+      "Kakhetian hospitality",
+      "Georgian supra traditions",
+    ],
     affiliation: {
       "@type": "Organization",
       name: SITE_NAME,
@@ -367,28 +433,34 @@ export function toJsonLdString(schema: JsonLdEntry | JsonLdEntry[]): string {
 export const PAGE_SEO = {
   home: {
     title: "Georgian Wine Experience in Kakheti",
-    description: "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience.",
-    keywords: "Sabacho, Georgian wine, Kakheti winery, wine tasting Georgia, qvevri wine, Georgian supra, Kakheti wine tour, Sabacho Marani, private wine cellar",
+    description:
+      "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience.",
+    keywords:
+      "Sabacho, Georgian wine, Kakheti winery, wine tasting Georgia, qvevri wine, Georgian supra, Kakheti wine tour, Sabacho Marani, private wine cellar",
     canonicalPath: "/",
   },
   about: {
     title: "Our Story",
-    description: "The story of Sabacho Marani — the family, the marani, the village, and the Georgian hospitality behind every glass.",
+    description:
+      "The story of Sabacho Marani — the family, the marani, the village, and the Georgian hospitality behind every glass.",
     canonicalPath: "/about",
   },
   contact: {
     title: "Contact & Reservations",
-    description: "Reach Sabacho Marani in Kakheti, Georgia. Phone, WhatsApp, email and social links. Please contact us before visiting.",
+    description:
+      "Reach Sabacho Marani in Kakheti, Georgia. Phone, WhatsApp, email and social links. Please contact us before visiting.",
     canonicalPath: "/contact",
   },
   gallery: {
     title: "Gallery",
-    description: "Photographs from Sabacho Marani — the cellar, the garden, the Supra table, and the light of Kakheti.",
+    description:
+      "Photographs from Sabacho Marani — the cellar, the garden, the Supra table, and the light of Kakheti.",
     canonicalPath: "/gallery",
   },
   tasting: {
     title: "Tasting Menu",
-    description: "Wines, Chacha, aged Cognac and traditional Georgian pairings from Sabacho's private cellar.",
+    description:
+      "Wines, Chacha, aged Cognac and traditional Georgian pairings from Sabacho's private cellar.",
     canonicalPath: "/tasting",
   },
   notFound: {

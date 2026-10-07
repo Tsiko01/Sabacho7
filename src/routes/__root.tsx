@@ -17,6 +17,7 @@ import { ThemeProvider } from "@/lib/theme";
 import { Toaster } from "sonner";
 import { OrganizationSchema } from "@/components/seo/OrganizationSchema";
 import { buildCanonical } from "@/lib/seo";
+import { Analytics } from "@vercel/analytics/react";
 
 function NotFoundComponent() {
   return (
@@ -36,15 +37,18 @@ function NotFoundComponent() {
           </Link>
         </div>
       </div>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{
-        __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          name: "404 - Page Not Found | SABACHO Marani",
-          description: "The page you're looking for doesn't exist or has been moved.",
-          url: buildCanonical("/404"),
-        }),
-      }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "404 - Page Not Found | SABACHO Marani",
+            description: "The page you're looking for doesn't exist or has been moved.",
+            url: buildCanonical("/404"),
+          }),
+        }}
+      />
     </div>
   );
 }
@@ -93,8 +97,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "SABACHO Marani — Georgian Wine Experience in Kakheti" },
-      { name: "description", content: "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience." },
-      { name: "keywords", content: "Sabacho, Georgian wine, Kakheti winery, wine tasting Georgia, qvevri wine, Georgian supra, Kakheti wine tour, Sabacho Marani, private wine cellar" },
+      {
+        name: "description",
+        content:
+          "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience.",
+      },
+      {
+        name: "keywords",
+        content:
+          "Sabacho, Georgian wine, Kakheti winery, wine tasting Georgia, qvevri wine, Georgian supra, Kakheti wine tour, Sabacho Marani, private wine cellar",
+      },
       { name: "robots", content: "index, follow" },
       { name: "author", content: "Sabacho Marani" },
       { name: "creator", content: "Sabacho Marani" },
@@ -107,7 +119,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         ? [{ name: "google-site-verification", content: import.meta.env.VITE_GOOGLE_VERIFICATION }]
         : []),
       { property: "og:title", content: "SABACHO Marani — Georgian Wine Experience in Kakheti" },
-      { property: "og:description", content: "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience." },
+      {
+        property: "og:description",
+        content:
+          "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience.",
+      },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://www.sabacho.ge" },
       { property: "og:image", content: "https://www.sabacho.ge/logo.png" },
@@ -117,7 +133,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "SABACHO Marani" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "SABACHO Marani — Georgian Wine Experience in Kakheti" },
-      { name: "twitter:description", content: "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience." },
+      {
+        name: "twitter:description",
+        content:
+          "Private Georgian winery in Kakheti. Wine tasting, Supra feasts, Chacha and aged Cognac. Reserve your Sabacho experience.",
+      },
       { name: "twitter:image", content: "https://www.sabacho.ge/logo.png" },
       { name: "twitter:site", content: "@sabacho_marani" },
       { name: "twitter:creator", content: "@sabacho_marani" },
@@ -144,7 +164,13 @@ function RootShell({ children }: { children: ReactNode }) {
         {/* Self-hosted fonts (Inter, Cormorant Garamond) — ~1KB CSS; woff2 files load lazily via font-display:swap */}
         <link rel="stylesheet" href="/fonts/fonts.css" />
         {/* Preload hero poster image for LCP optimization */}
-        <link rel="preload" href="/photos/gazebo-night.webp" as="image" type="image/webp" fetchPriority="high" />
+        <link
+          rel="preload"
+          href="/photos/gazebo-night.webp"
+          as="image"
+          type="image/webp"
+          fetchPriority="high"
+        />
         {/* Google Analytics 4 — loaded async to avoid blocking rendering */}
         {import.meta.env.VITE_GA_ID && (
           <>
@@ -153,7 +179,10 @@ function RootShell({ children }: { children: ReactNode }) {
                 __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${import.meta.env.VITE_GA_ID}',{page_path:window.location.pathname});`,
               }}
             />
-            <script async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.VITE_GA_ID}`} />
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.VITE_GA_ID}`}
+            />
           </>
         )}
       </head>
@@ -167,7 +196,7 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const pathname = useRouterState({ select: s => s.location.pathname });
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
   const firstRender = useRef(true);
 
   useEffect(() => {
@@ -188,6 +217,7 @@ function RootComponent() {
           <OrganizationSchema />
           <Outlet />
           <Toaster theme="dark" position="top-center" richColors />
+          <Analytics />
         </I18nProvider>
       </ThemeProvider>
     </QueryClientProvider>

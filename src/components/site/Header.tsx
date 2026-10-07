@@ -37,13 +37,18 @@ export function Header() {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-8 h-16 md:h-20">
         <Link to="/" className="flex items-baseline gap-2 group">
-          <span className="font-serif text-2xl md:text-3xl tracking-[0.25em] text-gold">SABACHO</span>
-          <span className="hidden sm:inline text-[10px] uppercase tracking-[0.35em] text-muted-foreground">Marani</span>
+          <span className="font-serif text-2xl md:text-3xl tracking-[0.25em] text-gold">
+            SABACHO
+          </span>
+          <span className="hidden sm:inline text-[10px] uppercase tracking-[0.35em] text-muted-foreground">
+            Marani
+          </span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-7" aria-label="Main navigation">
-          {NAV_ITEMS.map(item => {
-            const isActive = item.to === "/" ? currentPath === "/" : currentPath.startsWith(item.to);
+          {NAV_ITEMS.map((item) => {
+            const isActive =
+              item.to === "/" ? currentPath === "/" : currentPath.startsWith(item.to);
             return (
               <Link
                 key={item.key + item.hash}
@@ -61,7 +66,7 @@ export function Header() {
         <div className="flex items-center gap-1.5 md:gap-2">
           <div className="relative">
             <button
-              onClick={() => setLangOpen(v => !v)}
+              onClick={() => setLangOpen((v) => !v)}
               className="p-2 rounded-md hover:bg-foreground/10 transition-colors flex items-center gap-1 text-xs uppercase tracking-widest focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
               aria-label={`Language: ${lang.toUpperCase()}`}
               aria-expanded={langOpen}
@@ -77,10 +82,13 @@ export function Header() {
                 role="menu"
                 aria-label="Select language"
               >
-                {LANGS.map(l => (
+                {LANGS.map((l) => (
                   <button
                     key={l.code}
-                    onClick={() => { setLang(l.code as Lang); setLangOpen(false); }}
+                    onClick={() => {
+                      setLang(l.code as Lang);
+                      setLangOpen(false);
+                    }}
                     className={`w-full text-left px-3 py-2 rounded text-sm hover:bg-gold/10 flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold ${
                       lang === l.code ? "text-gold" : ""
                     }`}
@@ -99,7 +107,11 @@ export function Header() {
             className="p-2 rounded-md hover:bg-foreground/10 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
             aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
           >
-            {theme === "dark" ? <Sun className="w-4 h-4" aria-hidden="true" /> : <Moon className="w-4 h-4" aria-hidden="true" />}
+            {theme === "dark" ? (
+              <Sun className="w-4 h-4" aria-hidden="true" />
+            ) : (
+              <Moon className="w-4 h-4" aria-hidden="true" />
+            )}
           </button>
 
           <a
@@ -122,11 +134,15 @@ export function Header() {
 
           <button
             className="lg:hidden p-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
-            onClick={() => setOpen(v => !v)}
+            onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
           >
-            {open ? <X className="w-5 h-5" aria-hidden="true" /> : <Menu className="w-5 h-5" aria-hidden="true" />}
+            {open ? (
+              <X className="w-5 h-5" aria-hidden="true" />
+            ) : (
+              <Menu className="w-5 h-5" aria-hidden="true" />
+            )}
           </button>
         </div>
       </div>
@@ -134,8 +150,9 @@ export function Header() {
       {open && (
         <div className="lg:hidden glass border-t border-border/40">
           <nav className="flex flex-col p-4 gap-1" aria-label="Mobile navigation">
-            {NAV_ITEMS.map(item => {
-              const isActive = item.to === "/" ? currentPath === "/" : currentPath.startsWith(item.to);
+            {NAV_ITEMS.map((item) => {
+              const isActive =
+                item.to === "/" ? currentPath === "/" : currentPath.startsWith(item.to);
               return (
                 <Link
                   key={item.key + item.hash}

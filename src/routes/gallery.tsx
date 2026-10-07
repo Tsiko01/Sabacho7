@@ -16,15 +16,29 @@ export const Route = createFileRoute("/gallery")({
   head: () => ({
     meta: [
       { title: "Gallery | SABACHO Marani" },
-      { name: "description", content: "Photographs from Sabacho Marani — the cellar, the garden, the Supra table, and the light of Kakheti." },
-      { name: "keywords", content: "Sabacho Marani photos, Kakheti winery gallery, Georgian wine cellar photos, Sabacho garden, Georgian supra table" },
+      {
+        name: "description",
+        content:
+          "Photographs from Sabacho Marani — the cellar, the garden, the Supra table, and the light of Kakheti.",
+      },
+      {
+        name: "keywords",
+        content:
+          "Sabacho Marani photos, Kakheti winery gallery, Georgian wine cellar photos, Sabacho garden, Georgian supra table",
+      },
       { name: "robots", content: "index, follow" },
       { property: "og:title", content: "Gallery | SABACHO Marani" },
-      { property: "og:description", content: "A visual journey through our Georgian family marani." },
+      {
+        property: "og:description",
+        content: "A visual journey through our Georgian family marani.",
+      },
       { property: "og:url", content: "https://www.sabacho.ge/gallery" },
       { property: "og:type", content: "website" },
       { name: "twitter:title", content: "Gallery | SABACHO Marani" },
-      { name: "twitter:description", content: "A visual journey through our Georgian family marani." },
+      {
+        name: "twitter:description",
+        content: "A visual journey through our Georgian family marani.",
+      },
     ],
     links: [{ rel: "canonical", href: "https://www.sabacho.ge/gallery" }],
   }),
@@ -41,16 +55,25 @@ function GalleryPage() {
   const { data } = useQuery({
     queryKey: ["gallery"],
     queryFn: async () => {
-      const { data, error } = await supabase.from("gallery_images").select("id, image_url, alt, category").eq("active", true).order("sort_order");
+      const { data, error } = await supabase
+        .from("gallery_images")
+        .select("id, image_url, alt, category")
+        .eq("active", true)
+        .order("sort_order");
       if (error) throw error;
       return data as unknown as GalleryRow[];
     },
   });
   const all = data ?? [];
-  const rows = useMemo(() => filter === "all" ? all : all.filter(r => (r.category ?? "").toLowerCase() === filter), [all, filter]);
+  const rows = useMemo(
+    () => (filter === "all" ? all : all.filter((r) => (r.category ?? "").toLowerCase() === filter)),
+    [all, filter],
+  );
 
   const [openIdx, setOpenIdx] = useState<number | null>(null);
-  useEffect(() => { setOpenIdx(null); }, [filter]);
+  useEffect(() => {
+    setOpenIdx(null);
+  }, [filter]);
 
   return (
     <div className="bg-background text-foreground min-h-screen">
@@ -63,10 +86,18 @@ function GalleryPage() {
               <span className="text-[10px] uppercase tracking-[0.5em] text-gold">Gallery</span>
               <span className="h-px w-8 bg-gold/60" aria-hidden="true" />
             </div>
-            <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-light">{t("gallery.title")}</h1>
-            <p className="mt-4 text-muted-foreground max-w-xl mx-auto text-sm md:text-base">{t("gallery.subtitle")}</p>
-            <div className="mt-8 flex flex-wrap justify-center gap-2 text-[10px] uppercase tracking-[0.3em]" role="group" aria-label="Filter gallery by category">
-              {(["all", ...CATEGORIES] as const).map(c => (
+            <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-light">
+              {t("gallery.title")}
+            </h1>
+            <p className="mt-4 text-muted-foreground max-w-xl mx-auto text-sm md:text-base">
+              {t("gallery.subtitle")}
+            </p>
+            <div
+              className="mt-8 flex flex-wrap justify-center gap-2 text-[10px] uppercase tracking-[0.3em]"
+              role="group"
+              aria-label="Filter gallery by category"
+            >
+              {(["all", ...CATEGORIES] as const).map((c) => (
                 <button
                   key={c}
                   type="button"
@@ -80,19 +111,39 @@ function GalleryPage() {
             </div>
           </div>
           {rows.length === 0 ? (
-            <div className="text-center text-muted-foreground py-14 text-sm">{t("gallery.empty")}</div>
+            <div className="text-center text-muted-foreground py-14 text-sm">
+              {t("gallery.empty")}
+            </div>
           ) : (
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 [column-fill:_balance]">
-            {rows.map((g, i) => (
-              <button key={g.id} type="button" onClick={() => setOpenIdx(i)} className="block w-full mb-4 overflow-hidden rounded-lg group relative animate-fade-in" aria-label={g.alt ?? "Sabacho gallery image"}>
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img src={resolveImageUrl(g.image_url) ?? ""} alt={g.alt ?? "Sabacho"} loading="lazy" decoding="async" width={400} height={300} className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700" />
-                </div>
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors" />
-                {g.category && <span className="absolute top-3 left-3 bg-black/60 backdrop-blur border border-white/15 text-white text-[9px] uppercase tracking-[0.3em] px-3 py-1 rounded-full">{t(`gallery.filter.${g.category}`) || g.category}</span>}
-              </button>
-            ))}
-          </div>
+            <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 [column-fill:_balance]">
+              {rows.map((g, i) => (
+                <button
+                  key={g.id}
+                  type="button"
+                  onClick={() => setOpenIdx(i)}
+                  className="block w-full mb-4 overflow-hidden rounded-lg group relative animate-fade-in"
+                  aria-label={g.alt ?? "Sabacho gallery image"}
+                >
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img
+                      src={resolveImageUrl(g.image_url) ?? ""}
+                      alt={g.alt ?? "Sabacho"}
+                      loading="lazy"
+                      decoding="async"
+                      width={400}
+                      height={300}
+                      className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors" />
+                  {g.category && (
+                    <span className="absolute top-3 left-3 bg-black/60 backdrop-blur border border-white/15 text-white text-[9px] uppercase tracking-[0.3em] px-3 py-1 rounded-full">
+                      {t(`gallery.filter.${g.category}`) || g.category}
+                    </span>
+                  )}
+                </button>
+              ))}
+            </div>
           )}
         </div>
 
@@ -104,15 +155,26 @@ function GalleryPage() {
             src={resolveImageUrl(rows[openIdx].image_url) ?? ""}
             alt={rows[openIdx].alt ?? "Sabacho gallery image"}
             onClose={() => setOpenIdx(null)}
-            onPrev={() => setOpenIdx(i => (i === null ? 0 : (i - 1 + rows.length) % rows.length))}
-            onNext={() => setOpenIdx(i => (i === null ? 0 : (i + 1) % rows.length))}
+            onPrev={() => setOpenIdx((i) => (i === null ? 0 : (i - 1 + rows.length) % rows.length))}
+            onNext={() => setOpenIdx((i) => (i === null ? 0 : (i + 1) % rows.length))}
           />
         )}
       </main>
       <Footer />
       <FloatingButtons />
-      <BreadcrumbSchema items={[{ name: "Home", item: "/", position: 1 }, { name: "Gallery", item: "/gallery", position: 2 }]} />
-      <Schema schema={buildWebPageSchema("Gallery | SABACHO Marani", "Photographs from Sabacho Marani — the cellar, the garden, the Supra table, and the light of Kakheti.", "/gallery")} />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", item: "/", position: 1 },
+          { name: "Gallery", item: "/gallery", position: 2 },
+        ]}
+      />
+      <Schema
+        schema={buildWebPageSchema(
+          "Gallery | SABACHO Marani",
+          "Photographs from Sabacho Marani — the cellar, the garden, the Supra table, and the light of Kakheti.",
+          "/gallery",
+        )}
+      />
     </div>
   );
 }

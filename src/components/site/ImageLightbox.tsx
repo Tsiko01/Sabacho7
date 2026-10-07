@@ -53,7 +53,8 @@ export function ImageLightbox({
     }
     if (!wasOpenRef.current) {
       wasOpenRef.current = true;
-      lastFocusedRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      lastFocusedRef.current =
+        document.activeElement instanceof HTMLElement ? document.activeElement : null;
       dialogRef.current?.focus();
     }
     const onKey = (e: KeyboardEvent) => {
