@@ -8,18 +8,25 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
-    const saved = (typeof window !== "undefined" && (localStorage.getItem("sabacho-theme") as Theme)) || "dark";
+    const saved =
+      (typeof window !== "undefined" && (localStorage.getItem("sabacho-theme") as Theme)) || "dark";
     setTheme(saved);
   }, []);
 
   useEffect(() => {
     if (typeof document === "undefined") return;
     document.documentElement.classList.toggle("dark", theme === "dark");
-    try { localStorage.setItem("sabacho-theme", theme); } catch { /* ignore (private mode) */ }
+    try {
+      localStorage.setItem("sabacho-theme", theme);
+    } catch {
+      /* ignore (private mode) */
+    }
   }, [theme]);
 
   return (
-    <ThemeCtx.Provider value={{ theme, toggle: () => setTheme(t => t === "dark" ? "light" : "dark"), setTheme }}>
+    <ThemeCtx.Provider
+      value={{ theme, toggle: () => setTheme((t) => (t === "dark" ? "light" : "dark")), setTheme }}
+    >
       {children}
     </ThemeCtx.Provider>
   );
