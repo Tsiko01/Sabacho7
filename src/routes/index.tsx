@@ -161,9 +161,9 @@ function SectionHeading({ eyebrow, title, subtitle }: { eyebrow?: string; title:
 function About() {
   const { t } = useI18n();
   const photos = [
-    { src: IMAGES.maraniInterior, alt: "Sabacho marani interior" },
-    { src: IMAGES.cellarTable, alt: "Cellar table" },
-    { src: IMAGES.gardenDay, alt: "Garden" },
+    { src: IMAGES.cellarBottles, alt: "Sabacho marani interior" },
+    { src: IMAGES.buxari, alt: "Cellar table" },
+    { src: IMAGES.gardenPomegranate, alt: "Garden" },
   ];
   const [lightbox, setLightbox] = useState<number | null>(null);
   return (
