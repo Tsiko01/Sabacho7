@@ -43,7 +43,6 @@ function Index() {
         <Hero />
         <About />
         <Experiences />
-        <TastingTeaser />
         <Testimonials />
         <FAQ />
         <BookSection />
@@ -374,37 +373,6 @@ function ExperienceCard({ image, title, items, icon, price, onOpen }: { image: s
         </ul>
       </div>
     </button>
-  );
-}
-
-function TastingTeaser() {
-  const { t } = useI18n();
-  return (
-    <section className="relative py-20 md:py-28 px-6 md:px-8" aria-label={t("nav.tasting")}>
-      <div className="max-w-6xl mx-auto relative overflow-hidden rounded-3xl border border-gold/30 bg-gradient-to-br from-secondary via-background to-secondary/50">
-        <div className="absolute inset-0">
-          <img src={IMAGES.cellarBottles} alt="" loading="lazy" decoding="async" width={1200} height={800} className="w-full h-full object-cover opacity-20" aria-hidden="true" style={{ objectFit: "cover" }} />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
-        </div>
-        <div className="relative p-8 md:p-16 grid md:grid-cols-2 gap-10 items-center">
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="h-px w-8 bg-gold/60" aria-hidden="true" />
-              <span className="text-[10px] uppercase tracking-[0.5em] text-gold">{t("nav.tasting")}</span>
-            </div>
-            <h2 className="font-serif text-5xl md:text-6xl text-foreground">{t("tasting.teaser.title")}</h2>
-            <p className="mt-4 text-muted-foreground max-w-md leading-relaxed">{t("tasting.teaser.subtitle")}</p>
-            <a href="/tasting" className="mt-8 inline-flex items-center gap-2 bg-gold hover:brightness-110 text-black px-7 py-3.5 rounded-md text-xs uppercase tracking-[0.25em] font-medium transition-all hover:scale-[1.03]">
-              {t("cta.view_tasting")} <ChevronRight className="w-4 h-4" aria-hidden="true" />
-            </a>
-          </div>
-          <div className="grid grid-cols-2 gap-3">
-            <img src={IMAGES.cellarBottles} alt="" loading="lazy" width={400} height={400} decoding="async" className="rounded-lg aspect-square object-cover" aria-hidden="true" />
-            <img src={IMAGES.cellarTable} alt="" loading="lazy" width={400} height={400} decoding="async" className="rounded-lg aspect-square object-cover mt-8" aria-hidden="true" />
-          </div>
-        </div>
-      </div>
-    </section>
   );
 }
 

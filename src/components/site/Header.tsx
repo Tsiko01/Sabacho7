@@ -8,7 +8,6 @@ import { MAPS_URL } from "@/lib/constants";
 const NAV_ITEMS = [
   { key: "nav.home", to: "/", hash: "" },
   { key: "nav.about", to: "/about", hash: "" },
-  { key: "nav.tasting", to: "/tasting", hash: "" },
   { key: "nav.gallery", to: "/gallery", hash: "" },
   { key: "nav.contact", to: "/contact", hash: "" },
 ] as const;

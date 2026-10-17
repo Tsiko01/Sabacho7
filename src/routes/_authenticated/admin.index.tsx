@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { Coffee, CalendarClock, ImageIcon, Mail } from "lucide-react";
+import { CalendarClock, ImageIcon, Mail } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated/admin/")({
   component: Dashboard,
@@ -13,16 +13,15 @@ function Dashboard() {
   const { data } = useQuery({
     queryKey: ["admin-dashboard"],
     queryFn: async () => {
-      const [t, b, pending, g] = await Promise.all([
-        supabase.from("tastings").select("id", { count: "exact", head: true }),
+      const [b, pending, g] = await Promise.all([
         supabase.from("bookings").select("id", { count: "exact", head: true }),
         supabase.from("bookings").select("id", { count: "exact", head: true }).eq("status", "pending"),
         supabase.from("gallery_images").select("id", { count: "exact", head: true }),
       ]);
-      return { tastings: t.count ?? 0, bookings: b.count ?? 0, pending: pending.count ?? 0, gallery: g.count ?? 0 };
+      return { bookings: b.count ?? 0, pending: pending.count ?? 0, gallery: g.count ?? 0 };
     },
   });
-  const stats = data ?? { tastings: 0, bookings: 0, pending: 0, gallery: 0 };
+  const stats = data ?? { bookings: 0, pending: 0, gallery: 0 };
 
   const { data: latest } = useQuery({
     queryKey: ["admin-latest-bookings"],
@@ -36,9 +35,8 @@ function Dashboard() {
   return (
     <div className="max-w-6xl">
       <h1 className="font-serif text-4xl mb-2">Dashboard</h1>
-      <p className="text-sm text-muted-foreground mb-8">Manage tastings, gallery, and reservations.</p>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Stat icon={<Coffee aria-hidden="true" />} label="Tastings" value={stats.tastings} />
+      <p className="text-sm text-muted-foreground mb-8">Manage gallery and reservations.</p>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <Stat icon={<ImageIcon aria-hidden="true" />} label="Gallery" value={stats.gallery} />
         <Stat icon={<CalendarClock aria-hidden="true" />} label="Bookings" value={stats.bookings} />
         <Stat icon={<CalendarClock aria-hidden="true" />} label="Pending" value={stats.pending} accent />

@@ -15,7 +15,6 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as TastingRouteImport } from './routes/tasting'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
@@ -23,7 +22,6 @@ import { Route as AuthenticatedAdminAboutRouteImport } from './routes/_authentic
 import { Route as AuthenticatedAdminBookingsRouteImport } from './routes/_authenticated/admin.bookings'
 import { Route as AuthenticatedAdminFaqsRouteImport } from './routes/_authenticated/admin.faqs'
 import { Route as AuthenticatedAdminGalleryRouteImport } from './routes/_authenticated/admin.gallery'
-import { Route as AuthenticatedAdminTastingsRouteImport } from './routes/_authenticated/admin.tastings'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,11 +50,6 @@ const GalleryRoute = GalleryRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TastingRoute = TastingRouteImport.update({
-  id: '/tasting',
-  path: '/tasting',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
@@ -96,12 +89,6 @@ const AuthenticatedAdminGalleryRoute =
     path: '/gallery',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
-const AuthenticatedAdminTastingsRoute =
-  AuthenticatedAdminTastingsRouteImport.update({
-    id: '/tastings',
-    path: '/tastings',
-    getParentRoute: () => AuthenticatedAdminRoute,
-  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -109,14 +96,12 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/tasting': typeof TastingRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/admin/login': typeof AdminLoginRoute
   '/admin/about': typeof AuthenticatedAdminAboutRoute
   '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
   '/admin/faqs': typeof AuthenticatedAdminFaqsRoute
   '/admin/gallery': typeof AuthenticatedAdminGalleryRoute
-  '/admin/tastings': typeof AuthenticatedAdminTastingsRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -125,13 +110,11 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/tasting': typeof TastingRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/about': typeof AuthenticatedAdminAboutRoute
   '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
   '/admin/faqs': typeof AuthenticatedAdminFaqsRoute
   '/admin/gallery': typeof AuthenticatedAdminGalleryRoute
-  '/admin/tastings': typeof AuthenticatedAdminTastingsRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
@@ -142,14 +125,12 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/tasting': typeof TastingRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/admin/login': typeof AdminLoginRoute
   '/_authenticated/admin/about': typeof AuthenticatedAdminAboutRoute
   '/_authenticated/admin/bookings': typeof AuthenticatedAdminBookingsRoute
   '/_authenticated/admin/faqs': typeof AuthenticatedAdminFaqsRoute
   '/_authenticated/admin/gallery': typeof AuthenticatedAdminGalleryRoute
-  '/_authenticated/admin/tastings': typeof AuthenticatedAdminTastingsRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -160,14 +141,12 @@ export interface FileRouteTypes {
     | '/contact'
     | '/gallery'
     | '/sitemap.xml'
-    | '/tasting'
     | '/admin'
     | '/admin/login'
     | '/admin/about'
     | '/admin/bookings'
     | '/admin/faqs'
     | '/admin/gallery'
-    | '/admin/tastings'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -176,13 +155,11 @@ export interface FileRouteTypes {
     | '/contact'
     | '/gallery'
     | '/sitemap.xml'
-    | '/tasting'
     | '/admin/login'
     | '/admin/about'
     | '/admin/bookings'
     | '/admin/faqs'
     | '/admin/gallery'
-    | '/admin/tastings'
     | '/admin'
   id:
     | '__root__'
@@ -192,14 +169,12 @@ export interface FileRouteTypes {
     | '/contact'
     | '/gallery'
     | '/sitemap.xml'
-    | '/tasting'
     | '/_authenticated/admin'
     | '/admin/login'
     | '/_authenticated/admin/about'
     | '/_authenticated/admin/bookings'
     | '/_authenticated/admin/faqs'
     | '/_authenticated/admin/gallery'
-    | '/_authenticated/admin/tastings'
     | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -210,7 +185,6 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   GalleryRoute: typeof GalleryRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  TastingRoute: typeof TastingRoute
   AdminLoginRoute: typeof AdminLoginRoute
 }
 
@@ -256,13 +230,6 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/tasting': {
-      id: '/tasting'
-      path: '/tasting'
-      fullPath: '/tasting'
-      preLoaderRoute: typeof TastingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin': {
@@ -314,13 +281,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminGalleryRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
-    '/_authenticated/admin/tastings': {
-      id: '/_authenticated/admin/tastings'
-      path: '/tastings'
-      fullPath: '/admin/tastings'
-      preLoaderRoute: typeof AuthenticatedAdminTastingsRouteImport
-      parentRoute: typeof AuthenticatedAdminRoute
-    }
   }
 }
 
@@ -329,7 +289,6 @@ interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminBookingsRoute: typeof AuthenticatedAdminBookingsRoute
   AuthenticatedAdminFaqsRoute: typeof AuthenticatedAdminFaqsRoute
   AuthenticatedAdminGalleryRoute: typeof AuthenticatedAdminGalleryRoute
-  AuthenticatedAdminTastingsRoute: typeof AuthenticatedAdminTastingsRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
 
@@ -338,7 +297,6 @@ const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminBookingsRoute: AuthenticatedAdminBookingsRoute,
   AuthenticatedAdminFaqsRoute: AuthenticatedAdminFaqsRoute,
   AuthenticatedAdminGalleryRoute: AuthenticatedAdminGalleryRoute,
-  AuthenticatedAdminTastingsRoute: AuthenticatedAdminTastingsRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
 }
 
@@ -363,7 +321,6 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   GalleryRoute: GalleryRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
-  TastingRoute: TastingRoute,
   AdminLoginRoute: AdminLoginRoute,
 }
 export const routeTree = rootRouteImport

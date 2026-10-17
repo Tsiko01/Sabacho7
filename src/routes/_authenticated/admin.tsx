@@ -1,5 +1,5 @@
 import { createFileRoute, Link, Outlet, useNavigate } from "@tanstack/react-router";
-import { LayoutDashboard, Coffee, CalendarClock, LogOut, Image as ImageIcon, BookOpen, HelpCircle } from "lucide-react";
+import { LayoutDashboard, CalendarClock, LogOut, Image as ImageIcon, BookOpen, HelpCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/_authenticated/admin")({
@@ -23,7 +23,6 @@ function AdminLayout() {
           </Link>
           <nav className="space-y-1" aria-label="Admin navigation">
             <Link to="/admin" activeOptions={{ exact: true }} activeProps={{ className: "bg-gold/10 text-gold" }} className={linkCls}><LayoutDashboard className="w-4 h-4" aria-hidden="true" />Dashboard</Link>
-            <Link to="/admin/tastings" activeProps={{ className: "bg-gold/10 text-gold" }} className={linkCls}><Coffee className="w-4 h-4" aria-hidden="true" />Tastings</Link>
             <Link to="/admin/gallery" activeProps={{ className: "bg-gold/10 text-gold" }} className={linkCls}><ImageIcon className="w-4 h-4" aria-hidden="true" />Gallery</Link>
             <Link to="/admin/about" activeProps={{ className: "bg-gold/10 text-gold" }} className={linkCls}><BookOpen className="w-4 h-4" aria-hidden="true" />About page</Link>
             <Link to="/admin/faqs" activeProps={{ className: "bg-gold/10 text-gold" }} className={linkCls}><HelpCircle className="w-4 h-4" aria-hidden="true" />FAQ</Link>
@@ -38,7 +37,6 @@ function AdminLayout() {
       </div>
       <div className="md:hidden fixed top-14 inset-x-0 z-10 bg-background border-b border-border/60 flex overflow-x-auto" role="tablist" aria-label="Admin navigation">
         <Link to="/admin" activeOptions={{ exact: true }} activeProps={{ className: "text-gold border-gold" }} className="px-4 py-2 text-xs uppercase tracking-widest border-b-2 border-transparent" role="tab">Dash</Link>
-        <Link to="/admin/tastings" activeProps={{ className: "text-gold border-gold" }} className="px-4 py-2 text-xs uppercase tracking-widest border-b-2 border-transparent" role="tab">Tastings</Link>
         <Link to="/admin/gallery" activeProps={{ className: "text-gold border-gold" }} className="px-4 py-2 text-xs uppercase tracking-widest border-b-2 border-transparent" role="tab">Gallery</Link>
         <Link to="/admin/about" activeProps={{ className: "text-gold border-gold" }} className="px-4 py-2 text-xs uppercase tracking-widest border-b-2 border-transparent" role="tab">About</Link>
         <Link to="/admin/faqs" activeProps={{ className: "text-gold border-gold" }} className="px-4 py-2 text-xs uppercase tracking-widest border-b-2 border-transparent" role="tab">FAQ</Link>

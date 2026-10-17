@@ -386,11 +386,6 @@ export const PAGE_SEO = {
     description: "Photographs from Sabacho Marani — the cellar, the garden, the Supra table, and the light of Kakheti.",
     canonicalPath: "/gallery",
   },
-  tasting: {
-    title: "Tasting Menu",
-    description: "Wines, Chacha, aged Cognac and traditional Georgian pairings from Sabacho's private cellar.",
-    canonicalPath: "/tasting",
-  },
   notFound: {
     title: "Page Not Found",
     description: "The page you're looking for doesn't exist or has been moved.",

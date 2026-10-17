@@ -161,63 +161,6 @@ export type Database = {
         }
         Relationships: []
       }
-      tastings: {
-        Row: {
-          active: boolean
-          category: string | null
-          created_at: string
-          description: string | null
-          description_ka: string | null
-          description_ru: string | null
-          description_uk: string | null
-          id: string
-          image_url: string | null
-          name: string
-          name_ka: string | null
-          name_ru: string | null
-          name_uk: string | null
-          sort_order: number
-          taste_notes: string | null
-          updated_at: string
-        }
-        Insert: {
-          active?: boolean
-          category?: string | null
-          created_at?: string
-          description?: string | null
-          description_ka?: string | null
-          description_ru?: string | null
-          description_uk?: string | null
-          id?: string
-          image_url?: string | null
-          name: string
-          name_ka?: string | null
-          name_ru?: string | null
-          name_uk?: string | null
-          sort_order?: number
-          taste_notes?: string | null
-          updated_at?: string
-        }
-        Update: {
-          active?: boolean
-          category?: string | null
-          created_at?: string
-          description?: string | null
-          description_ka?: string | null
-          description_ru?: string | null
-          description_uk?: string | null
-          id?: string
-          image_url?: string | null
-          name?: string
-          name_ka?: string | null
-          name_ru?: string | null
-          name_uk?: string | null
-          sort_order?: number
-          taste_notes?: string | null
-          updated_at?: string
-        }
-        Relationships: []
-      }
       user_roles: {
         Row: {
           created_at: string
