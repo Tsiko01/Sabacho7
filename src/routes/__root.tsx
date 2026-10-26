@@ -190,6 +190,7 @@ function RootComponent() {
           <OrganizationSchema />
           <Outlet />
           <Toaster theme="dark" position="top-center" richColors />
+          <Analytics />
         </I18nProvider>
       </ThemeProvider>
     </QueryClientProvider>
