@@ -17,6 +17,7 @@ import { I18nProvider } from "@/lib/i18n";
 import { ThemeProvider } from "@/lib/theme";
 import { Toaster } from "sonner";
 import { OrganizationSchema } from "@/components/seo/OrganizationSchema";
+import { BookingChoice } from "@/components/site/BookingChoice";
 import { buildCanonical } from "@/lib/seo";
 
 function NotFoundComponent() {
@@ -189,6 +190,7 @@ function RootComponent() {
         <I18nProvider>
           <OrganizationSchema />
           <Outlet />
+          <BookingChoice />
           <Toaster theme="dark" position="top-center" richColors />
         </I18nProvider>
       </ThemeProvider>

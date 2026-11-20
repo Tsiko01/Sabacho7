@@ -8,6 +8,8 @@ import { FloatingButtons } from "@/components/site/FloatingButtons";
 import { ImageLightbox } from "@/components/site/ImageLightbox";
 import { BookingForm } from "@/components/site/BookingForm";
 import { DetailOverlay } from "@/components/site/DetailOverlay";
+import { WhatsAppBookingOption } from "@/components/site/BookingChoice";
+import { openBookingChoice } from "@/lib/whatsapp";
 import { HERO_VIDEO, HERO_FALLBACK, IMAGES } from "@/lib/assets";
 import { useI18n, pickLang } from "@/lib/i18n";
 import { supabase } from "@/integrations/supabase/client";
@@ -305,7 +307,7 @@ function Experiences() {
               <h3 className="font-serif text-3xl md:text-4xl text-gold">{t("exp.private.title")}</h3>
               <p className="mt-3 text-muted-foreground leading-relaxed max-w-2xl">{t("exp.private.body")}</p>
             </div>
-            <a href="#book" onClick={(e) => { e.preventDefault(); scrollToBook(); }} className="shrink-0 border border-gold hover:bg-gold hover:text-black text-gold px-6 py-3 rounded-md text-xs uppercase tracking-[0.25em] transition-all cursor-pointer">
+            <a href="#book" data-booking-experience="private" onClick={(e) => { e.preventDefault(); scrollToBook(); }} className="shrink-0 border border-gold hover:bg-gold hover:text-black text-gold px-6 py-3 rounded-md text-xs uppercase tracking-[0.25em] transition-all cursor-pointer">
               {t("cta.reserve")}
             </a>
           </div>
@@ -326,7 +328,7 @@ function Experiences() {
           { label: "Atmosphere", value: "Candlelit stone cellar, hand-carved wooden table, family host guiding every pour." },
           { label: "Private option", value: "Reserve in advance to make the evening yours alone — with wines chosen specially for your group." },
         ]}
-        onBook={scrollToBook}
+        onBook={() => { scrollToBook(); openBookingChoice("wine"); }}
         bookLabel={t("cta.book_wine")}
       />
 
@@ -344,7 +346,7 @@ function Experiences() {
           { label: "Georgian hospitality", value: "Toasts to peace, to family, to guests — a tradition that turns strangers into friends by the end of the evening." },
           { label: "The table", value: "Home-cooked Kakhetian dishes made by the family, served under the vine-covered gazebo or in the marani." },
         ]}
-        onBook={scrollToBook}
+        onBook={() => { scrollToBook(); openBookingChoice("supra"); }}
         bookLabel={t("cta.book_supra")}
       />
     </section>
@@ -457,6 +459,7 @@ function BookSection() {
         <div className="glass rounded-2xl p-6 md:p-10">
           <BookingForm />
         </div>
+        <WhatsAppBookingOption />
       </div>
     </section>
   );
